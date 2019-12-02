@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.LotteryMethodDescribeMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.LotteryMethodDescribe">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="func_name" jdbcType="VARCHAR" property="funcName" />
+    <result column="func_desc" jdbcType="VARCHAR" property="funcDesc" />
+    <result column="kind_id" jdbcType="INTEGER" property="kindId" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, func_name, func_desc, kind_id, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from lottery_method_describe
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from lottery_method_describe
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.LotteryMethodDescribe">
+    insert into lottery_method_describe (id, func_name, func_desc, 
+      kind_id, remark)
+    values (#{id,jdbcType=INTEGER}, #{funcName,jdbcType=VARCHAR}, #{funcDesc,jdbcType=VARCHAR}, 
+      #{kindId,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.LotteryMethodDescribe">
+    insert into lottery_method_describe
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="funcName != null">
+        func_name,
+      </if>
+      <if test="funcDesc != null">
+        func_desc,
+      </if>
+      <if test="kindId != null">
+        kind_id,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="funcName != null">
+        #{funcName,jdbcType=VARCHAR},
+      </if>
+      <if test="funcDesc != null">
+        #{funcDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="kindId != null">
+        #{kindId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.LotteryMethodDescribe">
+    update lottery_method_describe
+    <set>
+      <if test="funcName != null">
+        func_name = #{funcName,jdbcType=VARCHAR},
+      </if>
+      <if test="funcDesc != null">
+        func_desc = #{funcDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="kindId != null">
+        kind_id = #{kindId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.LotteryMethodDescribe">
+    update lottery_method_describe
+    set func_name = #{funcName,jdbcType=VARCHAR},
+      func_desc = #{funcDesc,jdbcType=VARCHAR},
+      kind_id = #{kindId,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.LotteryMethodOddsMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.LotteryMethodOdds">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="method_id" jdbcType="INTEGER" property="methodId" />
+    <result column="lottery_id" jdbcType="INTEGER" property="lotteryId" />
+    <result column="open" jdbcType="BIT" property="open" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.Test.model.DBmodel.LotteryMethodOdds">
+    <result column="odds_ids" jdbcType="LONGVARCHAR" property="oddsIds" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, method_id, lottery_id, open
+  </sql>
+  <sql id="Blob_Column_List">
+    odds_ids
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from lottery_method_odds
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from lottery_method_odds
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.LotteryMethodOdds">
+    insert into lottery_method_odds (id, method_id, lottery_id, 
+      open, odds_ids)
+    values (#{id,jdbcType=INTEGER}, #{methodId,jdbcType=INTEGER}, #{lotteryId,jdbcType=INTEGER}, 
+      #{open,jdbcType=BIT}, #{oddsIds,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.LotteryMethodOdds">
+    insert into lottery_method_odds
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="methodId != null">
+        method_id,
+      </if>
+      <if test="lotteryId != null">
+        lottery_id,
+      </if>
+      <if test="open != null">
+        open,
+      </if>
+      <if test="oddsIds != null">
+        odds_ids,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="methodId != null">
+        #{methodId,jdbcType=INTEGER},
+      </if>
+      <if test="lotteryId != null">
+        #{lotteryId,jdbcType=INTEGER},
+      </if>
+      <if test="open != null">
+        #{open,jdbcType=BIT},
+      </if>
+      <if test="oddsIds != null">
+        #{oddsIds,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.LotteryMethodOdds">
+    update lottery_method_odds
+    <set>
+      <if test="methodId != null">
+        method_id = #{methodId,jdbcType=INTEGER},
+      </if>
+      <if test="lotteryId != null">
+        lottery_id = #{lotteryId,jdbcType=INTEGER},
+      </if>
+      <if test="open != null">
+        open = #{open,jdbcType=BIT},
+      </if>
+      <if test="oddsIds != null">
+        odds_ids = #{oddsIds,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.Test.model.DBmodel.LotteryMethodOdds">
+    update lottery_method_odds
+    set method_id = #{methodId,jdbcType=INTEGER},
+      lottery_id = #{lotteryId,jdbcType=INTEGER},
+      open = #{open,jdbcType=BIT},
+      odds_ids = #{oddsIds,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.LotteryMethodOdds">
+    update lottery_method_odds
+    set method_id = #{methodId,jdbcType=INTEGER},
+      lottery_id = #{lotteryId,jdbcType=INTEGER},
+      open = #{open,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

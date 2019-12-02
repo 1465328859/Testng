@@ -37,8 +37,8 @@
       <div class="suite">
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
-            <a href="#" class="navigator-link" panel-name="suite-用户管理系统测试套件">
-              <span class="suite-name border-passed">用户管理系统测试套件</span>
+            <a href="#" class="navigator-link" panel-name="suite-Default_Suite">
+              <span class="suite-name border-passed">Default Suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -48,37 +48,37 @@
             <div class="suite-section-content">
               <ul>
                 <li>
-                  <a href="#" class="navigator-link " panel-name="test-xml-用户管理系统测试套件">
-                    <span>C:\Users\admin\IdeaProjects\Testng\src\main\resources\testng.xml</span>
+                  <a href="#" class="navigator-link " panel-name="test-xml-Default_Suite">
+                    <span>C:\Users\admin\.IntelliJIdea2019.2\system\temp-testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" class="navigator-link " panel-name="testlist-用户管理系统测试套件">
+                  <a href="#" class="navigator-link " panel-name="testlist-Default_Suite">
                     <span class="test-stats">1 test</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" class="navigator-link " panel-name="group-用户管理系统测试套件">
+                  <a href="#" class="navigator-link " panel-name="group-Default_Suite">
                     <span>0 groups</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" class="navigator-link " panel-name="times-用户管理系统测试套件">
+                  <a href="#" class="navigator-link " panel-name="times-Default_Suite">
                     <span>Times</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" class="navigator-link " panel-name="reporter-用户管理系统测试套件">
+                  <a href="#" class="navigator-link " panel-name="reporter-Default_Suite">
                     <span>Reporter output</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" class="navigator-link " panel-name="ignored-methods-用户管理系统测试套件">
+                  <a href="#" class="navigator-link " panel-name="ignored-methods-Default_Suite">
                     <span>Ignored methods</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" class="navigator-link " panel-name="chronological-用户管理系统测试套件">
+                  <a href="#" class="navigator-link " panel-name="chronological-Default_Suite">
                     <span>Chronological view</span>
                   </a> <!-- navigator-link  -->
                 </li>
@@ -102,91 +102,88 @@
     </div> <!-- navigator-root -->
     <div class="wrapper">
       <div class="main-panel-root">
-        <div panel-name="suite-用户管理系统测试套件" class="panel 用户管理系统测试套件">
-        </div> <!-- panel 用户管理系统测试套件 -->
-        <div panel-name="test-xml-用户管理系统测试套件" class="panel">
+        <div panel-name="suite-Default_Suite" class="panel Default_Suite">
+        </div> <!-- panel Default_Suite -->
+        <div panel-name="test-xml-Default_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\admin\IdeaProjects\Testng\src\main\resources\testng.xml</span>
+            <span class="header-content">C:\Users\admin\.IntelliJIdea2019.2\system\temp-testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE suite SYSTEM &quot;http://testng.org/testng-1.0.dtd&quot;&gt;
-&lt;suite name=&quot;用户管理系统测试套件&quot;&gt;
-  &lt;listeners&gt;
-    &lt;listener class-name=&quot;com.Test.config.ExtentTestNGIReporterListener&quot;/&gt;
-  &lt;/listeners&gt;
-  &lt;test name=&quot;用户管理系统测试用例&quot;&gt;
+&lt;suite guice-stage=&quot;DEVELOPMENT&quot; name=&quot;Default Suite&quot;&gt;
+  &lt;test name=&quot;Testng&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;com.Test.cases.LoginTest&quot;/&gt;
-      &lt;class name=&quot;com.Test.cases.AddUserTest&quot;/&gt;
-      &lt;class name=&quot;com.Test.cases.GetUserInfoTest&quot;/&gt;
-      &lt;class name=&quot;com.Test.cases.GetUserListTest&quot;/&gt;
-      &lt;class name=&quot;com.Test.cases.updateUserInfo&quot;/&gt;
+      &lt;class name=&quot;com.Test.utils.DatabaseUtil&quot;&gt;
+        &lt;methods&gt;
+          &lt;include name=&quot;getsqlSession&quot;/&gt;
+        &lt;/methods&gt;
+      &lt;/class&gt; &lt;!-- com.Test.utils.DatabaseUtil --&gt;
     &lt;/classes&gt;
-  &lt;/test&gt; &lt;!-- 用户管理系统测试用例 --&gt;
-&lt;/suite&gt; &lt;!-- 用户管理系统测试套件 --&gt;
+  &lt;/test&gt; &lt;!-- Testng --&gt;
+&lt;/suite&gt; &lt;!-- Default Suite --&gt;
             </pre>
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="testlist-用户管理系统测试套件" class="panel">
+        <div panel-name="testlist-Default_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Tests for 用户管理系统测试套件</span>
+            <span class="header-content">Tests for Default Suite</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">用户管理系统测试用例 (5 classes)</span>
+                <span class="test-name">Testng (1 class)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="group-用户管理系统测试套件" class="panel">
+        <div panel-name="group-Default_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Groups for 用户管理系统测试套件</span>
+            <span class="header-content">Groups for Default Suite</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="times-用户管理系统测试套件" class="panel">
+        <div panel-name="times-Default_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Times for 用户管理系统测试套件</span>
+            <span class="header-content">Times for Default Suite</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="times-div">
               <script type="text/javascript">
-suiteTableInitFunctions.push('tableData_用户管理系统测试套件');
-function tableData_用户管理系统测试套件() {
+suiteTableInitFunctions.push('tableData_Default_Suite');
+function tableData_Default_Suite() {
 var data = new google.visualization.DataTable();
 data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(0);
-window.suiteTableData['用户管理系统测试套件']= { tableData: data, tableDiv: 'times-div-用户管理系统测试套件'}
+window.suiteTableData['Default_Suite']= { tableData: data, tableDiv: 'times-div-Default_Suite'}
 return data;
 }
               </script>
-              <div id="times-div-用户管理系统测试套件">
-              </div> <!-- times-div-用户管理系统测试套件 -->
+              <div id="times-div-Default_Suite">
+              </div> <!-- times-div-Default_Suite -->
             </div> <!-- times-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="reporter-用户管理系统测试套件" class="panel">
+        <div panel-name="reporter-Default_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Reporter output for 用户管理系统测试套件</span>
+            <span class="header-content">Reporter output for Default Suite</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="ignored-methods-用户管理系统测试套件" class="panel">
+        <div panel-name="ignored-methods-Default_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
             <span class="header-content">0 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="chronological-用户管理系统测试套件" class="panel">
+        <div panel-name="chronological-Default_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
             <span class="header-content">Methods in chronological order</span>
           </div> <!-- main-panel-header rounded-window-top -->

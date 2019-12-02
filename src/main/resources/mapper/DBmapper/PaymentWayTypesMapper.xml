@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.PaymentWayTypesMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.PaymentWayTypes">
+    <id column="type_id" jdbcType="BIGINT" property="typeId" />
+    <result column="way_method_id" jdbcType="TINYINT" property="wayMethodId" />
+    <result column="pay_name" jdbcType="VARCHAR" property="payName" />
+    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    <result column="alias" jdbcType="VARCHAR" property="alias" />
+    <result column="device" jdbcType="VARCHAR" property="device" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="grade" jdbcType="VARCHAR" property="grade" />
+    <result column="cname" jdbcType="VARCHAR" property="cname" />
+    <result column="min" jdbcType="INTEGER" property="min" />
+    <result column="max" jdbcType="INTEGER" property="max" />
+    <result column="quick_payment_amount" jdbcType="VARCHAR" property="quickPaymentAmount" />
+    <result column="seq" jdbcType="INTEGER" property="seq" />
+    <result column="pay_id" jdbcType="INTEGER" property="payId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    type_id, way_method_id, pay_name, type_name, alias, device, img, number, remark, 
+    status, grade, cname, min, max, quick_payment_amount, seq, pay_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from payment_way_types
+    where type_id = #{typeId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from payment_way_types
+    where type_id = #{typeId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.PaymentWayTypes">
+    insert into payment_way_types (type_id, way_method_id, pay_name, 
+      type_name, alias, device, 
+      img, number, remark, 
+      status, grade, cname, min, 
+      max, quick_payment_amount, seq, 
+      pay_id)
+    values (#{typeId,jdbcType=BIGINT}, #{wayMethodId,jdbcType=TINYINT}, #{payName,jdbcType=VARCHAR}, 
+      #{typeName,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, #{device,jdbcType=VARCHAR}, 
+      #{img,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{status,jdbcType=BIT}, #{grade,jdbcType=VARCHAR}, #{cname,jdbcType=VARCHAR}, #{min,jdbcType=INTEGER}, 
+      #{max,jdbcType=INTEGER}, #{quickPaymentAmount,jdbcType=VARCHAR}, #{seq,jdbcType=INTEGER}, 
+      #{payId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.PaymentWayTypes">
+    insert into payment_way_types
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="typeId != null">
+        type_id,
+      </if>
+      <if test="wayMethodId != null">
+        way_method_id,
+      </if>
+      <if test="payName != null">
+        pay_name,
+      </if>
+      <if test="typeName != null">
+        type_name,
+      </if>
+      <if test="alias != null">
+        alias,
+      </if>
+      <if test="device != null">
+        device,
+      </if>
+      <if test="img != null">
+        img,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="grade != null">
+        grade,
+      </if>
+      <if test="cname != null">
+        cname,
+      </if>
+      <if test="min != null">
+        min,
+      </if>
+      <if test="max != null">
+        max,
+      </if>
+      <if test="quickPaymentAmount != null">
+        quick_payment_amount,
+      </if>
+      <if test="seq != null">
+        seq,
+      </if>
+      <if test="payId != null">
+        pay_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="typeId != null">
+        #{typeId,jdbcType=BIGINT},
+      </if>
+      <if test="wayMethodId != null">
+        #{wayMethodId,jdbcType=TINYINT},
+      </if>
+      <if test="payName != null">
+        #{payName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null">
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="alias != null">
+        #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="device != null">
+        #{device,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null">
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="cname != null">
+        #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="min != null">
+        #{min,jdbcType=INTEGER},
+      </if>
+      <if test="max != null">
+        #{max,jdbcType=INTEGER},
+      </if>
+      <if test="quickPaymentAmount != null">
+        #{quickPaymentAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null">
+        #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="payId != null">
+        #{payId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.PaymentWayTypes">
+    update payment_way_types
+    <set>
+      <if test="wayMethodId != null">
+        way_method_id = #{wayMethodId,jdbcType=TINYINT},
+      </if>
+      <if test="payName != null">
+        pay_name = #{payName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null">
+        type_name = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="alias != null">
+        alias = #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="device != null">
+        device = #{device,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null">
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="grade != null">
+        grade = #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="cname != null">
+        cname = #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="min != null">
+        min = #{min,jdbcType=INTEGER},
+      </if>
+      <if test="max != null">
+        max = #{max,jdbcType=INTEGER},
+      </if>
+      <if test="quickPaymentAmount != null">
+        quick_payment_amount = #{quickPaymentAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null">
+        seq = #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="payId != null">
+        pay_id = #{payId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where type_id = #{typeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.PaymentWayTypes">
+    update payment_way_types
+    set way_method_id = #{wayMethodId,jdbcType=TINYINT},
+      pay_name = #{payName,jdbcType=VARCHAR},
+      type_name = #{typeName,jdbcType=VARCHAR},
+      alias = #{alias,jdbcType=VARCHAR},
+      device = #{device,jdbcType=VARCHAR},
+      img = #{img,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      grade = #{grade,jdbcType=VARCHAR},
+      cname = #{cname,jdbcType=VARCHAR},
+      min = #{min,jdbcType=INTEGER},
+      max = #{max,jdbcType=INTEGER},
+      quick_payment_amount = #{quickPaymentAmount,jdbcType=VARCHAR},
+      seq = #{seq,jdbcType=INTEGER},
+      pay_id = #{payId,jdbcType=INTEGER}
+    where type_id = #{typeId,jdbcType=BIGINT}
+  </update>
+</mapper>

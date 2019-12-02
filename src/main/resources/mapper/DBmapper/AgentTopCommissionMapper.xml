@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.AgentTopCommissionMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.AgentTopCommission">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="agent_id" jdbcType="INTEGER" property="agentId" />
+    <result column="agent" jdbcType="CHAR" property="agent" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+    <result column="add_time" jdbcType="INTEGER" property="addTime" />
+    <result column="belong_date" jdbcType="DATE" property="belongDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, agent_id, agent, balance, add_time, belong_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from agent_top_commission
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from agent_top_commission
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.AgentTopCommission">
+    insert into agent_top_commission (id, agent_id, agent, 
+      balance, add_time, belong_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{agentId,jdbcType=INTEGER}, #{agent,jdbcType=CHAR}, 
+      #{balance,jdbcType=DECIMAL}, #{addTime,jdbcType=INTEGER}, #{belongDate,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.AgentTopCommission">
+    insert into agent_top_commission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="agentId != null">
+        agent_id,
+      </if>
+      <if test="agent != null">
+        agent,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="belongDate != null">
+        belong_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="agentId != null">
+        #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="agent != null">
+        #{agent,jdbcType=CHAR},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="belongDate != null">
+        #{belongDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.AgentTopCommission">
+    update agent_top_commission
+    <set>
+      <if test="agentId != null">
+        agent_id = #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="agent != null">
+        agent = #{agent,jdbcType=CHAR},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="belongDate != null">
+        belong_date = #{belongDate,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.AgentTopCommission">
+    update agent_top_commission
+    set agent_id = #{agentId,jdbcType=INTEGER},
+      agent = #{agent,jdbcType=CHAR},
+      balance = #{balance,jdbcType=DECIMAL},
+      add_time = #{addTime,jdbcType=INTEGER},
+      belong_date = #{belongDate,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

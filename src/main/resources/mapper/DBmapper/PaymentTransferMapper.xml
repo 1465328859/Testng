@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.PaymentTransferMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.PaymentTransfer">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="orderid" jdbcType="VARCHAR" property="orderid" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="platform" jdbcType="VARCHAR" property="platform" />
+    <result column="in_out" jdbcType="INTEGER" property="inOut" />
+    <result column="amount" jdbcType="INTEGER" property="amount" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="ctime" jdbcType="TIMESTAMP" property="ctime" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, orderid, username, platform, in_out, amount, status, ctime, remarks
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from payment_transfer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from payment_transfer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.PaymentTransfer">
+    insert into payment_transfer (id, orderid, username, 
+      platform, in_out, amount, 
+      status, ctime, remarks
+      )
+    values (#{id,jdbcType=INTEGER}, #{orderid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{platform,jdbcType=VARCHAR}, #{inOut,jdbcType=INTEGER}, #{amount,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{ctime,jdbcType=TIMESTAMP}, #{remarks,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.PaymentTransfer">
+    insert into payment_transfer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderid != null">
+        orderid,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="platform != null">
+        platform,
+      </if>
+      <if test="inOut != null">
+        in_out,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="ctime != null">
+        ctime,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null">
+        #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="inOut != null">
+        #{inOut,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="ctime != null">
+        #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.PaymentTransfer">
+    update payment_transfer
+    <set>
+      <if test="orderid != null">
+        orderid = #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="platform != null">
+        platform = #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="inOut != null">
+        in_out = #{inOut,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="ctime != null">
+        ctime = #{ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.PaymentTransfer">
+    update payment_transfer
+    set orderid = #{orderid,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      platform = #{platform,jdbcType=VARCHAR},
+      in_out = #{inOut,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      ctime = #{ctime,jdbcType=TIMESTAMP},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

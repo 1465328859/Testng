@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.LotteryMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.Lottery">
+    <id column="lottery_id" jdbcType="INTEGER" property="lotteryId" />
+    <result column="lottery_name" jdbcType="VARCHAR" property="lotteryName" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="num_day" jdbcType="VARCHAR" property="numDay" />
+    <result column="close_time" jdbcType="INTEGER" property="closeTime" />
+    <result column="judge_expired_time" jdbcType="INTEGER" property="judgeExpiredTime" />
+    <result column="sort" jdbcType="TINYINT" property="sort" />
+    <result column="hall_recommend" jdbcType="TINYINT" property="hallRecommend" />
+    <result column="is_enabled" jdbcType="BIT" property="isEnabled" />
+    <result column="lottery_type" jdbcType="BIT" property="lotteryType" />
+    <result column="initial_class_id" jdbcType="INTEGER" property="initialClassId" />
+    <result column="logo" jdbcType="VARCHAR" property="logo" />
+    <result column="kill" jdbcType="DECIMAL" property="kill" />
+    <result column="across_day_time" jdbcType="CHAR" property="acrossDayTime" />
+    <result column="lottery_classify_id" jdbcType="INTEGER" property="lotteryClassifyId" />
+    <result column="is_self_open" jdbcType="INTEGER" property="isSelfOpen" />
+    <result column="kill_off" jdbcType="INTEGER" property="killOff" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    lottery_id, lottery_name, remark, desc, num_day, close_time, judge_expired_time, 
+    sort, hall_recommend, is_enabled, lottery_type, initial_class_id, logo, kill, across_day_time, 
+    lottery_classify_id, is_self_open, kill_off
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from lottery
+    where lottery_id = #{lotteryId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from lottery
+    where lottery_id = #{lotteryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.Lottery">
+    insert into lottery (lottery_id, lottery_name, remark, 
+      desc, num_day, close_time, 
+      judge_expired_time, sort, hall_recommend, 
+      is_enabled, lottery_type, initial_class_id, 
+      logo, kill, across_day_time, 
+      lottery_classify_id, is_self_open, kill_off
+      )
+    values (#{lotteryId,jdbcType=INTEGER}, #{lotteryName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{desc,jdbcType=VARCHAR}, #{numDay,jdbcType=VARCHAR}, #{closeTime,jdbcType=INTEGER}, 
+      #{judgeExpiredTime,jdbcType=INTEGER}, #{sort,jdbcType=TINYINT}, #{hallRecommend,jdbcType=TINYINT}, 
+      #{isEnabled,jdbcType=BIT}, #{lotteryType,jdbcType=BIT}, #{initialClassId,jdbcType=INTEGER}, 
+      #{logo,jdbcType=VARCHAR}, #{kill,jdbcType=DECIMAL}, #{acrossDayTime,jdbcType=CHAR}, 
+      #{lotteryClassifyId,jdbcType=INTEGER}, #{isSelfOpen,jdbcType=INTEGER}, #{killOff,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.Lottery">
+    insert into lottery
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="lotteryId != null">
+        lottery_id,
+      </if>
+      <if test="lotteryName != null">
+        lottery_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="desc != null">
+        desc,
+      </if>
+      <if test="numDay != null">
+        num_day,
+      </if>
+      <if test="closeTime != null">
+        close_time,
+      </if>
+      <if test="judgeExpiredTime != null">
+        judge_expired_time,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="hallRecommend != null">
+        hall_recommend,
+      </if>
+      <if test="isEnabled != null">
+        is_enabled,
+      </if>
+      <if test="lotteryType != null">
+        lottery_type,
+      </if>
+      <if test="initialClassId != null">
+        initial_class_id,
+      </if>
+      <if test="logo != null">
+        logo,
+      </if>
+      <if test="kill != null">
+        kill,
+      </if>
+      <if test="acrossDayTime != null">
+        across_day_time,
+      </if>
+      <if test="lotteryClassifyId != null">
+        lottery_classify_id,
+      </if>
+      <if test="isSelfOpen != null">
+        is_self_open,
+      </if>
+      <if test="killOff != null">
+        kill_off,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="lotteryId != null">
+        #{lotteryId,jdbcType=INTEGER},
+      </if>
+      <if test="lotteryName != null">
+        #{lotteryName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null">
+        #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="numDay != null">
+        #{numDay,jdbcType=VARCHAR},
+      </if>
+      <if test="closeTime != null">
+        #{closeTime,jdbcType=INTEGER},
+      </if>
+      <if test="judgeExpiredTime != null">
+        #{judgeExpiredTime,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=TINYINT},
+      </if>
+      <if test="hallRecommend != null">
+        #{hallRecommend,jdbcType=TINYINT},
+      </if>
+      <if test="isEnabled != null">
+        #{isEnabled,jdbcType=BIT},
+      </if>
+      <if test="lotteryType != null">
+        #{lotteryType,jdbcType=BIT},
+      </if>
+      <if test="initialClassId != null">
+        #{initialClassId,jdbcType=INTEGER},
+      </if>
+      <if test="logo != null">
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="kill != null">
+        #{kill,jdbcType=DECIMAL},
+      </if>
+      <if test="acrossDayTime != null">
+        #{acrossDayTime,jdbcType=CHAR},
+      </if>
+      <if test="lotteryClassifyId != null">
+        #{lotteryClassifyId,jdbcType=INTEGER},
+      </if>
+      <if test="isSelfOpen != null">
+        #{isSelfOpen,jdbcType=INTEGER},
+      </if>
+      <if test="killOff != null">
+        #{killOff,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.Lottery">
+    update lottery
+    <set>
+      <if test="lotteryName != null">
+        lottery_name = #{lotteryName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null">
+        desc = #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="numDay != null">
+        num_day = #{numDay,jdbcType=VARCHAR},
+      </if>
+      <if test="closeTime != null">
+        close_time = #{closeTime,jdbcType=INTEGER},
+      </if>
+      <if test="judgeExpiredTime != null">
+        judge_expired_time = #{judgeExpiredTime,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=TINYINT},
+      </if>
+      <if test="hallRecommend != null">
+        hall_recommend = #{hallRecommend,jdbcType=TINYINT},
+      </if>
+      <if test="isEnabled != null">
+        is_enabled = #{isEnabled,jdbcType=BIT},
+      </if>
+      <if test="lotteryType != null">
+        lottery_type = #{lotteryType,jdbcType=BIT},
+      </if>
+      <if test="initialClassId != null">
+        initial_class_id = #{initialClassId,jdbcType=INTEGER},
+      </if>
+      <if test="logo != null">
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="kill != null">
+        kill = #{kill,jdbcType=DECIMAL},
+      </if>
+      <if test="acrossDayTime != null">
+        across_day_time = #{acrossDayTime,jdbcType=CHAR},
+      </if>
+      <if test="lotteryClassifyId != null">
+        lottery_classify_id = #{lotteryClassifyId,jdbcType=INTEGER},
+      </if>
+      <if test="isSelfOpen != null">
+        is_self_open = #{isSelfOpen,jdbcType=INTEGER},
+      </if>
+      <if test="killOff != null">
+        kill_off = #{killOff,jdbcType=INTEGER},
+      </if>
+    </set>
+    where lottery_id = #{lotteryId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.Lottery">
+    update lottery
+    set lottery_name = #{lotteryName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      desc = #{desc,jdbcType=VARCHAR},
+      num_day = #{numDay,jdbcType=VARCHAR},
+      close_time = #{closeTime,jdbcType=INTEGER},
+      judge_expired_time = #{judgeExpiredTime,jdbcType=INTEGER},
+      sort = #{sort,jdbcType=TINYINT},
+      hall_recommend = #{hallRecommend,jdbcType=TINYINT},
+      is_enabled = #{isEnabled,jdbcType=BIT},
+      lottery_type = #{lotteryType,jdbcType=BIT},
+      initial_class_id = #{initialClassId,jdbcType=INTEGER},
+      logo = #{logo,jdbcType=VARCHAR},
+      kill = #{kill,jdbcType=DECIMAL},
+      across_day_time = #{acrossDayTime,jdbcType=CHAR},
+      lottery_classify_id = #{lotteryClassifyId,jdbcType=INTEGER},
+      is_self_open = #{isSelfOpen,jdbcType=INTEGER},
+      kill_off = #{killOff,jdbcType=INTEGER}
+    where lottery_id = #{lotteryId,jdbcType=INTEGER}
+  </update>
+</mapper>

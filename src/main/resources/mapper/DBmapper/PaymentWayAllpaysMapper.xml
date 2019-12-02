@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.PaymentWayAllpaysMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.PaymentWayAllpays">
+    <id column="allpay_id" jdbcType="TINYINT" property="allpayId" />
+    <result column="allpay_name" jdbcType="VARCHAR" property="allpayName" />
+    <result column="merchant" jdbcType="VARCHAR" property="merchant" />
+    <result column="key_1" jdbcType="VARCHAR" property="key1" />
+    <result column="key_2" jdbcType="VARCHAR" property="key2" />
+    <result column="key_3" jdbcType="VARCHAR" property="key3" />
+    <result column="third_id" jdbcType="INTEGER" property="thirdId" />
+    <result column="is_open" jdbcType="TINYINT" property="isOpen" />
+    <result column="seq" jdbcType="TINYINT" property="seq" />
+    <result column="is_code" jdbcType="BIT" property="isCode" />
+    <result column="label" jdbcType="VARCHAR" property="label" />
+    <result column="pay_label" jdbcType="CHAR" property="payLabel" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    allpay_id, allpay_name, merchant, key_1, key_2, key_3, third_id, is_open, seq, is_code, 
+    label, pay_label
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Byte" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from payment_way_allpays
+    where allpay_id = #{allpayId,jdbcType=TINYINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Byte">
+    delete from payment_way_allpays
+    where allpay_id = #{allpayId,jdbcType=TINYINT}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.PaymentWayAllpays">
+    insert into payment_way_allpays (allpay_id, allpay_name, merchant, 
+      key_1, key_2, key_3, third_id, 
+      is_open, seq, is_code, label, 
+      pay_label)
+    values (#{allpayId,jdbcType=TINYINT}, #{allpayName,jdbcType=VARCHAR}, #{merchant,jdbcType=VARCHAR}, 
+      #{key1,jdbcType=VARCHAR}, #{key2,jdbcType=VARCHAR}, #{key3,jdbcType=VARCHAR}, #{thirdId,jdbcType=INTEGER}, 
+      #{isOpen,jdbcType=TINYINT}, #{seq,jdbcType=TINYINT}, #{isCode,jdbcType=BIT}, #{label,jdbcType=VARCHAR}, 
+      #{payLabel,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.PaymentWayAllpays">
+    insert into payment_way_allpays
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="allpayId != null">
+        allpay_id,
+      </if>
+      <if test="allpayName != null">
+        allpay_name,
+      </if>
+      <if test="merchant != null">
+        merchant,
+      </if>
+      <if test="key1 != null">
+        key_1,
+      </if>
+      <if test="key2 != null">
+        key_2,
+      </if>
+      <if test="key3 != null">
+        key_3,
+      </if>
+      <if test="thirdId != null">
+        third_id,
+      </if>
+      <if test="isOpen != null">
+        is_open,
+      </if>
+      <if test="seq != null">
+        seq,
+      </if>
+      <if test="isCode != null">
+        is_code,
+      </if>
+      <if test="label != null">
+        label,
+      </if>
+      <if test="payLabel != null">
+        pay_label,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="allpayId != null">
+        #{allpayId,jdbcType=TINYINT},
+      </if>
+      <if test="allpayName != null">
+        #{allpayName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchant != null">
+        #{merchant,jdbcType=VARCHAR},
+      </if>
+      <if test="key1 != null">
+        #{key1,jdbcType=VARCHAR},
+      </if>
+      <if test="key2 != null">
+        #{key2,jdbcType=VARCHAR},
+      </if>
+      <if test="key3 != null">
+        #{key3,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdId != null">
+        #{thirdId,jdbcType=INTEGER},
+      </if>
+      <if test="isOpen != null">
+        #{isOpen,jdbcType=TINYINT},
+      </if>
+      <if test="seq != null">
+        #{seq,jdbcType=TINYINT},
+      </if>
+      <if test="isCode != null">
+        #{isCode,jdbcType=BIT},
+      </if>
+      <if test="label != null">
+        #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="payLabel != null">
+        #{payLabel,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.PaymentWayAllpays">
+    update payment_way_allpays
+    <set>
+      <if test="allpayName != null">
+        allpay_name = #{allpayName,jdbcType=VARCHAR},
+      </if>
+      <if test="merchant != null">
+        merchant = #{merchant,jdbcType=VARCHAR},
+      </if>
+      <if test="key1 != null">
+        key_1 = #{key1,jdbcType=VARCHAR},
+      </if>
+      <if test="key2 != null">
+        key_2 = #{key2,jdbcType=VARCHAR},
+      </if>
+      <if test="key3 != null">
+        key_3 = #{key3,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdId != null">
+        third_id = #{thirdId,jdbcType=INTEGER},
+      </if>
+      <if test="isOpen != null">
+        is_open = #{isOpen,jdbcType=TINYINT},
+      </if>
+      <if test="seq != null">
+        seq = #{seq,jdbcType=TINYINT},
+      </if>
+      <if test="isCode != null">
+        is_code = #{isCode,jdbcType=BIT},
+      </if>
+      <if test="label != null">
+        label = #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="payLabel != null">
+        pay_label = #{payLabel,jdbcType=CHAR},
+      </if>
+    </set>
+    where allpay_id = #{allpayId,jdbcType=TINYINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.PaymentWayAllpays">
+    update payment_way_allpays
+    set allpay_name = #{allpayName,jdbcType=VARCHAR},
+      merchant = #{merchant,jdbcType=VARCHAR},
+      key_1 = #{key1,jdbcType=VARCHAR},
+      key_2 = #{key2,jdbcType=VARCHAR},
+      key_3 = #{key3,jdbcType=VARCHAR},
+      third_id = #{thirdId,jdbcType=INTEGER},
+      is_open = #{isOpen,jdbcType=TINYINT},
+      seq = #{seq,jdbcType=TINYINT},
+      is_code = #{isCode,jdbcType=BIT},
+      label = #{label,jdbcType=VARCHAR},
+      pay_label = #{payLabel,jdbcType=CHAR}
+    where allpay_id = #{allpayId,jdbcType=TINYINT}
+  </update>
+</mapper>

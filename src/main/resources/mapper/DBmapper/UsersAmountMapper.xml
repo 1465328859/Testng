@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.UsersAmountMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.UsersAmount">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="top_id" jdbcType="INTEGER" property="topId" />
+    <result column="up_three_grade" jdbcType="VARCHAR" property="upThreeGrade" />
+    <result column="item_type" jdbcType="INTEGER" property="itemType" />
+    <result column="item_id" jdbcType="INTEGER" property="itemId" />
+    <result column="before" jdbcType="DECIMAL" property="before" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="after" jdbcType="DECIMAL" property="after" />
+    <result column="add_time" jdbcType="INTEGER" property="addTime" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, username, top_id, up_three_grade, item_type, item_id, before, amount, 
+    after, add_time, note
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from users_amount
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from users_amount
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.UsersAmount">
+    insert into users_amount (id, user_id, username, 
+      top_id, up_three_grade, item_type, 
+      item_id, before, amount, 
+      after, add_time, note
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{topId,jdbcType=INTEGER}, #{upThreeGrade,jdbcType=VARCHAR}, #{itemType,jdbcType=INTEGER}, 
+      #{itemId,jdbcType=INTEGER}, #{before,jdbcType=DECIMAL}, #{amount,jdbcType=DECIMAL}, 
+      #{after,jdbcType=DECIMAL}, #{addTime,jdbcType=INTEGER}, #{note,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.UsersAmount">
+    insert into users_amount
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="topId != null">
+        top_id,
+      </if>
+      <if test="upThreeGrade != null">
+        up_three_grade,
+      </if>
+      <if test="itemType != null">
+        item_type,
+      </if>
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="before != null">
+        before,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="after != null">
+        after,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="topId != null">
+        #{topId,jdbcType=INTEGER},
+      </if>
+      <if test="upThreeGrade != null">
+        #{upThreeGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="itemType != null">
+        #{itemType,jdbcType=INTEGER},
+      </if>
+      <if test="itemId != null">
+        #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="before != null">
+        #{before,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="after != null">
+        #{after,jdbcType=DECIMAL},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.UsersAmount">
+    update users_amount
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="topId != null">
+        top_id = #{topId,jdbcType=INTEGER},
+      </if>
+      <if test="upThreeGrade != null">
+        up_three_grade = #{upThreeGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="itemType != null">
+        item_type = #{itemType,jdbcType=INTEGER},
+      </if>
+      <if test="itemId != null">
+        item_id = #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="before != null">
+        before = #{before,jdbcType=DECIMAL},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="after != null">
+        after = #{after,jdbcType=DECIMAL},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.UsersAmount">
+    update users_amount
+    set user_id = #{userId,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR},
+      top_id = #{topId,jdbcType=INTEGER},
+      up_three_grade = #{upThreeGrade,jdbcType=VARCHAR},
+      item_type = #{itemType,jdbcType=INTEGER},
+      item_id = #{itemId,jdbcType=INTEGER},
+      before = #{before,jdbcType=DECIMAL},
+      amount = #{amount,jdbcType=DECIMAL},
+      after = #{after,jdbcType=DECIMAL},
+      add_time = #{addTime,jdbcType=INTEGER},
+      note = #{note,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

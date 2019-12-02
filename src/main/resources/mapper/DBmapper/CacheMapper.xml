@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.CacheMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.Cache">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="cache_type" jdbcType="CHAR" property="cacheType" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.Test.model.DBmodel.CacheWithBLOBs">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="mark" jdbcType="LONGVARCHAR" property="mark" />
+    <result column="use_places" jdbcType="LONGVARCHAR" property="usePlaces" />
+    <result column="clean_places" jdbcType="LONGVARCHAR" property="cleanPlaces" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, cache_type
+  </sql>
+  <sql id="Blob_Column_List">
+    content, mark, use_places, clean_places
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cache
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cache
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.CacheWithBLOBs">
+    insert into cache (id, name, cache_type, 
+      content, mark, use_places, 
+      clean_places)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{cacheType,jdbcType=CHAR}, 
+      #{content,jdbcType=LONGVARCHAR}, #{mark,jdbcType=LONGVARCHAR}, #{usePlaces,jdbcType=LONGVARCHAR}, 
+      #{cleanPlaces,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.CacheWithBLOBs">
+    insert into cache
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="cacheType != null">
+        cache_type,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="mark != null">
+        mark,
+      </if>
+      <if test="usePlaces != null">
+        use_places,
+      </if>
+      <if test="cleanPlaces != null">
+        clean_places,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cacheType != null">
+        #{cacheType,jdbcType=CHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="mark != null">
+        #{mark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="usePlaces != null">
+        #{usePlaces,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="cleanPlaces != null">
+        #{cleanPlaces,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.CacheWithBLOBs">
+    update cache
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="cacheType != null">
+        cache_type = #{cacheType,jdbcType=CHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="mark != null">
+        mark = #{mark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="usePlaces != null">
+        use_places = #{usePlaces,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="cleanPlaces != null">
+        clean_places = #{cleanPlaces,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.Test.model.DBmodel.CacheWithBLOBs">
+    update cache
+    set name = #{name,jdbcType=VARCHAR},
+      cache_type = #{cacheType,jdbcType=CHAR},
+      content = #{content,jdbcType=LONGVARCHAR},
+      mark = #{mark,jdbcType=LONGVARCHAR},
+      use_places = #{usePlaces,jdbcType=LONGVARCHAR},
+      clean_places = #{cleanPlaces,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.Cache">
+    update cache
+    set name = #{name,jdbcType=VARCHAR},
+      cache_type = #{cacheType,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

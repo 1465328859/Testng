@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.ActivityImgMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.ActivityImg">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="type" jdbcType="BIT" property="type" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, image, img_url, type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from activity_img
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from activity_img
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.ActivityImg">
+    insert into activity_img (id, image, img_url, 
+      type)
+    values (#{id,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, 
+      #{type,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.ActivityImg">
+    insert into activity_img
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.ActivityImg">
+    update activity_img
+    <set>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.ActivityImg">
+    update activity_img
+    set image = #{image,jdbcType=VARCHAR},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      type = #{type,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

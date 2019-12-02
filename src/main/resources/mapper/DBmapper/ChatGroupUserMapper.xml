@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.ChatGroupUserMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.ChatGroupUser">
+    <result column="group_id" jdbcType="INTEGER" property="groupId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="ontalking" jdbcType="TINYINT" property="ontalking" />
+  </resultMap>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.ChatGroupUser">
+    insert into chat_group_user (group_id, user_id, type, 
+      ontalking)
+    values (#{groupId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, 
+      #{ontalking,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.ChatGroupUser">
+    insert into chat_group_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="groupId != null">
+        group_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="ontalking != null">
+        ontalking,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="groupId != null">
+        #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="ontalking != null">
+        #{ontalking,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

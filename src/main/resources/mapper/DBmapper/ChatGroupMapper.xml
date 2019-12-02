@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.ChatGroupMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.ChatGroup">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="group_name" jdbcType="VARCHAR" property="groupName" />
+    <result column="group_desc" jdbcType="VARCHAR" property="groupDesc" />
+    <result column="speak_cd" jdbcType="TINYINT" property="speakCd" />
+    <result column="is_restricted" jdbcType="TINYINT" property="isRestricted" />
+    <result column="is_official" jdbcType="BIT" property="isOfficial" />
+    <result column="personnumber" jdbcType="INTEGER" property="personnumber" />
+    <result column="send_msg_limit" jdbcType="INTEGER" property="sendMsgLimit" />
+    <result column="sort" jdbcType="TINYINT" property="sort" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="group_time" jdbcType="TIMESTAMP" property="groupTime" />
+    <result column="group_img" jdbcType="VARCHAR" property="groupImg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, group_name, group_desc, speak_cd, is_restricted, is_official, personnumber, send_msg_limit, 
+    sort, status, group_time, group_img
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from chat_group
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from chat_group
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.ChatGroup">
+    insert into chat_group (id, group_name, group_desc, 
+      speak_cd, is_restricted, is_official, 
+      personnumber, send_msg_limit, sort, 
+      status, group_time, group_img
+      )
+    values (#{id,jdbcType=INTEGER}, #{groupName,jdbcType=VARCHAR}, #{groupDesc,jdbcType=VARCHAR}, 
+      #{speakCd,jdbcType=TINYINT}, #{isRestricted,jdbcType=TINYINT}, #{isOfficial,jdbcType=BIT}, 
+      #{personnumber,jdbcType=INTEGER}, #{sendMsgLimit,jdbcType=INTEGER}, #{sort,jdbcType=TINYINT}, 
+      #{status,jdbcType=TINYINT}, #{groupTime,jdbcType=TIMESTAMP}, #{groupImg,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.ChatGroup">
+    insert into chat_group
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="groupName != null">
+        group_name,
+      </if>
+      <if test="groupDesc != null">
+        group_desc,
+      </if>
+      <if test="speakCd != null">
+        speak_cd,
+      </if>
+      <if test="isRestricted != null">
+        is_restricted,
+      </if>
+      <if test="isOfficial != null">
+        is_official,
+      </if>
+      <if test="personnumber != null">
+        personnumber,
+      </if>
+      <if test="sendMsgLimit != null">
+        send_msg_limit,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="groupTime != null">
+        group_time,
+      </if>
+      <if test="groupImg != null">
+        group_img,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="groupName != null">
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupDesc != null">
+        #{groupDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="speakCd != null">
+        #{speakCd,jdbcType=TINYINT},
+      </if>
+      <if test="isRestricted != null">
+        #{isRestricted,jdbcType=TINYINT},
+      </if>
+      <if test="isOfficial != null">
+        #{isOfficial,jdbcType=BIT},
+      </if>
+      <if test="personnumber != null">
+        #{personnumber,jdbcType=INTEGER},
+      </if>
+      <if test="sendMsgLimit != null">
+        #{sendMsgLimit,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=TINYINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="groupTime != null">
+        #{groupTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupImg != null">
+        #{groupImg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.ChatGroup">
+    update chat_group
+    <set>
+      <if test="groupName != null">
+        group_name = #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupDesc != null">
+        group_desc = #{groupDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="speakCd != null">
+        speak_cd = #{speakCd,jdbcType=TINYINT},
+      </if>
+      <if test="isRestricted != null">
+        is_restricted = #{isRestricted,jdbcType=TINYINT},
+      </if>
+      <if test="isOfficial != null">
+        is_official = #{isOfficial,jdbcType=BIT},
+      </if>
+      <if test="personnumber != null">
+        personnumber = #{personnumber,jdbcType=INTEGER},
+      </if>
+      <if test="sendMsgLimit != null">
+        send_msg_limit = #{sendMsgLimit,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=TINYINT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="groupTime != null">
+        group_time = #{groupTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupImg != null">
+        group_img = #{groupImg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.ChatGroup">
+    update chat_group
+    set group_name = #{groupName,jdbcType=VARCHAR},
+      group_desc = #{groupDesc,jdbcType=VARCHAR},
+      speak_cd = #{speakCd,jdbcType=TINYINT},
+      is_restricted = #{isRestricted,jdbcType=TINYINT},
+      is_official = #{isOfficial,jdbcType=BIT},
+      personnumber = #{personnumber,jdbcType=INTEGER},
+      send_msg_limit = #{sendMsgLimit,jdbcType=INTEGER},
+      sort = #{sort,jdbcType=TINYINT},
+      status = #{status,jdbcType=TINYINT},
+      group_time = #{groupTime,jdbcType=TIMESTAMP},
+      group_img = #{groupImg,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

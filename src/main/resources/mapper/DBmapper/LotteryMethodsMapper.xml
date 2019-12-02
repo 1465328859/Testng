@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.LotteryMethodsMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.LotteryMethods">
+    <id column="methods_id" jdbcType="INTEGER" property="methodsId" />
+    <result column="methods_group_id" jdbcType="INTEGER" property="methodsGroupId" />
+    <result column="min_group" jdbcType="VARCHAR" property="minGroup" />
+    <result column="method_name" jdbcType="VARCHAR" property="methodName" />
+    <result column="key" jdbcType="VARCHAR" property="key" />
+    <result column="name_ab" jdbcType="VARCHAR" property="nameAb" />
+    <result column="min_num" jdbcType="INTEGER" property="minNum" />
+    <result column="max_num" jdbcType="INTEGER" property="maxNum" />
+    <result column="open" jdbcType="BIT" property="open" />
+    <result column="max_money" jdbcType="INTEGER" property="maxMoney" />
+    <result column="digit" jdbcType="VARCHAR" property="digit" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.Test.model.DBmodel.LotteryMethodsWithBLOBs">
+    <result column="odds_ids" jdbcType="LONGVARCHAR" property="oddsIds" />
+    <result column="all_code" jdbcType="LONGVARCHAR" property="allCode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    methods_id, methods_group_id, min_group, method_name, key, name_ab, min_num, max_num, 
+    open, max_money, digit, sort
+  </sql>
+  <sql id="Blob_Column_List">
+    odds_ids, all_code
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from lottery_methods
+    where methods_id = #{methodsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from lottery_methods
+    where methods_id = #{methodsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.LotteryMethodsWithBLOBs">
+    insert into lottery_methods (methods_id, methods_group_id, min_group, 
+      method_name, key, name_ab, 
+      min_num, max_num, open, max_money, 
+      digit, sort, odds_ids, 
+      all_code)
+    values (#{methodsId,jdbcType=INTEGER}, #{methodsGroupId,jdbcType=INTEGER}, #{minGroup,jdbcType=VARCHAR}, 
+      #{methodName,jdbcType=VARCHAR}, #{key,jdbcType=VARCHAR}, #{nameAb,jdbcType=VARCHAR}, 
+      #{minNum,jdbcType=INTEGER}, #{maxNum,jdbcType=INTEGER}, #{open,jdbcType=BIT}, #{maxMoney,jdbcType=INTEGER}, 
+      #{digit,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{oddsIds,jdbcType=LONGVARCHAR}, 
+      #{allCode,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.LotteryMethodsWithBLOBs">
+    insert into lottery_methods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="methodsId != null">
+        methods_id,
+      </if>
+      <if test="methodsGroupId != null">
+        methods_group_id,
+      </if>
+      <if test="minGroup != null">
+        min_group,
+      </if>
+      <if test="methodName != null">
+        method_name,
+      </if>
+      <if test="key != null">
+        key,
+      </if>
+      <if test="nameAb != null">
+        name_ab,
+      </if>
+      <if test="minNum != null">
+        min_num,
+      </if>
+      <if test="maxNum != null">
+        max_num,
+      </if>
+      <if test="open != null">
+        open,
+      </if>
+      <if test="maxMoney != null">
+        max_money,
+      </if>
+      <if test="digit != null">
+        digit,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="oddsIds != null">
+        odds_ids,
+      </if>
+      <if test="allCode != null">
+        all_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="methodsId != null">
+        #{methodsId,jdbcType=INTEGER},
+      </if>
+      <if test="methodsGroupId != null">
+        #{methodsGroupId,jdbcType=INTEGER},
+      </if>
+      <if test="minGroup != null">
+        #{minGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="methodName != null">
+        #{methodName,jdbcType=VARCHAR},
+      </if>
+      <if test="key != null">
+        #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="nameAb != null">
+        #{nameAb,jdbcType=VARCHAR},
+      </if>
+      <if test="minNum != null">
+        #{minNum,jdbcType=INTEGER},
+      </if>
+      <if test="maxNum != null">
+        #{maxNum,jdbcType=INTEGER},
+      </if>
+      <if test="open != null">
+        #{open,jdbcType=BIT},
+      </if>
+      <if test="maxMoney != null">
+        #{maxMoney,jdbcType=INTEGER},
+      </if>
+      <if test="digit != null">
+        #{digit,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="oddsIds != null">
+        #{oddsIds,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="allCode != null">
+        #{allCode,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.LotteryMethodsWithBLOBs">
+    update lottery_methods
+    <set>
+      <if test="methodsGroupId != null">
+        methods_group_id = #{methodsGroupId,jdbcType=INTEGER},
+      </if>
+      <if test="minGroup != null">
+        min_group = #{minGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="methodName != null">
+        method_name = #{methodName,jdbcType=VARCHAR},
+      </if>
+      <if test="key != null">
+        key = #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="nameAb != null">
+        name_ab = #{nameAb,jdbcType=VARCHAR},
+      </if>
+      <if test="minNum != null">
+        min_num = #{minNum,jdbcType=INTEGER},
+      </if>
+      <if test="maxNum != null">
+        max_num = #{maxNum,jdbcType=INTEGER},
+      </if>
+      <if test="open != null">
+        open = #{open,jdbcType=BIT},
+      </if>
+      <if test="maxMoney != null">
+        max_money = #{maxMoney,jdbcType=INTEGER},
+      </if>
+      <if test="digit != null">
+        digit = #{digit,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="oddsIds != null">
+        odds_ids = #{oddsIds,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="allCode != null">
+        all_code = #{allCode,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where methods_id = #{methodsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.Test.model.DBmodel.LotteryMethodsWithBLOBs">
+    update lottery_methods
+    set methods_group_id = #{methodsGroupId,jdbcType=INTEGER},
+      min_group = #{minGroup,jdbcType=VARCHAR},
+      method_name = #{methodName,jdbcType=VARCHAR},
+      key = #{key,jdbcType=VARCHAR},
+      name_ab = #{nameAb,jdbcType=VARCHAR},
+      min_num = #{minNum,jdbcType=INTEGER},
+      max_num = #{maxNum,jdbcType=INTEGER},
+      open = #{open,jdbcType=BIT},
+      max_money = #{maxMoney,jdbcType=INTEGER},
+      digit = #{digit,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      odds_ids = #{oddsIds,jdbcType=LONGVARCHAR},
+      all_code = #{allCode,jdbcType=LONGVARCHAR}
+    where methods_id = #{methodsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.LotteryMethods">
+    update lottery_methods
+    set methods_group_id = #{methodsGroupId,jdbcType=INTEGER},
+      min_group = #{minGroup,jdbcType=VARCHAR},
+      method_name = #{methodName,jdbcType=VARCHAR},
+      key = #{key,jdbcType=VARCHAR},
+      name_ab = #{nameAb,jdbcType=VARCHAR},
+      min_num = #{minNum,jdbcType=INTEGER},
+      max_num = #{maxNum,jdbcType=INTEGER},
+      open = #{open,jdbcType=BIT},
+      max_money = #{maxMoney,jdbcType=INTEGER},
+      digit = #{digit,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER}
+    where methods_id = #{methodsId,jdbcType=INTEGER}
+  </update>
+</mapper>

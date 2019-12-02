@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.RptAgentIndexMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.RptAgentIndex">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="statistics_day" jdbcType="DATE" property="statisticsDay" />
+    <result column="top_id" jdbcType="INTEGER" property="topId" />
+    <result column="register_num" jdbcType="INTEGER" property="registerNum" />
+    <result column="first_recharge_num" jdbcType="INTEGER" property="firstRechargeNum" />
+    <result column="first_recharge_amount" jdbcType="DECIMAL" property="firstRechargeAmount" />
+    <result column="bet_num" jdbcType="INTEGER" property="betNum" />
+    <result column="new_bet_number_num" jdbcType="INTEGER" property="newBetNumberNum" />
+    <result column="agent_commission" jdbcType="DECIMAL" property="agentCommission" />
+    <result column="top_agent_commission" jdbcType="DECIMAL" property="topAgentCommission" />
+    <result column="lottery_total_money" jdbcType="DECIMAL" property="lotteryTotalMoney" />
+    <result column="lottery_bet_amount" jdbcType="DECIMAL" property="lotteryBetAmount" />
+    <result column="payout_amount" jdbcType="DECIMAL" property="payoutAmount" />
+    <result column="return_amount" jdbcType="DECIMAL" property="returnAmount" />
+    <result column="company_deposits_num" jdbcType="INTEGER" property="companyDepositsNum" />
+    <result column="online_deposits_num" jdbcType="INTEGER" property="onlineDepositsNum" />
+    <result column="manual_deposits_num" jdbcType="INTEGER" property="manualDepositsNum" />
+    <result column="manual_out_num" jdbcType="INTEGER" property="manualOutNum" />
+    <result column="company_deposits_user" jdbcType="INTEGER" property="companyDepositsUser" />
+    <result column="online_deposits_user" jdbcType="INTEGER" property="onlineDepositsUser" />
+    <result column="manual_deposits_user" jdbcType="INTEGER" property="manualDepositsUser" />
+    <result column="manual_out_user" jdbcType="INTEGER" property="manualOutUser" />
+    <result column="company_deposits_amount" jdbcType="DECIMAL" property="companyDepositsAmount" />
+    <result column="online_deposits_amount" jdbcType="DECIMAL" property="onlineDepositsAmount" />
+    <result column="manual_deposits_amount" jdbcType="DECIMAL" property="manualDepositsAmount" />
+    <result column="member_withdrawal_count" jdbcType="INTEGER" property="memberWithdrawalCount" />
+    <result column="backstage_payment_count" jdbcType="INTEGER" property="backstagePaymentCount" />
+    <result column="member_withdrawal_user" jdbcType="INTEGER" property="memberWithdrawalUser" />
+    <result column="backstage_payment_user" jdbcType="INTEGER" property="backstagePaymentUser" />
+    <result column="member_withdrawal_money" jdbcType="DECIMAL" property="memberWithdrawalMoney" />
+    <result column="backstage_payment_money" jdbcType="DECIMAL" property="backstagePaymentMoney" />
+    <result column="manual_out_money" jdbcType="DECIMAL" property="manualOutMoney" />
+    <result column="vaild_user" jdbcType="INTEGER" property="vaildUser" />
+    <result column="backwater_user" jdbcType="INTEGER" property="backwaterUser" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.Test.model.DBmodel.RptAgentIndexWithBLOBs">
+    <result column="bet_users" jdbcType="LONGVARCHAR" property="betUsers" />
+    <result column="company_deposits_users" jdbcType="LONGVARCHAR" property="companyDepositsUsers" />
+    <result column="online_deposits_users" jdbcType="LONGVARCHAR" property="onlineDepositsUsers" />
+    <result column="manual_deposits_users" jdbcType="LONGVARCHAR" property="manualDepositsUsers" />
+    <result column="manual_out_users" jdbcType="LONGVARCHAR" property="manualOutUsers" />
+    <result column="member_withdrawal_users" jdbcType="LONGVARCHAR" property="memberWithdrawalUsers" />
+    <result column="backstage_payment_users" jdbcType="LONGVARCHAR" property="backstagePaymentUsers" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, statistics_day, top_id, register_num, first_recharge_num, first_recharge_amount, 
+    bet_num, new_bet_number_num, agent_commission, top_agent_commission, lottery_total_money, 
+    lottery_bet_amount, payout_amount, return_amount, company_deposits_num, online_deposits_num, 
+    manual_deposits_num, manual_out_num, company_deposits_user, online_deposits_user, 
+    manual_deposits_user, manual_out_user, company_deposits_amount, online_deposits_amount, 
+    manual_deposits_amount, member_withdrawal_count, backstage_payment_count, member_withdrawal_user, 
+    backstage_payment_user, member_withdrawal_money, backstage_payment_money, manual_out_money, 
+    vaild_user, backwater_user
+  </sql>
+  <sql id="Blob_Column_List">
+    bet_users, company_deposits_users, online_deposits_users, manual_deposits_users, 
+    manual_out_users, member_withdrawal_users, backstage_payment_users
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from rpt_agent_index
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from rpt_agent_index
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.RptAgentIndexWithBLOBs">
+    insert into rpt_agent_index (id, statistics_day, top_id, 
+      register_num, first_recharge_num, first_recharge_amount, 
+      bet_num, new_bet_number_num, agent_commission, 
+      top_agent_commission, lottery_total_money, 
+      lottery_bet_amount, payout_amount, return_amount, 
+      company_deposits_num, online_deposits_num, 
+      manual_deposits_num, manual_out_num, company_deposits_user, 
+      online_deposits_user, manual_deposits_user, 
+      manual_out_user, company_deposits_amount, online_deposits_amount, 
+      manual_deposits_amount, member_withdrawal_count, 
+      backstage_payment_count, member_withdrawal_user, 
+      backstage_payment_user, member_withdrawal_money, 
+      backstage_payment_money, manual_out_money, 
+      vaild_user, backwater_user, bet_users, 
+      company_deposits_users, online_deposits_users, 
+      manual_deposits_users, manual_out_users, 
+      member_withdrawal_users, backstage_payment_users
+      )
+    values (#{id,jdbcType=INTEGER}, #{statisticsDay,jdbcType=DATE}, #{topId,jdbcType=INTEGER}, 
+      #{registerNum,jdbcType=INTEGER}, #{firstRechargeNum,jdbcType=INTEGER}, #{firstRechargeAmount,jdbcType=DECIMAL}, 
+      #{betNum,jdbcType=INTEGER}, #{newBetNumberNum,jdbcType=INTEGER}, #{agentCommission,jdbcType=DECIMAL}, 
+      #{topAgentCommission,jdbcType=DECIMAL}, #{lotteryTotalMoney,jdbcType=DECIMAL}, 
+      #{lotteryBetAmount,jdbcType=DECIMAL}, #{payoutAmount,jdbcType=DECIMAL}, #{returnAmount,jdbcType=DECIMAL}, 
+      #{companyDepositsNum,jdbcType=INTEGER}, #{onlineDepositsNum,jdbcType=INTEGER}, 
+      #{manualDepositsNum,jdbcType=INTEGER}, #{manualOutNum,jdbcType=INTEGER}, #{companyDepositsUser,jdbcType=INTEGER}, 
+      #{onlineDepositsUser,jdbcType=INTEGER}, #{manualDepositsUser,jdbcType=INTEGER}, 
+      #{manualOutUser,jdbcType=INTEGER}, #{companyDepositsAmount,jdbcType=DECIMAL}, #{onlineDepositsAmount,jdbcType=DECIMAL}, 
+      #{manualDepositsAmount,jdbcType=DECIMAL}, #{memberWithdrawalCount,jdbcType=INTEGER}, 
+      #{backstagePaymentCount,jdbcType=INTEGER}, #{memberWithdrawalUser,jdbcType=INTEGER}, 
+      #{backstagePaymentUser,jdbcType=INTEGER}, #{memberWithdrawalMoney,jdbcType=DECIMAL}, 
+      #{backstagePaymentMoney,jdbcType=DECIMAL}, #{manualOutMoney,jdbcType=DECIMAL}, 
+      #{vaildUser,jdbcType=INTEGER}, #{backwaterUser,jdbcType=INTEGER}, #{betUsers,jdbcType=LONGVARCHAR}, 
+      #{companyDepositsUsers,jdbcType=LONGVARCHAR}, #{onlineDepositsUsers,jdbcType=LONGVARCHAR}, 
+      #{manualDepositsUsers,jdbcType=LONGVARCHAR}, #{manualOutUsers,jdbcType=LONGVARCHAR}, 
+      #{memberWithdrawalUsers,jdbcType=LONGVARCHAR}, #{backstagePaymentUsers,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.RptAgentIndexWithBLOBs">
+    insert into rpt_agent_index
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="statisticsDay != null">
+        statistics_day,
+      </if>
+      <if test="topId != null">
+        top_id,
+      </if>
+      <if test="registerNum != null">
+        register_num,
+      </if>
+      <if test="firstRechargeNum != null">
+        first_recharge_num,
+      </if>
+      <if test="firstRechargeAmount != null">
+        first_recharge_amount,
+      </if>
+      <if test="betNum != null">
+        bet_num,
+      </if>
+      <if test="newBetNumberNum != null">
+        new_bet_number_num,
+      </if>
+      <if test="agentCommission != null">
+        agent_commission,
+      </if>
+      <if test="topAgentCommission != null">
+        top_agent_commission,
+      </if>
+      <if test="lotteryTotalMoney != null">
+        lottery_total_money,
+      </if>
+      <if test="lotteryBetAmount != null">
+        lottery_bet_amount,
+      </if>
+      <if test="payoutAmount != null">
+        payout_amount,
+      </if>
+      <if test="returnAmount != null">
+        return_amount,
+      </if>
+      <if test="companyDepositsNum != null">
+        company_deposits_num,
+      </if>
+      <if test="onlineDepositsNum != null">
+        online_deposits_num,
+      </if>
+      <if test="manualDepositsNum != null">
+        manual_deposits_num,
+      </if>
+      <if test="manualOutNum != null">
+        manual_out_num,
+      </if>
+      <if test="companyDepositsUser != null">
+        company_deposits_user,
+      </if>
+      <if test="onlineDepositsUser != null">
+        online_deposits_user,
+      </if>
+      <if test="manualDepositsUser != null">
+        manual_deposits_user,
+      </if>
+      <if test="manualOutUser != null">
+        manual_out_user,
+      </if>
+      <if test="companyDepositsAmount != null">
+        company_deposits_amount,
+      </if>
+      <if test="onlineDepositsAmount != null">
+        online_deposits_amount,
+      </if>
+      <if test="manualDepositsAmount != null">
+        manual_deposits_amount,
+      </if>
+      <if test="memberWithdrawalCount != null">
+        member_withdrawal_count,
+      </if>
+      <if test="backstagePaymentCount != null">
+        backstage_payment_count,
+      </if>
+      <if test="memberWithdrawalUser != null">
+        member_withdrawal_user,
+      </if>
+      <if test="backstagePaymentUser != null">
+        backstage_payment_user,
+      </if>
+      <if test="memberWithdrawalMoney != null">
+        member_withdrawal_money,
+      </if>
+      <if test="backstagePaymentMoney != null">
+        backstage_payment_money,
+      </if>
+      <if test="manualOutMoney != null">
+        manual_out_money,
+      </if>
+      <if test="vaildUser != null">
+        vaild_user,
+      </if>
+      <if test="backwaterUser != null">
+        backwater_user,
+      </if>
+      <if test="betUsers != null">
+        bet_users,
+      </if>
+      <if test="companyDepositsUsers != null">
+        company_deposits_users,
+      </if>
+      <if test="onlineDepositsUsers != null">
+        online_deposits_users,
+      </if>
+      <if test="manualDepositsUsers != null">
+        manual_deposits_users,
+      </if>
+      <if test="manualOutUsers != null">
+        manual_out_users,
+      </if>
+      <if test="memberWithdrawalUsers != null">
+        member_withdrawal_users,
+      </if>
+      <if test="backstagePaymentUsers != null">
+        backstage_payment_users,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="statisticsDay != null">
+        #{statisticsDay,jdbcType=DATE},
+      </if>
+      <if test="topId != null">
+        #{topId,jdbcType=INTEGER},
+      </if>
+      <if test="registerNum != null">
+        #{registerNum,jdbcType=INTEGER},
+      </if>
+      <if test="firstRechargeNum != null">
+        #{firstRechargeNum,jdbcType=INTEGER},
+      </if>
+      <if test="firstRechargeAmount != null">
+        #{firstRechargeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="betNum != null">
+        #{betNum,jdbcType=INTEGER},
+      </if>
+      <if test="newBetNumberNum != null">
+        #{newBetNumberNum,jdbcType=INTEGER},
+      </if>
+      <if test="agentCommission != null">
+        #{agentCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="topAgentCommission != null">
+        #{topAgentCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="lotteryTotalMoney != null">
+        #{lotteryTotalMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="lotteryBetAmount != null">
+        #{lotteryBetAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payoutAmount != null">
+        #{payoutAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="returnAmount != null">
+        #{returnAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="companyDepositsNum != null">
+        #{companyDepositsNum,jdbcType=INTEGER},
+      </if>
+      <if test="onlineDepositsNum != null">
+        #{onlineDepositsNum,jdbcType=INTEGER},
+      </if>
+      <if test="manualDepositsNum != null">
+        #{manualDepositsNum,jdbcType=INTEGER},
+      </if>
+      <if test="manualOutNum != null">
+        #{manualOutNum,jdbcType=INTEGER},
+      </if>
+      <if test="companyDepositsUser != null">
+        #{companyDepositsUser,jdbcType=INTEGER},
+      </if>
+      <if test="onlineDepositsUser != null">
+        #{onlineDepositsUser,jdbcType=INTEGER},
+      </if>
+      <if test="manualDepositsUser != null">
+        #{manualDepositsUser,jdbcType=INTEGER},
+      </if>
+      <if test="manualOutUser != null">
+        #{manualOutUser,jdbcType=INTEGER},
+      </if>
+      <if test="companyDepositsAmount != null">
+        #{companyDepositsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="onlineDepositsAmount != null">
+        #{onlineDepositsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="manualDepositsAmount != null">
+        #{manualDepositsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="memberWithdrawalCount != null">
+        #{memberWithdrawalCount,jdbcType=INTEGER},
+      </if>
+      <if test="backstagePaymentCount != null">
+        #{backstagePaymentCount,jdbcType=INTEGER},
+      </if>
+      <if test="memberWithdrawalUser != null">
+        #{memberWithdrawalUser,jdbcType=INTEGER},
+      </if>
+      <if test="backstagePaymentUser != null">
+        #{backstagePaymentUser,jdbcType=INTEGER},
+      </if>
+      <if test="memberWithdrawalMoney != null">
+        #{memberWithdrawalMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="backstagePaymentMoney != null">
+        #{backstagePaymentMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="manualOutMoney != null">
+        #{manualOutMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="vaildUser != null">
+        #{vaildUser,jdbcType=INTEGER},
+      </if>
+      <if test="backwaterUser != null">
+        #{backwaterUser,jdbcType=INTEGER},
+      </if>
+      <if test="betUsers != null">
+        #{betUsers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="companyDepositsUsers != null">
+        #{companyDepositsUsers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="onlineDepositsUsers != null">
+        #{onlineDepositsUsers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="manualDepositsUsers != null">
+        #{manualDepositsUsers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="manualOutUsers != null">
+        #{manualOutUsers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="memberWithdrawalUsers != null">
+        #{memberWithdrawalUsers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="backstagePaymentUsers != null">
+        #{backstagePaymentUsers,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.RptAgentIndexWithBLOBs">
+    update rpt_agent_index
+    <set>
+      <if test="statisticsDay != null">
+        statistics_day = #{statisticsDay,jdbcType=DATE},
+      </if>
+      <if test="topId != null">
+        top_id = #{topId,jdbcType=INTEGER},
+      </if>
+      <if test="registerNum != null">
+        register_num = #{registerNum,jdbcType=INTEGER},
+      </if>
+      <if test="firstRechargeNum != null">
+        first_recharge_num = #{firstRechargeNum,jdbcType=INTEGER},
+      </if>
+      <if test="firstRechargeAmount != null">
+        first_recharge_amount = #{firstRechargeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="betNum != null">
+        bet_num = #{betNum,jdbcType=INTEGER},
+      </if>
+      <if test="newBetNumberNum != null">
+        new_bet_number_num = #{newBetNumberNum,jdbcType=INTEGER},
+      </if>
+      <if test="agentCommission != null">
+        agent_commission = #{agentCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="topAgentCommission != null">
+        top_agent_commission = #{topAgentCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="lotteryTotalMoney != null">
+        lottery_total_money = #{lotteryTotalMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="lotteryBetAmount != null">
+        lottery_bet_amount = #{lotteryBetAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payoutAmount != null">
+        payout_amount = #{payoutAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="returnAmount != null">
+        return_amount = #{returnAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="companyDepositsNum != null">
+        company_deposits_num = #{companyDepositsNum,jdbcType=INTEGER},
+      </if>
+      <if test="onlineDepositsNum != null">
+        online_deposits_num = #{onlineDepositsNum,jdbcType=INTEGER},
+      </if>
+      <if test="manualDepositsNum != null">
+        manual_deposits_num = #{manualDepositsNum,jdbcType=INTEGER},
+      </if>
+      <if test="manualOutNum != null">
+        manual_out_num = #{manualOutNum,jdbcType=INTEGER},
+      </if>
+      <if test="companyDepositsUser != null">
+        company_deposits_user = #{companyDepositsUser,jdbcType=INTEGER},
+      </if>
+      <if test="onlineDepositsUser != null">
+        online_deposits_user = #{onlineDepositsUser,jdbcType=INTEGER},
+      </if>
+      <if test="manualDepositsUser != null">
+        manual_deposits_user = #{manualDepositsUser,jdbcType=INTEGER},
+      </if>
+      <if test="manualOutUser != null">
+        manual_out_user = #{manualOutUser,jdbcType=INTEGER},
+      </if>
+      <if test="companyDepositsAmount != null">
+        company_deposits_amount = #{companyDepositsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="onlineDepositsAmount != null">
+        online_deposits_amount = #{onlineDepositsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="manualDepositsAmount != null">
+        manual_deposits_amount = #{manualDepositsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="memberWithdrawalCount != null">
+        member_withdrawal_count = #{memberWithdrawalCount,jdbcType=INTEGER},
+      </if>
+      <if test="backstagePaymentCount != null">
+        backstage_payment_count = #{backstagePaymentCount,jdbcType=INTEGER},
+      </if>
+      <if test="memberWithdrawalUser != null">
+        member_withdrawal_user = #{memberWithdrawalUser,jdbcType=INTEGER},
+      </if>
+      <if test="backstagePaymentUser != null">
+        backstage_payment_user = #{backstagePaymentUser,jdbcType=INTEGER},
+      </if>
+      <if test="memberWithdrawalMoney != null">
+        member_withdrawal_money = #{memberWithdrawalMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="backstagePaymentMoney != null">
+        backstage_payment_money = #{backstagePaymentMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="manualOutMoney != null">
+        manual_out_money = #{manualOutMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="vaildUser != null">
+        vaild_user = #{vaildUser,jdbcType=INTEGER},
+      </if>
+      <if test="backwaterUser != null">
+        backwater_user = #{backwaterUser,jdbcType=INTEGER},
+      </if>
+      <if test="betUsers != null">
+        bet_users = #{betUsers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="companyDepositsUsers != null">
+        company_deposits_users = #{companyDepositsUsers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="onlineDepositsUsers != null">
+        online_deposits_users = #{onlineDepositsUsers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="manualDepositsUsers != null">
+        manual_deposits_users = #{manualDepositsUsers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="manualOutUsers != null">
+        manual_out_users = #{manualOutUsers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="memberWithdrawalUsers != null">
+        member_withdrawal_users = #{memberWithdrawalUsers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="backstagePaymentUsers != null">
+        backstage_payment_users = #{backstagePaymentUsers,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.Test.model.DBmodel.RptAgentIndexWithBLOBs">
+    update rpt_agent_index
+    set statistics_day = #{statisticsDay,jdbcType=DATE},
+      top_id = #{topId,jdbcType=INTEGER},
+      register_num = #{registerNum,jdbcType=INTEGER},
+      first_recharge_num = #{firstRechargeNum,jdbcType=INTEGER},
+      first_recharge_amount = #{firstRechargeAmount,jdbcType=DECIMAL},
+      bet_num = #{betNum,jdbcType=INTEGER},
+      new_bet_number_num = #{newBetNumberNum,jdbcType=INTEGER},
+      agent_commission = #{agentCommission,jdbcType=DECIMAL},
+      top_agent_commission = #{topAgentCommission,jdbcType=DECIMAL},
+      lottery_total_money = #{lotteryTotalMoney,jdbcType=DECIMAL},
+      lottery_bet_amount = #{lotteryBetAmount,jdbcType=DECIMAL},
+      payout_amount = #{payoutAmount,jdbcType=DECIMAL},
+      return_amount = #{returnAmount,jdbcType=DECIMAL},
+      company_deposits_num = #{companyDepositsNum,jdbcType=INTEGER},
+      online_deposits_num = #{onlineDepositsNum,jdbcType=INTEGER},
+      manual_deposits_num = #{manualDepositsNum,jdbcType=INTEGER},
+      manual_out_num = #{manualOutNum,jdbcType=INTEGER},
+      company_deposits_user = #{companyDepositsUser,jdbcType=INTEGER},
+      online_deposits_user = #{onlineDepositsUser,jdbcType=INTEGER},
+      manual_deposits_user = #{manualDepositsUser,jdbcType=INTEGER},
+      manual_out_user = #{manualOutUser,jdbcType=INTEGER},
+      company_deposits_amount = #{companyDepositsAmount,jdbcType=DECIMAL},
+      online_deposits_amount = #{onlineDepositsAmount,jdbcType=DECIMAL},
+      manual_deposits_amount = #{manualDepositsAmount,jdbcType=DECIMAL},
+      member_withdrawal_count = #{memberWithdrawalCount,jdbcType=INTEGER},
+      backstage_payment_count = #{backstagePaymentCount,jdbcType=INTEGER},
+      member_withdrawal_user = #{memberWithdrawalUser,jdbcType=INTEGER},
+      backstage_payment_user = #{backstagePaymentUser,jdbcType=INTEGER},
+      member_withdrawal_money = #{memberWithdrawalMoney,jdbcType=DECIMAL},
+      backstage_payment_money = #{backstagePaymentMoney,jdbcType=DECIMAL},
+      manual_out_money = #{manualOutMoney,jdbcType=DECIMAL},
+      vaild_user = #{vaildUser,jdbcType=INTEGER},
+      backwater_user = #{backwaterUser,jdbcType=INTEGER},
+      bet_users = #{betUsers,jdbcType=LONGVARCHAR},
+      company_deposits_users = #{companyDepositsUsers,jdbcType=LONGVARCHAR},
+      online_deposits_users = #{onlineDepositsUsers,jdbcType=LONGVARCHAR},
+      manual_deposits_users = #{manualDepositsUsers,jdbcType=LONGVARCHAR},
+      manual_out_users = #{manualOutUsers,jdbcType=LONGVARCHAR},
+      member_withdrawal_users = #{memberWithdrawalUsers,jdbcType=LONGVARCHAR},
+      backstage_payment_users = #{backstagePaymentUsers,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.RptAgentIndex">
+    update rpt_agent_index
+    set statistics_day = #{statisticsDay,jdbcType=DATE},
+      top_id = #{topId,jdbcType=INTEGER},
+      register_num = #{registerNum,jdbcType=INTEGER},
+      first_recharge_num = #{firstRechargeNum,jdbcType=INTEGER},
+      first_recharge_amount = #{firstRechargeAmount,jdbcType=DECIMAL},
+      bet_num = #{betNum,jdbcType=INTEGER},
+      new_bet_number_num = #{newBetNumberNum,jdbcType=INTEGER},
+      agent_commission = #{agentCommission,jdbcType=DECIMAL},
+      top_agent_commission = #{topAgentCommission,jdbcType=DECIMAL},
+      lottery_total_money = #{lotteryTotalMoney,jdbcType=DECIMAL},
+      lottery_bet_amount = #{lotteryBetAmount,jdbcType=DECIMAL},
+      payout_amount = #{payoutAmount,jdbcType=DECIMAL},
+      return_amount = #{returnAmount,jdbcType=DECIMAL},
+      company_deposits_num = #{companyDepositsNum,jdbcType=INTEGER},
+      online_deposits_num = #{onlineDepositsNum,jdbcType=INTEGER},
+      manual_deposits_num = #{manualDepositsNum,jdbcType=INTEGER},
+      manual_out_num = #{manualOutNum,jdbcType=INTEGER},
+      company_deposits_user = #{companyDepositsUser,jdbcType=INTEGER},
+      online_deposits_user = #{onlineDepositsUser,jdbcType=INTEGER},
+      manual_deposits_user = #{manualDepositsUser,jdbcType=INTEGER},
+      manual_out_user = #{manualOutUser,jdbcType=INTEGER},
+      company_deposits_amount = #{companyDepositsAmount,jdbcType=DECIMAL},
+      online_deposits_amount = #{onlineDepositsAmount,jdbcType=DECIMAL},
+      manual_deposits_amount = #{manualDepositsAmount,jdbcType=DECIMAL},
+      member_withdrawal_count = #{memberWithdrawalCount,jdbcType=INTEGER},
+      backstage_payment_count = #{backstagePaymentCount,jdbcType=INTEGER},
+      member_withdrawal_user = #{memberWithdrawalUser,jdbcType=INTEGER},
+      backstage_payment_user = #{backstagePaymentUser,jdbcType=INTEGER},
+      member_withdrawal_money = #{memberWithdrawalMoney,jdbcType=DECIMAL},
+      backstage_payment_money = #{backstagePaymentMoney,jdbcType=DECIMAL},
+      manual_out_money = #{manualOutMoney,jdbcType=DECIMAL},
+      vaild_user = #{vaildUser,jdbcType=INTEGER},
+      backwater_user = #{backwaterUser,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

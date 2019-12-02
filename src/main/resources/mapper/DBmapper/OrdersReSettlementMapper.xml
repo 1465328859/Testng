@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.OrdersReSettlementMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.OrdersReSettlement">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="lottery_id" jdbcType="INTEGER" property="lotteryId" />
+    <result column="lottery_name" jdbcType="VARCHAR" property="lotteryName" />
+    <result column="issue" jdbcType="VARCHAR" property="issue" />
+    <result column="before_code" jdbcType="VARCHAR" property="beforeCode" />
+    <result column="after_code" jdbcType="VARCHAR" property="afterCode" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="user_before_balance" jdbcType="DECIMAL" property="userBeforeBalance" />
+    <result column="loss" jdbcType="DECIMAL" property="loss" />
+    <result column="user_after_balance" jdbcType="DECIMAL" property="userAfterBalance" />
+    <result column="order_before_prize" jdbcType="DECIMAL" property="orderBeforePrize" />
+    <result column="order_after_prize" jdbcType="DECIMAL" property="orderAfterPrize" />
+    <result column="money" jdbcType="DECIMAL" property="money" />
+    <result column="time" jdbcType="INTEGER" property="time" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.Test.model.DBmodel.OrdersReSettlement">
+    <result column="mark" jdbcType="LONGVARCHAR" property="mark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, username, lottery_id, lottery_name, issue, before_code, after_code, order_id, 
+    user_before_balance, loss, user_after_balance, order_before_prize, order_after_prize, 
+    money, time
+  </sql>
+  <sql id="Blob_Column_List">
+    mark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from orders_re_settlement
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from orders_re_settlement
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.OrdersReSettlement">
+    insert into orders_re_settlement (id, username, lottery_id, 
+      lottery_name, issue, before_code, 
+      after_code, order_id, user_before_balance, 
+      loss, user_after_balance, order_before_prize, 
+      order_after_prize, money, time, 
+      mark)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{lotteryId,jdbcType=INTEGER}, 
+      #{lotteryName,jdbcType=VARCHAR}, #{issue,jdbcType=VARCHAR}, #{beforeCode,jdbcType=VARCHAR}, 
+      #{afterCode,jdbcType=VARCHAR}, #{orderId,jdbcType=INTEGER}, #{userBeforeBalance,jdbcType=DECIMAL}, 
+      #{loss,jdbcType=DECIMAL}, #{userAfterBalance,jdbcType=DECIMAL}, #{orderBeforePrize,jdbcType=DECIMAL}, 
+      #{orderAfterPrize,jdbcType=DECIMAL}, #{money,jdbcType=DECIMAL}, #{time,jdbcType=INTEGER}, 
+      #{mark,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.OrdersReSettlement">
+    insert into orders_re_settlement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="lotteryId != null">
+        lottery_id,
+      </if>
+      <if test="lotteryName != null">
+        lottery_name,
+      </if>
+      <if test="issue != null">
+        issue,
+      </if>
+      <if test="beforeCode != null">
+        before_code,
+      </if>
+      <if test="afterCode != null">
+        after_code,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="userBeforeBalance != null">
+        user_before_balance,
+      </if>
+      <if test="loss != null">
+        loss,
+      </if>
+      <if test="userAfterBalance != null">
+        user_after_balance,
+      </if>
+      <if test="orderBeforePrize != null">
+        order_before_prize,
+      </if>
+      <if test="orderAfterPrize != null">
+        order_after_prize,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="mark != null">
+        mark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="lotteryId != null">
+        #{lotteryId,jdbcType=INTEGER},
+      </if>
+      <if test="lotteryName != null">
+        #{lotteryName,jdbcType=VARCHAR},
+      </if>
+      <if test="issue != null">
+        #{issue,jdbcType=VARCHAR},
+      </if>
+      <if test="beforeCode != null">
+        #{beforeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="afterCode != null">
+        #{afterCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="userBeforeBalance != null">
+        #{userBeforeBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="loss != null">
+        #{loss,jdbcType=DECIMAL},
+      </if>
+      <if test="userAfterBalance != null">
+        #{userAfterBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="orderBeforePrize != null">
+        #{orderBeforePrize,jdbcType=DECIMAL},
+      </if>
+      <if test="orderAfterPrize != null">
+        #{orderAfterPrize,jdbcType=DECIMAL},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null">
+        #{mark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.OrdersReSettlement">
+    update orders_re_settlement
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="lotteryId != null">
+        lottery_id = #{lotteryId,jdbcType=INTEGER},
+      </if>
+      <if test="lotteryName != null">
+        lottery_name = #{lotteryName,jdbcType=VARCHAR},
+      </if>
+      <if test="issue != null">
+        issue = #{issue,jdbcType=VARCHAR},
+      </if>
+      <if test="beforeCode != null">
+        before_code = #{beforeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="afterCode != null">
+        after_code = #{afterCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="userBeforeBalance != null">
+        user_before_balance = #{userBeforeBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="loss != null">
+        loss = #{loss,jdbcType=DECIMAL},
+      </if>
+      <if test="userAfterBalance != null">
+        user_after_balance = #{userAfterBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="orderBeforePrize != null">
+        order_before_prize = #{orderBeforePrize,jdbcType=DECIMAL},
+      </if>
+      <if test="orderAfterPrize != null">
+        order_after_prize = #{orderAfterPrize,jdbcType=DECIMAL},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null">
+        mark = #{mark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.Test.model.DBmodel.OrdersReSettlement">
+    update orders_re_settlement
+    set username = #{username,jdbcType=VARCHAR},
+      lottery_id = #{lotteryId,jdbcType=INTEGER},
+      lottery_name = #{lotteryName,jdbcType=VARCHAR},
+      issue = #{issue,jdbcType=VARCHAR},
+      before_code = #{beforeCode,jdbcType=VARCHAR},
+      after_code = #{afterCode,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=INTEGER},
+      user_before_balance = #{userBeforeBalance,jdbcType=DECIMAL},
+      loss = #{loss,jdbcType=DECIMAL},
+      user_after_balance = #{userAfterBalance,jdbcType=DECIMAL},
+      order_before_prize = #{orderBeforePrize,jdbcType=DECIMAL},
+      order_after_prize = #{orderAfterPrize,jdbcType=DECIMAL},
+      money = #{money,jdbcType=DECIMAL},
+      time = #{time,jdbcType=INTEGER},
+      mark = #{mark,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.OrdersReSettlement">
+    update orders_re_settlement
+    set username = #{username,jdbcType=VARCHAR},
+      lottery_id = #{lotteryId,jdbcType=INTEGER},
+      lottery_name = #{lotteryName,jdbcType=VARCHAR},
+      issue = #{issue,jdbcType=VARCHAR},
+      before_code = #{beforeCode,jdbcType=VARCHAR},
+      after_code = #{afterCode,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=INTEGER},
+      user_before_balance = #{userBeforeBalance,jdbcType=DECIMAL},
+      loss = #{loss,jdbcType=DECIMAL},
+      user_after_balance = #{userAfterBalance,jdbcType=DECIMAL},
+      order_before_prize = #{orderBeforePrize,jdbcType=DECIMAL},
+      order_after_prize = #{orderAfterPrize,jdbcType=DECIMAL},
+      money = #{money,jdbcType=DECIMAL},
+      time = #{time,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.PaymentGoldCoinMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.PaymentGoldCoin">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="username" jdbcType="CHAR" property="username" />
+    <result column="top_id" jdbcType="INTEGER" property="topId" />
+    <result column="up_three_grade" jdbcType="VARCHAR" property="upThreeGrade" />
+    <result column="grade" jdbcType="TINYINT" property="grade" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="deliver_time" jdbcType="INTEGER" property="deliverTime" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="admin" jdbcType="CHAR" property="admin" />
+    <result column="activity_id" jdbcType="INTEGER" property="activityId" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, username, top_id, up_three_grade, grade, amount, deliver_time, remarks, 
+    admin, activity_id, status, type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from payment_gold_coin
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from payment_gold_coin
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.PaymentGoldCoin">
+    insert into payment_gold_coin (id, user_id, username, 
+      top_id, up_three_grade, grade, 
+      amount, deliver_time, remarks, 
+      admin, activity_id, status, 
+      type)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{username,jdbcType=CHAR}, 
+      #{topId,jdbcType=INTEGER}, #{upThreeGrade,jdbcType=VARCHAR}, #{grade,jdbcType=TINYINT}, 
+      #{amount,jdbcType=DECIMAL}, #{deliverTime,jdbcType=INTEGER}, #{remarks,jdbcType=VARCHAR}, 
+      #{admin,jdbcType=CHAR}, #{activityId,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, 
+      #{type,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.PaymentGoldCoin">
+    insert into payment_gold_coin
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="topId != null">
+        top_id,
+      </if>
+      <if test="upThreeGrade != null">
+        up_three_grade,
+      </if>
+      <if test="grade != null">
+        grade,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="deliverTime != null">
+        deliver_time,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="admin != null">
+        admin,
+      </if>
+      <if test="activityId != null">
+        activity_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=CHAR},
+      </if>
+      <if test="topId != null">
+        #{topId,jdbcType=INTEGER},
+      </if>
+      <if test="upThreeGrade != null">
+        #{upThreeGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=TINYINT},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="deliverTime != null">
+        #{deliverTime,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="admin != null">
+        #{admin,jdbcType=CHAR},
+      </if>
+      <if test="activityId != null">
+        #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.PaymentGoldCoin">
+    update payment_gold_coin
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=CHAR},
+      </if>
+      <if test="topId != null">
+        top_id = #{topId,jdbcType=INTEGER},
+      </if>
+      <if test="upThreeGrade != null">
+        up_three_grade = #{upThreeGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        grade = #{grade,jdbcType=TINYINT},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="deliverTime != null">
+        deliver_time = #{deliverTime,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="admin != null">
+        admin = #{admin,jdbcType=CHAR},
+      </if>
+      <if test="activityId != null">
+        activity_id = #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.PaymentGoldCoin">
+    update payment_gold_coin
+    set user_id = #{userId,jdbcType=INTEGER},
+      username = #{username,jdbcType=CHAR},
+      top_id = #{topId,jdbcType=INTEGER},
+      up_three_grade = #{upThreeGrade,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=TINYINT},
+      amount = #{amount,jdbcType=DECIMAL},
+      deliver_time = #{deliverTime,jdbcType=INTEGER},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      admin = #{admin,jdbcType=CHAR},
+      activity_id = #{activityId,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      type = #{type,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

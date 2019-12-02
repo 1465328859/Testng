@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.OrdersItemsMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.OrdersItems">
+    <id column="item_id" jdbcType="INTEGER" property="itemId" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="trace_id" jdbcType="INTEGER" property="traceId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="username" jdbcType="CHAR" property="username" />
+    <result column="up_three_grade" jdbcType="VARCHAR" property="upThreeGrade" />
+    <result column="money" jdbcType="DECIMAL" property="money" />
+    <result column="single_num" jdbcType="INTEGER" property="singleNum" />
+    <result column="mode" jdbcType="BIT" property="mode" />
+    <result column="multiple" jdbcType="INTEGER" property="multiple" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="top_id" jdbcType="INTEGER" property="topId" />
+    <result column="lottery_id" jdbcType="INTEGER" property="lotteryId" />
+    <result column="method_id" jdbcType="INTEGER" property="methodId" />
+    <result column="method_key" jdbcType="VARCHAR" property="methodKey" />
+    <result column="issue" jdbcType="CHAR" property="issue" />
+    <result column="prize" jdbcType="DECIMAL" property="prize" />
+    <result column="open_code" jdbcType="VARCHAR" property="openCode" />
+    <result column="prize_num" jdbcType="INTEGER" property="prizeNum" />
+    <result column="cur_rebate" jdbcType="DECIMAL" property="curRebate" />
+    <result column="from" jdbcType="TINYINT" property="from" />
+    <result column="create_time" jdbcType="INTEGER" property="createTime" />
+    <result column="hash_value" jdbcType="CHAR" property="hashValue" />
+    <result column="edit_time" jdbcType="TIMESTAMP" property="editTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.Test.model.DBmodel.OrdersItemsWithBLOBs">
+    <result column="code" jdbcType="LONGVARCHAR" property="code" />
+    <result column="prize_code" jdbcType="LONGVARCHAR" property="prizeCode" />
+    <result column="rate" jdbcType="LONGVARCHAR" property="rate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    item_id, order_id, trace_id, user_id, username, up_three_grade, money, single_num, 
+    mode, multiple, amount, top_id, lottery_id, method_id, method_key, issue, prize, 
+    open_code, prize_num, cur_rebate, from, create_time, hash_value, edit_time
+  </sql>
+  <sql id="Blob_Column_List">
+    code, prize_code, rate
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from orders_items
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from orders_items
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.OrdersItemsWithBLOBs">
+    insert into orders_items (item_id, order_id, trace_id, 
+      user_id, username, up_three_grade, 
+      money, single_num, mode, 
+      multiple, amount, top_id, 
+      lottery_id, method_id, method_key, 
+      issue, prize, open_code, 
+      prize_num, cur_rebate, from, 
+      create_time, hash_value, edit_time, 
+      code, prize_code, rate
+      )
+    values (#{itemId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{traceId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{username,jdbcType=CHAR}, #{upThreeGrade,jdbcType=VARCHAR}, 
+      #{money,jdbcType=DECIMAL}, #{singleNum,jdbcType=INTEGER}, #{mode,jdbcType=BIT}, 
+      #{multiple,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, #{topId,jdbcType=INTEGER}, 
+      #{lotteryId,jdbcType=INTEGER}, #{methodId,jdbcType=INTEGER}, #{methodKey,jdbcType=VARCHAR}, 
+      #{issue,jdbcType=CHAR}, #{prize,jdbcType=DECIMAL}, #{openCode,jdbcType=VARCHAR}, 
+      #{prizeNum,jdbcType=INTEGER}, #{curRebate,jdbcType=DECIMAL}, #{from,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=INTEGER}, #{hashValue,jdbcType=CHAR}, #{editTime,jdbcType=TIMESTAMP}, 
+      #{code,jdbcType=LONGVARCHAR}, #{prizeCode,jdbcType=LONGVARCHAR}, #{rate,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.OrdersItemsWithBLOBs">
+    insert into orders_items
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="traceId != null">
+        trace_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="upThreeGrade != null">
+        up_three_grade,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="singleNum != null">
+        single_num,
+      </if>
+      <if test="mode != null">
+        mode,
+      </if>
+      <if test="multiple != null">
+        multiple,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="topId != null">
+        top_id,
+      </if>
+      <if test="lotteryId != null">
+        lottery_id,
+      </if>
+      <if test="methodId != null">
+        method_id,
+      </if>
+      <if test="methodKey != null">
+        method_key,
+      </if>
+      <if test="issue != null">
+        issue,
+      </if>
+      <if test="prize != null">
+        prize,
+      </if>
+      <if test="openCode != null">
+        open_code,
+      </if>
+      <if test="prizeNum != null">
+        prize_num,
+      </if>
+      <if test="curRebate != null">
+        cur_rebate,
+      </if>
+      <if test="from != null">
+        from,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="hashValue != null">
+        hash_value,
+      </if>
+      <if test="editTime != null">
+        edit_time,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="prizeCode != null">
+        prize_code,
+      </if>
+      <if test="rate != null">
+        rate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="traceId != null">
+        #{traceId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=CHAR},
+      </if>
+      <if test="upThreeGrade != null">
+        #{upThreeGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="singleNum != null">
+        #{singleNum,jdbcType=INTEGER},
+      </if>
+      <if test="mode != null">
+        #{mode,jdbcType=BIT},
+      </if>
+      <if test="multiple != null">
+        #{multiple,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="topId != null">
+        #{topId,jdbcType=INTEGER},
+      </if>
+      <if test="lotteryId != null">
+        #{lotteryId,jdbcType=INTEGER},
+      </if>
+      <if test="methodId != null">
+        #{methodId,jdbcType=INTEGER},
+      </if>
+      <if test="methodKey != null">
+        #{methodKey,jdbcType=VARCHAR},
+      </if>
+      <if test="issue != null">
+        #{issue,jdbcType=CHAR},
+      </if>
+      <if test="prize != null">
+        #{prize,jdbcType=DECIMAL},
+      </if>
+      <if test="openCode != null">
+        #{openCode,jdbcType=VARCHAR},
+      </if>
+      <if test="prizeNum != null">
+        #{prizeNum,jdbcType=INTEGER},
+      </if>
+      <if test="curRebate != null">
+        #{curRebate,jdbcType=DECIMAL},
+      </if>
+      <if test="from != null">
+        #{from,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="hashValue != null">
+        #{hashValue,jdbcType=CHAR},
+      </if>
+      <if test="editTime != null">
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="prizeCode != null">
+        #{prizeCode,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="rate != null">
+        #{rate,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.OrdersItemsWithBLOBs">
+    update orders_items
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="traceId != null">
+        trace_id = #{traceId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=CHAR},
+      </if>
+      <if test="upThreeGrade != null">
+        up_three_grade = #{upThreeGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="singleNum != null">
+        single_num = #{singleNum,jdbcType=INTEGER},
+      </if>
+      <if test="mode != null">
+        mode = #{mode,jdbcType=BIT},
+      </if>
+      <if test="multiple != null">
+        multiple = #{multiple,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="topId != null">
+        top_id = #{topId,jdbcType=INTEGER},
+      </if>
+      <if test="lotteryId != null">
+        lottery_id = #{lotteryId,jdbcType=INTEGER},
+      </if>
+      <if test="methodId != null">
+        method_id = #{methodId,jdbcType=INTEGER},
+      </if>
+      <if test="methodKey != null">
+        method_key = #{methodKey,jdbcType=VARCHAR},
+      </if>
+      <if test="issue != null">
+        issue = #{issue,jdbcType=CHAR},
+      </if>
+      <if test="prize != null">
+        prize = #{prize,jdbcType=DECIMAL},
+      </if>
+      <if test="openCode != null">
+        open_code = #{openCode,jdbcType=VARCHAR},
+      </if>
+      <if test="prizeNum != null">
+        prize_num = #{prizeNum,jdbcType=INTEGER},
+      </if>
+      <if test="curRebate != null">
+        cur_rebate = #{curRebate,jdbcType=DECIMAL},
+      </if>
+      <if test="from != null">
+        from = #{from,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="hashValue != null">
+        hash_value = #{hashValue,jdbcType=CHAR},
+      </if>
+      <if test="editTime != null">
+        edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="prizeCode != null">
+        prize_code = #{prizeCode,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="rate != null">
+        rate = #{rate,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.Test.model.DBmodel.OrdersItemsWithBLOBs">
+    update orders_items
+    set order_id = #{orderId,jdbcType=INTEGER},
+      trace_id = #{traceId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      username = #{username,jdbcType=CHAR},
+      up_three_grade = #{upThreeGrade,jdbcType=VARCHAR},
+      money = #{money,jdbcType=DECIMAL},
+      single_num = #{singleNum,jdbcType=INTEGER},
+      mode = #{mode,jdbcType=BIT},
+      multiple = #{multiple,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=DECIMAL},
+      top_id = #{topId,jdbcType=INTEGER},
+      lottery_id = #{lotteryId,jdbcType=INTEGER},
+      method_id = #{methodId,jdbcType=INTEGER},
+      method_key = #{methodKey,jdbcType=VARCHAR},
+      issue = #{issue,jdbcType=CHAR},
+      prize = #{prize,jdbcType=DECIMAL},
+      open_code = #{openCode,jdbcType=VARCHAR},
+      prize_num = #{prizeNum,jdbcType=INTEGER},
+      cur_rebate = #{curRebate,jdbcType=DECIMAL},
+      from = #{from,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=INTEGER},
+      hash_value = #{hashValue,jdbcType=CHAR},
+      edit_time = #{editTime,jdbcType=TIMESTAMP},
+      code = #{code,jdbcType=LONGVARCHAR},
+      prize_code = #{prizeCode,jdbcType=LONGVARCHAR},
+      rate = #{rate,jdbcType=LONGVARCHAR}
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.OrdersItems">
+    update orders_items
+    set order_id = #{orderId,jdbcType=INTEGER},
+      trace_id = #{traceId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      username = #{username,jdbcType=CHAR},
+      up_three_grade = #{upThreeGrade,jdbcType=VARCHAR},
+      money = #{money,jdbcType=DECIMAL},
+      single_num = #{singleNum,jdbcType=INTEGER},
+      mode = #{mode,jdbcType=BIT},
+      multiple = #{multiple,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=DECIMAL},
+      top_id = #{topId,jdbcType=INTEGER},
+      lottery_id = #{lotteryId,jdbcType=INTEGER},
+      method_id = #{methodId,jdbcType=INTEGER},
+      method_key = #{methodKey,jdbcType=VARCHAR},
+      issue = #{issue,jdbcType=CHAR},
+      prize = #{prize,jdbcType=DECIMAL},
+      open_code = #{openCode,jdbcType=VARCHAR},
+      prize_num = #{prizeNum,jdbcType=INTEGER},
+      cur_rebate = #{curRebate,jdbcType=DECIMAL},
+      from = #{from,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=INTEGER},
+      hash_value = #{hashValue,jdbcType=CHAR},
+      edit_time = #{editTime,jdbcType=TIMESTAMP}
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </update>
+</mapper>

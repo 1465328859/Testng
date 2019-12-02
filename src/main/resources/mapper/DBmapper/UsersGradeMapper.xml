@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.UsersGradeMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.UsersGrade">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="grade" jdbcType="INTEGER" property="grade" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="rebate" jdbcType="DECIMAL" property="rebate" />
+    <result column="up_charge" jdbcType="DECIMAL" property="upCharge" />
+    <result column="up_bet" jdbcType="DECIMAL" property="upBet" />
+    <result column="award_once" jdbcType="DECIMAL" property="awardOnce" />
+    <result column="award_month" jdbcType="DECIMAL" property="awardMonth" />
+    <result column="min_bet" jdbcType="DECIMAL" property="minBet" />
+    <result column="open" jdbcType="SMALLINT" property="open" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, grade, name, rebate, up_charge, up_bet, award_once, award_month, min_bet, open
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from users_grade
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from users_grade
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.UsersGrade">
+    insert into users_grade (id, grade, name, 
+      rebate, up_charge, up_bet, 
+      award_once, award_month, min_bet, 
+      open)
+    values (#{id,jdbcType=INTEGER}, #{grade,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{rebate,jdbcType=DECIMAL}, #{upCharge,jdbcType=DECIMAL}, #{upBet,jdbcType=DECIMAL}, 
+      #{awardOnce,jdbcType=DECIMAL}, #{awardMonth,jdbcType=DECIMAL}, #{minBet,jdbcType=DECIMAL}, 
+      #{open,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.UsersGrade">
+    insert into users_grade
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="grade != null">
+        grade,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="rebate != null">
+        rebate,
+      </if>
+      <if test="upCharge != null">
+        up_charge,
+      </if>
+      <if test="upBet != null">
+        up_bet,
+      </if>
+      <if test="awardOnce != null">
+        award_once,
+      </if>
+      <if test="awardMonth != null">
+        award_month,
+      </if>
+      <if test="minBet != null">
+        min_bet,
+      </if>
+      <if test="open != null">
+        open,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="rebate != null">
+        #{rebate,jdbcType=DECIMAL},
+      </if>
+      <if test="upCharge != null">
+        #{upCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="upBet != null">
+        #{upBet,jdbcType=DECIMAL},
+      </if>
+      <if test="awardOnce != null">
+        #{awardOnce,jdbcType=DECIMAL},
+      </if>
+      <if test="awardMonth != null">
+        #{awardMonth,jdbcType=DECIMAL},
+      </if>
+      <if test="minBet != null">
+        #{minBet,jdbcType=DECIMAL},
+      </if>
+      <if test="open != null">
+        #{open,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.UsersGrade">
+    update users_grade
+    <set>
+      <if test="grade != null">
+        grade = #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="rebate != null">
+        rebate = #{rebate,jdbcType=DECIMAL},
+      </if>
+      <if test="upCharge != null">
+        up_charge = #{upCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="upBet != null">
+        up_bet = #{upBet,jdbcType=DECIMAL},
+      </if>
+      <if test="awardOnce != null">
+        award_once = #{awardOnce,jdbcType=DECIMAL},
+      </if>
+      <if test="awardMonth != null">
+        award_month = #{awardMonth,jdbcType=DECIMAL},
+      </if>
+      <if test="minBet != null">
+        min_bet = #{minBet,jdbcType=DECIMAL},
+      </if>
+      <if test="open != null">
+        open = #{open,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.UsersGrade">
+    update users_grade
+    set grade = #{grade,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      rebate = #{rebate,jdbcType=DECIMAL},
+      up_charge = #{upCharge,jdbcType=DECIMAL},
+      up_bet = #{upBet,jdbcType=DECIMAL},
+      award_once = #{awardOnce,jdbcType=DECIMAL},
+      award_month = #{awardMonth,jdbcType=DECIMAL},
+      min_bet = #{minBet,jdbcType=DECIMAL},
+      open = #{open,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

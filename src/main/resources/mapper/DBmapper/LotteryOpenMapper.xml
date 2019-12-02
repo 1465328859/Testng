@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.LotteryOpenMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.LotteryOpen">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="kind_id" jdbcType="INTEGER" property="kindId" />
+    <result column="kind_name" jdbcType="VARCHAR" property="kindName" />
+    <result column="game_play" jdbcType="VARCHAR" property="gamePlay" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="issue" jdbcType="VARCHAR" property="issue" />
+    <result column="filter" jdbcType="INTEGER" property="filter" />
+    <result column="game_play_id" jdbcType="VARCHAR" property="gamePlayId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, kind_id, kind_name, game_play, remark, issue, filter, game_play_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from lottery_open
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from lottery_open
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.LotteryOpen">
+    insert into lottery_open (id, kind_id, kind_name, 
+      game_play, remark, issue, 
+      filter, game_play_id)
+    values (#{id,jdbcType=INTEGER}, #{kindId,jdbcType=INTEGER}, #{kindName,jdbcType=VARCHAR}, 
+      #{gamePlay,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{issue,jdbcType=VARCHAR}, 
+      #{filter,jdbcType=INTEGER}, #{gamePlayId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.LotteryOpen">
+    insert into lottery_open
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="kindId != null">
+        kind_id,
+      </if>
+      <if test="kindName != null">
+        kind_name,
+      </if>
+      <if test="gamePlay != null">
+        game_play,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="issue != null">
+        issue,
+      </if>
+      <if test="filter != null">
+        filter,
+      </if>
+      <if test="gamePlayId != null">
+        game_play_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="kindId != null">
+        #{kindId,jdbcType=INTEGER},
+      </if>
+      <if test="kindName != null">
+        #{kindName,jdbcType=VARCHAR},
+      </if>
+      <if test="gamePlay != null">
+        #{gamePlay,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="issue != null">
+        #{issue,jdbcType=VARCHAR},
+      </if>
+      <if test="filter != null">
+        #{filter,jdbcType=INTEGER},
+      </if>
+      <if test="gamePlayId != null">
+        #{gamePlayId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.LotteryOpen">
+    update lottery_open
+    <set>
+      <if test="kindId != null">
+        kind_id = #{kindId,jdbcType=INTEGER},
+      </if>
+      <if test="kindName != null">
+        kind_name = #{kindName,jdbcType=VARCHAR},
+      </if>
+      <if test="gamePlay != null">
+        game_play = #{gamePlay,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="issue != null">
+        issue = #{issue,jdbcType=VARCHAR},
+      </if>
+      <if test="filter != null">
+        filter = #{filter,jdbcType=INTEGER},
+      </if>
+      <if test="gamePlayId != null">
+        game_play_id = #{gamePlayId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.LotteryOpen">
+    update lottery_open
+    set kind_id = #{kindId,jdbcType=INTEGER},
+      kind_name = #{kindName,jdbcType=VARCHAR},
+      game_play = #{gamePlay,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      issue = #{issue,jdbcType=VARCHAR},
+      filter = #{filter,jdbcType=INTEGER},
+      game_play_id = #{gamePlayId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

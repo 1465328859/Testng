@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.PaymentDepositsMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.PaymentDeposits">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="trade_no" jdbcType="VARCHAR" property="tradeNo" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="actual_amount" jdbcType="DECIMAL" property="actualAmount" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="username" jdbcType="CHAR" property="username" />
+    <result column="top_id" jdbcType="INTEGER" property="topId" />
+    <result column="up_three_grade" jdbcType="VARCHAR" property="upThreeGrade" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="pay_method" jdbcType="BIT" property="payMethod" />
+    <result column="pay_name" jdbcType="VARCHAR" property="payName" />
+    <result column="create_time" jdbcType="CHAR" property="createTime" />
+    <result column="pay_time" jdbcType="CHAR" property="payTime" />
+    <result column="pay_type" jdbcType="VARCHAR" property="payType" />
+    <result column="admin" jdbcType="CHAR" property="admin" />
+    <result column="admin_msg" jdbcType="VARCHAR" property="adminMsg" />
+    <result column="user_ip" jdbcType="VARCHAR" property="userIp" />
+    <result column="bank_no" jdbcType="VARCHAR" property="bankNo" />
+    <result column="user_msg" jdbcType="VARCHAR" property="userMsg" />
+    <result column="is_read" jdbcType="BIT" property="isRead" />
+    <result column="is_rpt" jdbcType="BIT" property="isRpt" />
+    <result column="from" jdbcType="BIT" property="from" />
+    <result column="check_time" jdbcType="INTEGER" property="checkTime" />
+    <result column="method_id" jdbcType="INTEGER" property="methodId" />
+    <result column="is_first" jdbcType="INTEGER" property="isFirst" />
+    <result column="holder" jdbcType="VARCHAR" property="holder" />
+    <result column="pay_bank" jdbcType="CHAR" property="payBank" />
+    <result column="top_up" jdbcType="DECIMAL" property="topUp" />
+    <result column="plan_gift" jdbcType="DECIMAL" property="planGift" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, order_no, trade_no, amount, actual_amount, user_id, username, top_id, up_three_grade, 
+    status, pay_method, pay_name, create_time, pay_time, pay_type, admin, admin_msg, 
+    user_ip, bank_no, user_msg, is_read, is_rpt, from, check_time, method_id, is_first, 
+    holder, pay_bank, top_up, plan_gift
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from payment_deposits
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from payment_deposits
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.PaymentDeposits">
+    insert into payment_deposits (id, order_no, trade_no, 
+      amount, actual_amount, user_id, 
+      username, top_id, up_three_grade, 
+      status, pay_method, pay_name, 
+      create_time, pay_time, pay_type, 
+      admin, admin_msg, user_ip, 
+      bank_no, user_msg, is_read, 
+      is_rpt, from, check_time, method_id, 
+      is_first, holder, pay_bank, 
+      top_up, plan_gift)
+    values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, #{tradeNo,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=DECIMAL}, #{actualAmount,jdbcType=DECIMAL}, #{userId,jdbcType=INTEGER}, 
+      #{username,jdbcType=CHAR}, #{topId,jdbcType=INTEGER}, #{upThreeGrade,jdbcType=VARCHAR}, 
+      #{status,jdbcType=BIT}, #{payMethod,jdbcType=BIT}, #{payName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=CHAR}, #{payTime,jdbcType=CHAR}, #{payType,jdbcType=VARCHAR}, 
+      #{admin,jdbcType=CHAR}, #{adminMsg,jdbcType=VARCHAR}, #{userIp,jdbcType=VARCHAR}, 
+      #{bankNo,jdbcType=VARCHAR}, #{userMsg,jdbcType=VARCHAR}, #{isRead,jdbcType=BIT}, 
+      #{isRpt,jdbcType=BIT}, #{from,jdbcType=BIT}, #{checkTime,jdbcType=INTEGER}, #{methodId,jdbcType=INTEGER}, 
+      #{isFirst,jdbcType=INTEGER}, #{holder,jdbcType=VARCHAR}, #{payBank,jdbcType=CHAR}, 
+      #{topUp,jdbcType=DECIMAL}, #{planGift,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.PaymentDeposits">
+    insert into payment_deposits
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="tradeNo != null">
+        trade_no,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="actualAmount != null">
+        actual_amount,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="topId != null">
+        top_id,
+      </if>
+      <if test="upThreeGrade != null">
+        up_three_grade,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="payMethod != null">
+        pay_method,
+      </if>
+      <if test="payName != null">
+        pay_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+      <if test="admin != null">
+        admin,
+      </if>
+      <if test="adminMsg != null">
+        admin_msg,
+      </if>
+      <if test="userIp != null">
+        user_ip,
+      </if>
+      <if test="bankNo != null">
+        bank_no,
+      </if>
+      <if test="userMsg != null">
+        user_msg,
+      </if>
+      <if test="isRead != null">
+        is_read,
+      </if>
+      <if test="isRpt != null">
+        is_rpt,
+      </if>
+      <if test="from != null">
+        from,
+      </if>
+      <if test="checkTime != null">
+        check_time,
+      </if>
+      <if test="methodId != null">
+        method_id,
+      </if>
+      <if test="isFirst != null">
+        is_first,
+      </if>
+      <if test="holder != null">
+        holder,
+      </if>
+      <if test="payBank != null">
+        pay_bank,
+      </if>
+      <if test="topUp != null">
+        top_up,
+      </if>
+      <if test="planGift != null">
+        plan_gift,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeNo != null">
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="actualAmount != null">
+        #{actualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=CHAR},
+      </if>
+      <if test="topId != null">
+        #{topId,jdbcType=INTEGER},
+      </if>
+      <if test="upThreeGrade != null">
+        #{upThreeGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="payMethod != null">
+        #{payMethod,jdbcType=BIT},
+      </if>
+      <if test="payName != null">
+        #{payName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=CHAR},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=CHAR},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="admin != null">
+        #{admin,jdbcType=CHAR},
+      </if>
+      <if test="adminMsg != null">
+        #{adminMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="userIp != null">
+        #{userIp,jdbcType=VARCHAR},
+      </if>
+      <if test="bankNo != null">
+        #{bankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userMsg != null">
+        #{userMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="isRead != null">
+        #{isRead,jdbcType=BIT},
+      </if>
+      <if test="isRpt != null">
+        #{isRpt,jdbcType=BIT},
+      </if>
+      <if test="from != null">
+        #{from,jdbcType=BIT},
+      </if>
+      <if test="checkTime != null">
+        #{checkTime,jdbcType=INTEGER},
+      </if>
+      <if test="methodId != null">
+        #{methodId,jdbcType=INTEGER},
+      </if>
+      <if test="isFirst != null">
+        #{isFirst,jdbcType=INTEGER},
+      </if>
+      <if test="holder != null">
+        #{holder,jdbcType=VARCHAR},
+      </if>
+      <if test="payBank != null">
+        #{payBank,jdbcType=CHAR},
+      </if>
+      <if test="topUp != null">
+        #{topUp,jdbcType=DECIMAL},
+      </if>
+      <if test="planGift != null">
+        #{planGift,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.PaymentDeposits">
+    update payment_deposits
+    <set>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeNo != null">
+        trade_no = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="actualAmount != null">
+        actual_amount = #{actualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=CHAR},
+      </if>
+      <if test="topId != null">
+        top_id = #{topId,jdbcType=INTEGER},
+      </if>
+      <if test="upThreeGrade != null">
+        up_three_grade = #{upThreeGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="payMethod != null">
+        pay_method = #{payMethod,jdbcType=BIT},
+      </if>
+      <if test="payName != null">
+        pay_name = #{payName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=CHAR},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=CHAR},
+      </if>
+      <if test="payType != null">
+        pay_type = #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="admin != null">
+        admin = #{admin,jdbcType=CHAR},
+      </if>
+      <if test="adminMsg != null">
+        admin_msg = #{adminMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="userIp != null">
+        user_ip = #{userIp,jdbcType=VARCHAR},
+      </if>
+      <if test="bankNo != null">
+        bank_no = #{bankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userMsg != null">
+        user_msg = #{userMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="isRead != null">
+        is_read = #{isRead,jdbcType=BIT},
+      </if>
+      <if test="isRpt != null">
+        is_rpt = #{isRpt,jdbcType=BIT},
+      </if>
+      <if test="from != null">
+        from = #{from,jdbcType=BIT},
+      </if>
+      <if test="checkTime != null">
+        check_time = #{checkTime,jdbcType=INTEGER},
+      </if>
+      <if test="methodId != null">
+        method_id = #{methodId,jdbcType=INTEGER},
+      </if>
+      <if test="isFirst != null">
+        is_first = #{isFirst,jdbcType=INTEGER},
+      </if>
+      <if test="holder != null">
+        holder = #{holder,jdbcType=VARCHAR},
+      </if>
+      <if test="payBank != null">
+        pay_bank = #{payBank,jdbcType=CHAR},
+      </if>
+      <if test="topUp != null">
+        top_up = #{topUp,jdbcType=DECIMAL},
+      </if>
+      <if test="planGift != null">
+        plan_gift = #{planGift,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.PaymentDeposits">
+    update payment_deposits
+    set order_no = #{orderNo,jdbcType=VARCHAR},
+      trade_no = #{tradeNo,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      actual_amount = #{actualAmount,jdbcType=DECIMAL},
+      user_id = #{userId,jdbcType=INTEGER},
+      username = #{username,jdbcType=CHAR},
+      top_id = #{topId,jdbcType=INTEGER},
+      up_three_grade = #{upThreeGrade,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      pay_method = #{payMethod,jdbcType=BIT},
+      pay_name = #{payName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=CHAR},
+      pay_time = #{payTime,jdbcType=CHAR},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      admin = #{admin,jdbcType=CHAR},
+      admin_msg = #{adminMsg,jdbcType=VARCHAR},
+      user_ip = #{userIp,jdbcType=VARCHAR},
+      bank_no = #{bankNo,jdbcType=VARCHAR},
+      user_msg = #{userMsg,jdbcType=VARCHAR},
+      is_read = #{isRead,jdbcType=BIT},
+      is_rpt = #{isRpt,jdbcType=BIT},
+      from = #{from,jdbcType=BIT},
+      check_time = #{checkTime,jdbcType=INTEGER},
+      method_id = #{methodId,jdbcType=INTEGER},
+      is_first = #{isFirst,jdbcType=INTEGER},
+      holder = #{holder,jdbcType=VARCHAR},
+      pay_bank = #{payBank,jdbcType=CHAR},
+      top_up = #{topUp,jdbcType=DECIMAL},
+      plan_gift = #{planGift,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

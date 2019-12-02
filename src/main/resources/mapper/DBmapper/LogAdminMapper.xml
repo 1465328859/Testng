@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.LogAdminMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.LogAdmin">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="types" jdbcType="TINYINT" property="types" />
+    <result column="entry_time" jdbcType="CHAR" property="entryTime" />
+    <result column="action_ip" jdbcType="VARCHAR" property="actionIp" />
+    <result column="action_user" jdbcType="CHAR" property="actionUser" />
+    <result column="client" jdbcType="TINYINT" property="client" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.Test.model.DBmodel.LogAdmin">
+    <result column="contents" jdbcType="LONGVARCHAR" property="contents" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, types, entry_time, action_ip, action_user, client
+  </sql>
+  <sql id="Blob_Column_List">
+    contents
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from log_admin
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from log_admin
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.LogAdmin">
+    insert into log_admin (id, types, entry_time, 
+      action_ip, action_user, client, 
+      contents)
+    values (#{id,jdbcType=INTEGER}, #{types,jdbcType=TINYINT}, #{entryTime,jdbcType=CHAR}, 
+      #{actionIp,jdbcType=VARCHAR}, #{actionUser,jdbcType=CHAR}, #{client,jdbcType=TINYINT}, 
+      #{contents,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.LogAdmin">
+    insert into log_admin
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="types != null">
+        types,
+      </if>
+      <if test="entryTime != null">
+        entry_time,
+      </if>
+      <if test="actionIp != null">
+        action_ip,
+      </if>
+      <if test="actionUser != null">
+        action_user,
+      </if>
+      <if test="client != null">
+        client,
+      </if>
+      <if test="contents != null">
+        contents,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="types != null">
+        #{types,jdbcType=TINYINT},
+      </if>
+      <if test="entryTime != null">
+        #{entryTime,jdbcType=CHAR},
+      </if>
+      <if test="actionIp != null">
+        #{actionIp,jdbcType=VARCHAR},
+      </if>
+      <if test="actionUser != null">
+        #{actionUser,jdbcType=CHAR},
+      </if>
+      <if test="client != null">
+        #{client,jdbcType=TINYINT},
+      </if>
+      <if test="contents != null">
+        #{contents,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.LogAdmin">
+    update log_admin
+    <set>
+      <if test="types != null">
+        types = #{types,jdbcType=TINYINT},
+      </if>
+      <if test="entryTime != null">
+        entry_time = #{entryTime,jdbcType=CHAR},
+      </if>
+      <if test="actionIp != null">
+        action_ip = #{actionIp,jdbcType=VARCHAR},
+      </if>
+      <if test="actionUser != null">
+        action_user = #{actionUser,jdbcType=CHAR},
+      </if>
+      <if test="client != null">
+        client = #{client,jdbcType=TINYINT},
+      </if>
+      <if test="contents != null">
+        contents = #{contents,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.Test.model.DBmodel.LogAdmin">
+    update log_admin
+    set types = #{types,jdbcType=TINYINT},
+      entry_time = #{entryTime,jdbcType=CHAR},
+      action_ip = #{actionIp,jdbcType=VARCHAR},
+      action_user = #{actionUser,jdbcType=CHAR},
+      client = #{client,jdbcType=TINYINT},
+      contents = #{contents,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.LogAdmin">
+    update log_admin
+    set types = #{types,jdbcType=TINYINT},
+      entry_time = #{entryTime,jdbcType=CHAR},
+      action_ip = #{actionIp,jdbcType=VARCHAR},
+      action_user = #{actionUser,jdbcType=CHAR},
+      client = #{client,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

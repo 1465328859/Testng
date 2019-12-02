@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.ChatLogMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.ChatLog">
+    <id column="logid" jdbcType="INTEGER" property="logid" />
+    <result column="toid" jdbcType="INTEGER" property="toid" />
+    <result column="putid" jdbcType="INTEGER" property="putid" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="centent" jdbcType="VARCHAR" property="centent" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    logid, toid, putid, type, centent, time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from chat_log
+    where logid = #{logid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from chat_log
+    where logid = #{logid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.ChatLog">
+    insert into chat_log (logid, toid, putid, 
+      type, centent, time
+      )
+    values (#{logid,jdbcType=INTEGER}, #{toid,jdbcType=INTEGER}, #{putid,jdbcType=INTEGER}, 
+      #{type,jdbcType=TINYINT}, #{centent,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.ChatLog">
+    insert into chat_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="logid != null">
+        logid,
+      </if>
+      <if test="toid != null">
+        toid,
+      </if>
+      <if test="putid != null">
+        putid,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="centent != null">
+        centent,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="logid != null">
+        #{logid,jdbcType=INTEGER},
+      </if>
+      <if test="toid != null">
+        #{toid,jdbcType=INTEGER},
+      </if>
+      <if test="putid != null">
+        #{putid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="centent != null">
+        #{centent,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.ChatLog">
+    update chat_log
+    <set>
+      <if test="toid != null">
+        toid = #{toid,jdbcType=INTEGER},
+      </if>
+      <if test="putid != null">
+        putid = #{putid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="centent != null">
+        centent = #{centent,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where logid = #{logid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.ChatLog">
+    update chat_log
+    set toid = #{toid,jdbcType=INTEGER},
+      putid = #{putid,jdbcType=INTEGER},
+      type = #{type,jdbcType=TINYINT},
+      centent = #{centent,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP}
+    where logid = #{logid,jdbcType=INTEGER}
+  </update>
+</mapper>

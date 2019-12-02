@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.AgentTransferMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.AgentTransfer">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="original_parent_id" jdbcType="INTEGER" property="originalParentId" />
+    <result column="original_parent_name" jdbcType="VARCHAR" property="originalParentName" />
+    <result column="now_parent_id" jdbcType="INTEGER" property="nowParentId" />
+    <result column="now_parent_name" jdbcType="VARCHAR" property="nowParentName" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="original_top_id" jdbcType="INTEGER" property="originalTopId" />
+    <result column="original_top_name" jdbcType="VARCHAR" property="originalTopName" />
+    <result column="now_top_id" jdbcType="INTEGER" property="nowTopId" />
+    <result column="now_top_name" jdbcType="VARCHAR" property="nowTopName" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, username, original_parent_id, original_parent_name, now_parent_id, now_parent_name, 
+    operator, create_time, original_top_id, original_top_name, now_top_id, now_top_name, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from agent_transfer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from agent_transfer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.AgentTransfer">
+    insert into agent_transfer (id, user_id, username, 
+      original_parent_id, original_parent_name, now_parent_id, 
+      now_parent_name, operator, create_time, 
+      original_top_id, original_top_name, now_top_id, 
+      now_top_name, remark)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{originalParentId,jdbcType=INTEGER}, #{originalParentName,jdbcType=VARCHAR}, #{nowParentId,jdbcType=INTEGER}, 
+      #{nowParentName,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{originalTopId,jdbcType=INTEGER}, #{originalTopName,jdbcType=VARCHAR}, #{nowTopId,jdbcType=INTEGER}, 
+      #{nowTopName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.AgentTransfer">
+    insert into agent_transfer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="originalParentId != null">
+        original_parent_id,
+      </if>
+      <if test="originalParentName != null">
+        original_parent_name,
+      </if>
+      <if test="nowParentId != null">
+        now_parent_id,
+      </if>
+      <if test="nowParentName != null">
+        now_parent_name,
+      </if>
+      <if test="operator != null">
+        operator,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="originalTopId != null">
+        original_top_id,
+      </if>
+      <if test="originalTopName != null">
+        original_top_name,
+      </if>
+      <if test="nowTopId != null">
+        now_top_id,
+      </if>
+      <if test="nowTopName != null">
+        now_top_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="originalParentId != null">
+        #{originalParentId,jdbcType=INTEGER},
+      </if>
+      <if test="originalParentName != null">
+        #{originalParentName,jdbcType=VARCHAR},
+      </if>
+      <if test="nowParentId != null">
+        #{nowParentId,jdbcType=INTEGER},
+      </if>
+      <if test="nowParentName != null">
+        #{nowParentName,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="originalTopId != null">
+        #{originalTopId,jdbcType=INTEGER},
+      </if>
+      <if test="originalTopName != null">
+        #{originalTopName,jdbcType=VARCHAR},
+      </if>
+      <if test="nowTopId != null">
+        #{nowTopId,jdbcType=INTEGER},
+      </if>
+      <if test="nowTopName != null">
+        #{nowTopName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.AgentTransfer">
+    update agent_transfer
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="originalParentId != null">
+        original_parent_id = #{originalParentId,jdbcType=INTEGER},
+      </if>
+      <if test="originalParentName != null">
+        original_parent_name = #{originalParentName,jdbcType=VARCHAR},
+      </if>
+      <if test="nowParentId != null">
+        now_parent_id = #{nowParentId,jdbcType=INTEGER},
+      </if>
+      <if test="nowParentName != null">
+        now_parent_name = #{nowParentName,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="originalTopId != null">
+        original_top_id = #{originalTopId,jdbcType=INTEGER},
+      </if>
+      <if test="originalTopName != null">
+        original_top_name = #{originalTopName,jdbcType=VARCHAR},
+      </if>
+      <if test="nowTopId != null">
+        now_top_id = #{nowTopId,jdbcType=INTEGER},
+      </if>
+      <if test="nowTopName != null">
+        now_top_name = #{nowTopName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.AgentTransfer">
+    update agent_transfer
+    set user_id = #{userId,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR},
+      original_parent_id = #{originalParentId,jdbcType=INTEGER},
+      original_parent_name = #{originalParentName,jdbcType=VARCHAR},
+      now_parent_id = #{nowParentId,jdbcType=INTEGER},
+      now_parent_name = #{nowParentName,jdbcType=VARCHAR},
+      operator = #{operator,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      original_top_id = #{originalTopId,jdbcType=INTEGER},
+      original_top_name = #{originalTopName,jdbcType=VARCHAR},
+      now_top_id = #{nowTopId,jdbcType=INTEGER},
+      now_top_name = #{nowTopName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

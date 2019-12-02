@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.ExternalRealPersonRebateSettingMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.ExternalRealPersonRebateSetting">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="game_id" jdbcType="INTEGER" property="gameId" />
+    <result column="bet_amout" jdbcType="INTEGER" property="betAmout" />
+    <result column="rebate_limit" jdbcType="INTEGER" property="rebateLimit" />
+    <result column="rebate" jdbcType="REAL" property="rebate" />
+    <result column="label" jdbcType="VARCHAR" property="label" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, game_id, bet_amout, rebate_limit, rebate, label, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from external_real_person_rebate_setting
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from external_real_person_rebate_setting
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.ExternalRealPersonRebateSetting">
+    insert into external_real_person_rebate_setting (id, game_id, bet_amout, 
+      rebate_limit, rebate, label, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{gameId,jdbcType=INTEGER}, #{betAmout,jdbcType=INTEGER}, 
+      #{rebateLimit,jdbcType=INTEGER}, #{rebate,jdbcType=REAL}, #{label,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.ExternalRealPersonRebateSetting">
+    insert into external_real_person_rebate_setting
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gameId != null">
+        game_id,
+      </if>
+      <if test="betAmout != null">
+        bet_amout,
+      </if>
+      <if test="rebateLimit != null">
+        rebate_limit,
+      </if>
+      <if test="rebate != null">
+        rebate,
+      </if>
+      <if test="label != null">
+        label,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="gameId != null">
+        #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="betAmout != null">
+        #{betAmout,jdbcType=INTEGER},
+      </if>
+      <if test="rebateLimit != null">
+        #{rebateLimit,jdbcType=INTEGER},
+      </if>
+      <if test="rebate != null">
+        #{rebate,jdbcType=REAL},
+      </if>
+      <if test="label != null">
+        #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.ExternalRealPersonRebateSetting">
+    update external_real_person_rebate_setting
+    <set>
+      <if test="gameId != null">
+        game_id = #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="betAmout != null">
+        bet_amout = #{betAmout,jdbcType=INTEGER},
+      </if>
+      <if test="rebateLimit != null">
+        rebate_limit = #{rebateLimit,jdbcType=INTEGER},
+      </if>
+      <if test="rebate != null">
+        rebate = #{rebate,jdbcType=REAL},
+      </if>
+      <if test="label != null">
+        label = #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.ExternalRealPersonRebateSetting">
+    update external_real_person_rebate_setting
+    set game_id = #{gameId,jdbcType=INTEGER},
+      bet_amout = #{betAmout,jdbcType=INTEGER},
+      rebate_limit = #{rebateLimit,jdbcType=INTEGER},
+      rebate = #{rebate,jdbcType=REAL},
+      label = #{label,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

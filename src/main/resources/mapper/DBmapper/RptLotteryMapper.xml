@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.RptLotteryMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.RptLottery">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="lottery_id" jdbcType="INTEGER" property="lotteryId" />
+    <result column="single" jdbcType="INTEGER" property="single" />
+    <result column="rental" jdbcType="DECIMAL" property="rental" />
+    <result column="colorrental" jdbcType="DECIMAL" property="colorrental" />
+    <result column="people" jdbcType="INTEGER" property="people" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.Test.model.DBmodel.RptLottery">
+    <result column="bet_users" jdbcType="LONGVARCHAR" property="betUsers" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, lottery_id, single, rental, colorrental, people, number, create_time
+  </sql>
+  <sql id="Blob_Column_List">
+    bet_users
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from rpt_lottery
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from rpt_lottery
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.RptLottery">
+    insert into rpt_lottery (id, lottery_id, single, 
+      rental, colorrental, people, 
+      number, create_time, bet_users
+      )
+    values (#{id,jdbcType=INTEGER}, #{lotteryId,jdbcType=INTEGER}, #{single,jdbcType=INTEGER}, 
+      #{rental,jdbcType=DECIMAL}, #{colorrental,jdbcType=DECIMAL}, #{people,jdbcType=INTEGER}, 
+      #{number,jdbcType=INTEGER}, #{createTime,jdbcType=DATE}, #{betUsers,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.RptLottery">
+    insert into rpt_lottery
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="lotteryId != null">
+        lottery_id,
+      </if>
+      <if test="single != null">
+        single,
+      </if>
+      <if test="rental != null">
+        rental,
+      </if>
+      <if test="colorrental != null">
+        colorrental,
+      </if>
+      <if test="people != null">
+        people,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="betUsers != null">
+        bet_users,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="lotteryId != null">
+        #{lotteryId,jdbcType=INTEGER},
+      </if>
+      <if test="single != null">
+        #{single,jdbcType=INTEGER},
+      </if>
+      <if test="rental != null">
+        #{rental,jdbcType=DECIMAL},
+      </if>
+      <if test="colorrental != null">
+        #{colorrental,jdbcType=DECIMAL},
+      </if>
+      <if test="people != null">
+        #{people,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="betUsers != null">
+        #{betUsers,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.RptLottery">
+    update rpt_lottery
+    <set>
+      <if test="lotteryId != null">
+        lottery_id = #{lotteryId,jdbcType=INTEGER},
+      </if>
+      <if test="single != null">
+        single = #{single,jdbcType=INTEGER},
+      </if>
+      <if test="rental != null">
+        rental = #{rental,jdbcType=DECIMAL},
+      </if>
+      <if test="colorrental != null">
+        colorrental = #{colorrental,jdbcType=DECIMAL},
+      </if>
+      <if test="people != null">
+        people = #{people,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="betUsers != null">
+        bet_users = #{betUsers,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.Test.model.DBmodel.RptLottery">
+    update rpt_lottery
+    set lottery_id = #{lotteryId,jdbcType=INTEGER},
+      single = #{single,jdbcType=INTEGER},
+      rental = #{rental,jdbcType=DECIMAL},
+      colorrental = #{colorrental,jdbcType=DECIMAL},
+      people = #{people,jdbcType=INTEGER},
+      number = #{number,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=DATE},
+      bet_users = #{betUsers,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.RptLottery">
+    update rpt_lottery
+    set lottery_id = #{lotteryId,jdbcType=INTEGER},
+      single = #{single,jdbcType=INTEGER},
+      rental = #{rental,jdbcType=DECIMAL},
+      colorrental = #{colorrental,jdbcType=DECIMAL},
+      people = #{people,jdbcType=INTEGER},
+      number = #{number,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

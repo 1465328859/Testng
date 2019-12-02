@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.ActivityOfferListMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.ActivityOfferList">
+    <id column="id" jdbcType="TINYINT" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="activity_picture" jdbcType="VARCHAR" property="activityPicture" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="pic" jdbcType="VARCHAR" property="pic" />
+    <result column="issuer" jdbcType="VARCHAR" property="issuer" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="sort" jdbcType="TINYINT" property="sort" />
+    <result column="start_time" jdbcType="CHAR" property="startTime" />
+    <result column="end_time" jdbcType="CHAR" property="endTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.Test.model.DBmodel.ActivityOfferList">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, activity_picture, desc, pic, issuer, status, sort, start_time, end_time
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Byte" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from activity_offer_list
+    where id = #{id,jdbcType=TINYINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Byte">
+    delete from activity_offer_list
+    where id = #{id,jdbcType=TINYINT}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.ActivityOfferList">
+    insert into activity_offer_list (id, title, activity_picture, 
+      desc, pic, issuer, 
+      status, sort, start_time, end_time, 
+      content)
+    values (#{id,jdbcType=TINYINT}, #{title,jdbcType=VARCHAR}, #{activityPicture,jdbcType=VARCHAR}, 
+      #{desc,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, #{issuer,jdbcType=VARCHAR}, 
+      #{status,jdbcType=BIT}, #{sort,jdbcType=TINYINT}, #{startTime,jdbcType=CHAR}, #{endTime,jdbcType=CHAR}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.ActivityOfferList">
+    insert into activity_offer_list
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="activityPicture != null">
+        activity_picture,
+      </if>
+      <if test="desc != null">
+        desc,
+      </if>
+      <if test="pic != null">
+        pic,
+      </if>
+      <if test="issuer != null">
+        issuer,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=TINYINT},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="activityPicture != null">
+        #{activityPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null">
+        #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null">
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="issuer != null">
+        #{issuer,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=TINYINT},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=CHAR},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=CHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.ActivityOfferList">
+    update activity_offer_list
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="activityPicture != null">
+        activity_picture = #{activityPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null">
+        desc = #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null">
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="issuer != null">
+        issuer = #{issuer,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=TINYINT},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=CHAR},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=CHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=TINYINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.Test.model.DBmodel.ActivityOfferList">
+    update activity_offer_list
+    set title = #{title,jdbcType=VARCHAR},
+      activity_picture = #{activityPicture,jdbcType=VARCHAR},
+      desc = #{desc,jdbcType=VARCHAR},
+      pic = #{pic,jdbcType=VARCHAR},
+      issuer = #{issuer,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      sort = #{sort,jdbcType=TINYINT},
+      start_time = #{startTime,jdbcType=CHAR},
+      end_time = #{endTime,jdbcType=CHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=TINYINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.ActivityOfferList">
+    update activity_offer_list
+    set title = #{title,jdbcType=VARCHAR},
+      activity_picture = #{activityPicture,jdbcType=VARCHAR},
+      desc = #{desc,jdbcType=VARCHAR},
+      pic = #{pic,jdbcType=VARCHAR},
+      issuer = #{issuer,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      sort = #{sort,jdbcType=TINYINT},
+      start_time = #{startTime,jdbcType=CHAR},
+      end_time = #{endTime,jdbcType=CHAR}
+    where id = #{id,jdbcType=TINYINT}
+  </update>
+</mapper>

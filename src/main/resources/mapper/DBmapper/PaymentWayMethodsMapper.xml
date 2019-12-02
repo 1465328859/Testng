@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.PaymentWayMethodsMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.PaymentWayMethods">
+    <id column="method_id" jdbcType="INTEGER" property="methodId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="seq" jdbcType="INTEGER" property="seq" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="logo" jdbcType="VARCHAR" property="logo" />
+    <result column="type" jdbcType="BIT" property="type" />
+    <result column="type_value" jdbcType="DECIMAL" property="typeValue" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    method_id, name, seq, status, logo, type, type_value
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from payment_way_methods
+    where method_id = #{methodId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from payment_way_methods
+    where method_id = #{methodId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.PaymentWayMethods">
+    insert into payment_way_methods (method_id, name, seq, 
+      status, logo, type, type_value
+      )
+    values (#{methodId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{seq,jdbcType=INTEGER}, 
+      #{status,jdbcType=BIT}, #{logo,jdbcType=VARCHAR}, #{type,jdbcType=BIT}, #{typeValue,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.PaymentWayMethods">
+    insert into payment_way_methods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="methodId != null">
+        method_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="seq != null">
+        seq,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="logo != null">
+        logo,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="typeValue != null">
+        type_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="methodId != null">
+        #{methodId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null">
+        #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="logo != null">
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=BIT},
+      </if>
+      <if test="typeValue != null">
+        #{typeValue,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.PaymentWayMethods">
+    update payment_way_methods
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null">
+        seq = #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="logo != null">
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=BIT},
+      </if>
+      <if test="typeValue != null">
+        type_value = #{typeValue,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where method_id = #{methodId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.PaymentWayMethods">
+    update payment_way_methods
+    set name = #{name,jdbcType=VARCHAR},
+      seq = #{seq,jdbcType=INTEGER},
+      status = #{status,jdbcType=BIT},
+      logo = #{logo,jdbcType=VARCHAR},
+      type = #{type,jdbcType=BIT},
+      type_value = #{typeValue,jdbcType=DECIMAL}
+    where method_id = #{methodId,jdbcType=INTEGER}
+  </update>
+</mapper>

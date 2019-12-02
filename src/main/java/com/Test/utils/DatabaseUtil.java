@@ -1,0 +1,33 @@
+package com.Test.utils;
+
+import com.Test.model.DBmodel.Users;
+import com.Test.model.DBmodel.UsersMapper;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.testng.annotations.Test;
+
+import java.io.IOException;
+import java.io.Reader;
+/*
+把sqlsession封装起来，从数据库中获取数据
+ */
+public class DatabaseUtil {
+    @Test
+    public static SqlSession getsqlSession() throws IOException {
+        //获取配置的资源文件
+        Reader reader = Resources.getResourceAsReader("databaseconfig.xml");
+        //得到SqlSessionFactory，使用类加载器加载xml文件
+        SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
+        //得到sqlsession对象，这个对象就能执行配置文件中的sql语句啦
+        SqlSession session = factory.openSession();
+        UsersMapper mapper = session.getMapper(UsersMapper.class);
+        Users users = mapper.selectByPrimaryKey(1);
+        String username = users.getUsername();
+        System.out.println(username);
+
+        return session;
+
+    }
+}

@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.ExternalVideoOrderMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.ExternalVideoOrder">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="productid" jdbcType="VARCHAR" property="productid" />
+    <result column="tran_id" jdbcType="VARCHAR" property="tranId" />
+    <result column="sn" jdbcType="VARCHAR" property="sn" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="login_id" jdbcType="VARCHAR" property="loginId" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="module_id" jdbcType="INTEGER" property="moduleId" />
+    <result column="module_name" jdbcType="VARCHAR" property="moduleName" />
+    <result column="game_id" jdbcType="INTEGER" property="gameId" />
+    <result column="tablecode" jdbcType="VARCHAR" property="tablecode" />
+    <result column="flatfrom_type" jdbcType="VARCHAR" property="flatfromType" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="befor_credit" jdbcType="REAL" property="beforCredit" />
+    <result column="game_name" jdbcType="VARCHAR" property="gameName" />
+    <result column="order_status" jdbcType="INTEGER" property="orderStatus" />
+    <result column="order_status_original" jdbcType="INTEGER" property="orderStatusOriginal" />
+    <result column="b_amount" jdbcType="REAL" property="bAmount" />
+    <result column="a_amount" jdbcType="REAL" property="aAmount" />
+    <result column="order_from" jdbcType="INTEGER" property="orderFrom" />
+    <result column="order_time" jdbcType="INTEGER" property="orderTime" />
+    <result column="reckontime" jdbcType="TIMESTAMP" property="reckontime" />
+    <result column="from_ip" jdbcType="VARCHAR" property="fromIp" />
+    <result column="issue_id" jdbcType="VARCHAR" property="issueId" />
+    <result column="play_id" jdbcType="VARCHAR" property="playId" />
+    <result column="play_name" jdbcType="VARCHAR" property="playName" />
+    <result column="play_name_en" jdbcType="VARCHAR" property="playNameEn" />
+    <result column="valid_bet" jdbcType="REAL" property="validBet" />
+    <result column="payment" jdbcType="REAL" property="payment" />
+    <result column="no_comm" jdbcType="INTEGER" property="noComm" />
+    <result column="currency" jdbcType="VARCHAR" property="currency" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, type, order_id, productid, tran_id, sn, uid, login_id, username, module_id, module_name, 
+    game_id, tablecode, flatfrom_type, remark, befor_credit, game_name, order_status, 
+    order_status_original, b_amount, a_amount, order_from, order_time, reckontime, from_ip, 
+    issue_id, play_id, play_name, play_name_en, valid_bet, payment, no_comm, currency, 
+    create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from external_video_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from external_video_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.ExternalVideoOrder">
+    insert into external_video_order (id, type, order_id, 
+      productid, tran_id, sn, 
+      uid, login_id, username, 
+      module_id, module_name, game_id, 
+      tablecode, flatfrom_type, remark, 
+      befor_credit, game_name, order_status, 
+      order_status_original, b_amount, a_amount, 
+      order_from, order_time, reckontime, 
+      from_ip, issue_id, play_id, 
+      play_name, play_name_en, valid_bet, 
+      payment, no_comm, currency, 
+      create_time)
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, 
+      #{productid,jdbcType=VARCHAR}, #{tranId,jdbcType=VARCHAR}, #{sn,jdbcType=VARCHAR}, 
+      #{uid,jdbcType=INTEGER}, #{loginId,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{moduleId,jdbcType=INTEGER}, #{moduleName,jdbcType=VARCHAR}, #{gameId,jdbcType=INTEGER}, 
+      #{tablecode,jdbcType=VARCHAR}, #{flatfromType,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{beforCredit,jdbcType=REAL}, #{gameName,jdbcType=VARCHAR}, #{orderStatus,jdbcType=INTEGER}, 
+      #{orderStatusOriginal,jdbcType=INTEGER}, #{bAmount,jdbcType=REAL}, #{aAmount,jdbcType=REAL}, 
+      #{orderFrom,jdbcType=INTEGER}, #{orderTime,jdbcType=INTEGER}, #{reckontime,jdbcType=TIMESTAMP}, 
+      #{fromIp,jdbcType=VARCHAR}, #{issueId,jdbcType=VARCHAR}, #{playId,jdbcType=VARCHAR}, 
+      #{playName,jdbcType=VARCHAR}, #{playNameEn,jdbcType=VARCHAR}, #{validBet,jdbcType=REAL}, 
+      #{payment,jdbcType=REAL}, #{noComm,jdbcType=INTEGER}, #{currency,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.ExternalVideoOrder">
+    insert into external_video_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="productid != null">
+        productid,
+      </if>
+      <if test="tranId != null">
+        tran_id,
+      </if>
+      <if test="sn != null">
+        sn,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="loginId != null">
+        login_id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="moduleId != null">
+        module_id,
+      </if>
+      <if test="moduleName != null">
+        module_name,
+      </if>
+      <if test="gameId != null">
+        game_id,
+      </if>
+      <if test="tablecode != null">
+        tablecode,
+      </if>
+      <if test="flatfromType != null">
+        flatfrom_type,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="beforCredit != null">
+        befor_credit,
+      </if>
+      <if test="gameName != null">
+        game_name,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+      <if test="orderStatusOriginal != null">
+        order_status_original,
+      </if>
+      <if test="bAmount != null">
+        b_amount,
+      </if>
+      <if test="aAmount != null">
+        a_amount,
+      </if>
+      <if test="orderFrom != null">
+        order_from,
+      </if>
+      <if test="orderTime != null">
+        order_time,
+      </if>
+      <if test="reckontime != null">
+        reckontime,
+      </if>
+      <if test="fromIp != null">
+        from_ip,
+      </if>
+      <if test="issueId != null">
+        issue_id,
+      </if>
+      <if test="playId != null">
+        play_id,
+      </if>
+      <if test="playName != null">
+        play_name,
+      </if>
+      <if test="playNameEn != null">
+        play_name_en,
+      </if>
+      <if test="validBet != null">
+        valid_bet,
+      </if>
+      <if test="payment != null">
+        payment,
+      </if>
+      <if test="noComm != null">
+        no_comm,
+      </if>
+      <if test="currency != null">
+        currency,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="productid != null">
+        #{productid,jdbcType=VARCHAR},
+      </if>
+      <if test="tranId != null">
+        #{tranId,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null">
+        #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="loginId != null">
+        #{loginId,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="moduleName != null">
+        #{moduleName,jdbcType=VARCHAR},
+      </if>
+      <if test="gameId != null">
+        #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="tablecode != null">
+        #{tablecode,jdbcType=VARCHAR},
+      </if>
+      <if test="flatfromType != null">
+        #{flatfromType,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="beforCredit != null">
+        #{beforCredit,jdbcType=REAL},
+      </if>
+      <if test="gameName != null">
+        #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatusOriginal != null">
+        #{orderStatusOriginal,jdbcType=INTEGER},
+      </if>
+      <if test="bAmount != null">
+        #{bAmount,jdbcType=REAL},
+      </if>
+      <if test="aAmount != null">
+        #{aAmount,jdbcType=REAL},
+      </if>
+      <if test="orderFrom != null">
+        #{orderFrom,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null">
+        #{orderTime,jdbcType=INTEGER},
+      </if>
+      <if test="reckontime != null">
+        #{reckontime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fromIp != null">
+        #{fromIp,jdbcType=VARCHAR},
+      </if>
+      <if test="issueId != null">
+        #{issueId,jdbcType=VARCHAR},
+      </if>
+      <if test="playId != null">
+        #{playId,jdbcType=VARCHAR},
+      </if>
+      <if test="playName != null">
+        #{playName,jdbcType=VARCHAR},
+      </if>
+      <if test="playNameEn != null">
+        #{playNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="validBet != null">
+        #{validBet,jdbcType=REAL},
+      </if>
+      <if test="payment != null">
+        #{payment,jdbcType=REAL},
+      </if>
+      <if test="noComm != null">
+        #{noComm,jdbcType=INTEGER},
+      </if>
+      <if test="currency != null">
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.ExternalVideoOrder">
+    update external_video_order
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="productid != null">
+        productid = #{productid,jdbcType=VARCHAR},
+      </if>
+      <if test="tranId != null">
+        tran_id = #{tranId,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null">
+        sn = #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="loginId != null">
+        login_id = #{loginId,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleId != null">
+        module_id = #{moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="moduleName != null">
+        module_name = #{moduleName,jdbcType=VARCHAR},
+      </if>
+      <if test="gameId != null">
+        game_id = #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="tablecode != null">
+        tablecode = #{tablecode,jdbcType=VARCHAR},
+      </if>
+      <if test="flatfromType != null">
+        flatfrom_type = #{flatfromType,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="beforCredit != null">
+        befor_credit = #{beforCredit,jdbcType=REAL},
+      </if>
+      <if test="gameName != null">
+        game_name = #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatusOriginal != null">
+        order_status_original = #{orderStatusOriginal,jdbcType=INTEGER},
+      </if>
+      <if test="bAmount != null">
+        b_amount = #{bAmount,jdbcType=REAL},
+      </if>
+      <if test="aAmount != null">
+        a_amount = #{aAmount,jdbcType=REAL},
+      </if>
+      <if test="orderFrom != null">
+        order_from = #{orderFrom,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null">
+        order_time = #{orderTime,jdbcType=INTEGER},
+      </if>
+      <if test="reckontime != null">
+        reckontime = #{reckontime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fromIp != null">
+        from_ip = #{fromIp,jdbcType=VARCHAR},
+      </if>
+      <if test="issueId != null">
+        issue_id = #{issueId,jdbcType=VARCHAR},
+      </if>
+      <if test="playId != null">
+        play_id = #{playId,jdbcType=VARCHAR},
+      </if>
+      <if test="playName != null">
+        play_name = #{playName,jdbcType=VARCHAR},
+      </if>
+      <if test="playNameEn != null">
+        play_name_en = #{playNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="validBet != null">
+        valid_bet = #{validBet,jdbcType=REAL},
+      </if>
+      <if test="payment != null">
+        payment = #{payment,jdbcType=REAL},
+      </if>
+      <if test="noComm != null">
+        no_comm = #{noComm,jdbcType=INTEGER},
+      </if>
+      <if test="currency != null">
+        currency = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.ExternalVideoOrder">
+    update external_video_order
+    set type = #{type,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      productid = #{productid,jdbcType=VARCHAR},
+      tran_id = #{tranId,jdbcType=VARCHAR},
+      sn = #{sn,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=INTEGER},
+      login_id = #{loginId,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      module_id = #{moduleId,jdbcType=INTEGER},
+      module_name = #{moduleName,jdbcType=VARCHAR},
+      game_id = #{gameId,jdbcType=INTEGER},
+      tablecode = #{tablecode,jdbcType=VARCHAR},
+      flatfrom_type = #{flatfromType,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      befor_credit = #{beforCredit,jdbcType=REAL},
+      game_name = #{gameName,jdbcType=VARCHAR},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      order_status_original = #{orderStatusOriginal,jdbcType=INTEGER},
+      b_amount = #{bAmount,jdbcType=REAL},
+      a_amount = #{aAmount,jdbcType=REAL},
+      order_from = #{orderFrom,jdbcType=INTEGER},
+      order_time = #{orderTime,jdbcType=INTEGER},
+      reckontime = #{reckontime,jdbcType=TIMESTAMP},
+      from_ip = #{fromIp,jdbcType=VARCHAR},
+      issue_id = #{issueId,jdbcType=VARCHAR},
+      play_id = #{playId,jdbcType=VARCHAR},
+      play_name = #{playName,jdbcType=VARCHAR},
+      play_name_en = #{playNameEn,jdbcType=VARCHAR},
+      valid_bet = #{validBet,jdbcType=REAL},
+      payment = #{payment,jdbcType=REAL},
+      no_comm = #{noComm,jdbcType=INTEGER},
+      currency = #{currency,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

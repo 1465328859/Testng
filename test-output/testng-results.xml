@@ -2,10 +2,10 @@
 <testng-results skipped="0" failed="0" total="0" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="用户管理系统测试套件" duration-ms="2" started-at="2019-12-02T10:00:48Z" finished-at="2019-12-02T10:00:48Z">
+  <suite name="Default Suite" duration-ms="2" started-at="2019-12-02T11:56:20Z" finished-at="2019-12-02T11:56:20Z">
     <groups>
     </groups>
-    <test name="用户管理系统测试用例" duration-ms="2" started-at="2019-12-02T10:00:48Z" finished-at="2019-12-02T10:00:48Z">
-    </test> <!-- 用户管理系统测试用例 -->
-  </suite> <!-- 用户管理系统测试套件 -->
+    <test name="Testng" duration-ms="2" started-at="2019-12-02T11:56:20Z" finished-at="2019-12-02T11:56:20Z">
+    </test> <!-- Testng -->
+  </suite> <!-- Default Suite -->
 </testng-results>

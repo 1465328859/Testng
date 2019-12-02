@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.RptAgentCommissionMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.RptAgentCommission">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="up_three_grade" jdbcType="VARCHAR" property="upThreeGrade" />
+    <result column="top_id" jdbcType="INTEGER" property="topId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="agent" jdbcType="CHAR" property="agent" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="rebate_type" jdbcType="BIT" property="rebateType" />
+    <result column="rebate_time" jdbcType="INTEGER" property="rebateTime" />
+    <result column="add_time" jdbcType="INTEGER" property="addTime" />
+    <result column="belong_date" jdbcType="DATE" property="belongDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, up_three_grade, top_id, user_id, agent, balance, status, rebate_type, rebate_time, 
+    add_time, belong_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from rpt_agent_commission
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from rpt_agent_commission
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.RptAgentCommission">
+    insert into rpt_agent_commission (id, up_three_grade, top_id, 
+      user_id, agent, balance, 
+      status, rebate_type, rebate_time, 
+      add_time, belong_date)
+    values (#{id,jdbcType=INTEGER}, #{upThreeGrade,jdbcType=VARCHAR}, #{topId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{agent,jdbcType=CHAR}, #{balance,jdbcType=DECIMAL}, 
+      #{status,jdbcType=BIT}, #{rebateType,jdbcType=BIT}, #{rebateTime,jdbcType=INTEGER}, 
+      #{addTime,jdbcType=INTEGER}, #{belongDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.RptAgentCommission">
+    insert into rpt_agent_commission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="upThreeGrade != null">
+        up_three_grade,
+      </if>
+      <if test="topId != null">
+        top_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="agent != null">
+        agent,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="rebateType != null">
+        rebate_type,
+      </if>
+      <if test="rebateTime != null">
+        rebate_time,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="belongDate != null">
+        belong_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="upThreeGrade != null">
+        #{upThreeGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="topId != null">
+        #{topId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="agent != null">
+        #{agent,jdbcType=CHAR},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="rebateType != null">
+        #{rebateType,jdbcType=BIT},
+      </if>
+      <if test="rebateTime != null">
+        #{rebateTime,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="belongDate != null">
+        #{belongDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.RptAgentCommission">
+    update rpt_agent_commission
+    <set>
+      <if test="upThreeGrade != null">
+        up_three_grade = #{upThreeGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="topId != null">
+        top_id = #{topId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="agent != null">
+        agent = #{agent,jdbcType=CHAR},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="rebateType != null">
+        rebate_type = #{rebateType,jdbcType=BIT},
+      </if>
+      <if test="rebateTime != null">
+        rebate_time = #{rebateTime,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="belongDate != null">
+        belong_date = #{belongDate,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.RptAgentCommission">
+    update rpt_agent_commission
+    set up_three_grade = #{upThreeGrade,jdbcType=VARCHAR},
+      top_id = #{topId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      agent = #{agent,jdbcType=CHAR},
+      balance = #{balance,jdbcType=DECIMAL},
+      status = #{status,jdbcType=BIT},
+      rebate_type = #{rebateType,jdbcType=BIT},
+      rebate_time = #{rebateTime,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=INTEGER},
+      belong_date = #{belongDate,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

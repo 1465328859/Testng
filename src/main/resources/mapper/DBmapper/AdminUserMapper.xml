@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.AdminUserMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.AdminUser">
+    <id column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="nickname" jdbcType="CHAR" property="nickname" />
+    <result column="password" jdbcType="CHAR" property="password" />
+    <result column="manage_auth" jdbcType="VARCHAR" property="manageAuth" />
+    <result column="login_code" jdbcType="VARCHAR" property="loginCode" />
+    <result column="login_time" jdbcType="INTEGER" property="loginTime" />
+    <result column="google_auth" jdbcType="INTEGER" property="googleAuth" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    uid, nickname, password, manage_auth, login_code, login_time, google_auth, ip, name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from admin_user
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from admin_user
+    where uid = #{uid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.AdminUser">
+    insert into admin_user (uid, nickname, password, 
+      manage_auth, login_code, login_time, 
+      google_auth, ip, name
+      )
+    values (#{uid,jdbcType=INTEGER}, #{nickname,jdbcType=CHAR}, #{password,jdbcType=CHAR}, 
+      #{manageAuth,jdbcType=VARCHAR}, #{loginCode,jdbcType=VARCHAR}, #{loginTime,jdbcType=INTEGER}, 
+      #{googleAuth,jdbcType=INTEGER}, #{ip,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.AdminUser">
+    insert into admin_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="nickname != null">
+        nickname,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="manageAuth != null">
+        manage_auth,
+      </if>
+      <if test="loginCode != null">
+        login_code,
+      </if>
+      <if test="loginTime != null">
+        login_time,
+      </if>
+      <if test="googleAuth != null">
+        google_auth,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=CHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=CHAR},
+      </if>
+      <if test="manageAuth != null">
+        #{manageAuth,jdbcType=VARCHAR},
+      </if>
+      <if test="loginCode != null">
+        #{loginCode,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null">
+        #{loginTime,jdbcType=INTEGER},
+      </if>
+      <if test="googleAuth != null">
+        #{googleAuth,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.AdminUser">
+    update admin_user
+    <set>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=CHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=CHAR},
+      </if>
+      <if test="manageAuth != null">
+        manage_auth = #{manageAuth,jdbcType=VARCHAR},
+      </if>
+      <if test="loginCode != null">
+        login_code = #{loginCode,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null">
+        login_time = #{loginTime,jdbcType=INTEGER},
+      </if>
+      <if test="googleAuth != null">
+        google_auth = #{googleAuth,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.AdminUser">
+    update admin_user
+    set nickname = #{nickname,jdbcType=CHAR},
+      password = #{password,jdbcType=CHAR},
+      manage_auth = #{manageAuth,jdbcType=VARCHAR},
+      login_code = #{loginCode,jdbcType=VARCHAR},
+      login_time = #{loginTime,jdbcType=INTEGER},
+      google_auth = #{googleAuth,jdbcType=INTEGER},
+      ip = #{ip,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+</mapper>

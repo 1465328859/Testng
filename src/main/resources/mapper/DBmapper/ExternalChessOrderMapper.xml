@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.ExternalChessOrderMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.ExternalChessOrder">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="game_name" jdbcType="VARCHAR" property="gameName" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="room_name" jdbcType="VARCHAR" property="roomName" />
+    <result column="game_id" jdbcType="INTEGER" property="gameId" />
+    <result column="table_id" jdbcType="INTEGER" property="tableId" />
+    <result column="chair_id" jdbcType="INTEGER" property="chairId" />
+    <result column="user_count" jdbcType="INTEGER" property="userCount" />
+    <result column="cell_score" jdbcType="DECIMAL" property="cellScore" />
+    <result column="all_bet" jdbcType="DECIMAL" property="allBet" />
+    <result column="profit" jdbcType="DECIMAL" property="profit" />
+    <result column="revenue" jdbcType="DECIMAL" property="revenue" />
+    <result column="game_start_time" jdbcType="TIMESTAMP" property="gameStartTime" />
+    <result column="game_end_time" jdbcType="TIMESTAMP" property="gameEndTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, order_no, game_name, account, room_name, game_id, table_id, chair_id, user_count, 
+    cell_score, all_bet, profit, revenue, game_start_time, game_end_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from external_chess_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from external_chess_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.ExternalChessOrder">
+    insert into external_chess_order (id, order_no, game_name, 
+      account, room_name, game_id, 
+      table_id, chair_id, user_count, 
+      cell_score, all_bet, profit, 
+      revenue, game_start_time, game_end_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, #{gameName,jdbcType=VARCHAR}, 
+      #{account,jdbcType=VARCHAR}, #{roomName,jdbcType=VARCHAR}, #{gameId,jdbcType=INTEGER}, 
+      #{tableId,jdbcType=INTEGER}, #{chairId,jdbcType=INTEGER}, #{userCount,jdbcType=INTEGER}, 
+      #{cellScore,jdbcType=DECIMAL}, #{allBet,jdbcType=DECIMAL}, #{profit,jdbcType=DECIMAL}, 
+      #{revenue,jdbcType=DECIMAL}, #{gameStartTime,jdbcType=TIMESTAMP}, #{gameEndTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.ExternalChessOrder">
+    insert into external_chess_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="gameName != null">
+        game_name,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="roomName != null">
+        room_name,
+      </if>
+      <if test="gameId != null">
+        game_id,
+      </if>
+      <if test="tableId != null">
+        table_id,
+      </if>
+      <if test="chairId != null">
+        chair_id,
+      </if>
+      <if test="userCount != null">
+        user_count,
+      </if>
+      <if test="cellScore != null">
+        cell_score,
+      </if>
+      <if test="allBet != null">
+        all_bet,
+      </if>
+      <if test="profit != null">
+        profit,
+      </if>
+      <if test="revenue != null">
+        revenue,
+      </if>
+      <if test="gameStartTime != null">
+        game_start_time,
+      </if>
+      <if test="gameEndTime != null">
+        game_end_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="gameName != null">
+        #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="roomName != null">
+        #{roomName,jdbcType=VARCHAR},
+      </if>
+      <if test="gameId != null">
+        #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="tableId != null">
+        #{tableId,jdbcType=INTEGER},
+      </if>
+      <if test="chairId != null">
+        #{chairId,jdbcType=INTEGER},
+      </if>
+      <if test="userCount != null">
+        #{userCount,jdbcType=INTEGER},
+      </if>
+      <if test="cellScore != null">
+        #{cellScore,jdbcType=DECIMAL},
+      </if>
+      <if test="allBet != null">
+        #{allBet,jdbcType=DECIMAL},
+      </if>
+      <if test="profit != null">
+        #{profit,jdbcType=DECIMAL},
+      </if>
+      <if test="revenue != null">
+        #{revenue,jdbcType=DECIMAL},
+      </if>
+      <if test="gameStartTime != null">
+        #{gameStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameEndTime != null">
+        #{gameEndTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.ExternalChessOrder">
+    update external_chess_order
+    <set>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="gameName != null">
+        game_name = #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="roomName != null">
+        room_name = #{roomName,jdbcType=VARCHAR},
+      </if>
+      <if test="gameId != null">
+        game_id = #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="tableId != null">
+        table_id = #{tableId,jdbcType=INTEGER},
+      </if>
+      <if test="chairId != null">
+        chair_id = #{chairId,jdbcType=INTEGER},
+      </if>
+      <if test="userCount != null">
+        user_count = #{userCount,jdbcType=INTEGER},
+      </if>
+      <if test="cellScore != null">
+        cell_score = #{cellScore,jdbcType=DECIMAL},
+      </if>
+      <if test="allBet != null">
+        all_bet = #{allBet,jdbcType=DECIMAL},
+      </if>
+      <if test="profit != null">
+        profit = #{profit,jdbcType=DECIMAL},
+      </if>
+      <if test="revenue != null">
+        revenue = #{revenue,jdbcType=DECIMAL},
+      </if>
+      <if test="gameStartTime != null">
+        game_start_time = #{gameStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameEndTime != null">
+        game_end_time = #{gameEndTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.ExternalChessOrder">
+    update external_chess_order
+    set order_no = #{orderNo,jdbcType=VARCHAR},
+      game_name = #{gameName,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      room_name = #{roomName,jdbcType=VARCHAR},
+      game_id = #{gameId,jdbcType=INTEGER},
+      table_id = #{tableId,jdbcType=INTEGER},
+      chair_id = #{chairId,jdbcType=INTEGER},
+      user_count = #{userCount,jdbcType=INTEGER},
+      cell_score = #{cellScore,jdbcType=DECIMAL},
+      all_bet = #{allBet,jdbcType=DECIMAL},
+      profit = #{profit,jdbcType=DECIMAL},
+      revenue = #{revenue,jdbcType=DECIMAL},
+      game_start_time = #{gameStartTime,jdbcType=TIMESTAMP},
+      game_end_time = #{gameEndTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

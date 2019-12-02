@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.PaymentWithdrawMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.PaymentWithdraw">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="username" jdbcType="CHAR" property="username" />
+    <result column="top_id" jdbcType="INTEGER" property="topId" />
+    <result column="up_three_grade" jdbcType="VARCHAR" property="upThreeGrade" />
+    <result column="take_amount" jdbcType="DECIMAL" property="takeAmount" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="is_take" jdbcType="TINYINT" property="isTake" />
+    <result column="take_time" jdbcType="CHAR" property="takeTime" />
+    <result column="take_ip" jdbcType="VARCHAR" property="takeIp" />
+    <result column="action_admin" jdbcType="CHAR" property="actionAdmin" />
+    <result column="check_admin" jdbcType="CHAR" property="checkAdmin" />
+    <result column="account_type" jdbcType="BIT" property="accountType" />
+    <result column="check_time" jdbcType="INTEGER" property="checkTime" />
+    <result column="after_amount" jdbcType="DECIMAL" property="afterAmount" />
+    <result column="before_amount" jdbcType="DECIMAL" property="beforeAmount" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="is_read" jdbcType="BIT" property="isRead" />
+    <result column="ordernotes" jdbcType="VARCHAR" property="ordernotes" />
+    <result column="type" jdbcType="BIT" property="type" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, username, top_id, up_three_grade, take_amount, status, is_take, take_time, 
+    take_ip, action_admin, check_admin, account_type, check_time, after_amount, before_amount, 
+    remark, is_read, ordernotes, type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from payment_withdraw
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from payment_withdraw
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.PaymentWithdraw">
+    insert into payment_withdraw (id, user_id, username, 
+      top_id, up_three_grade, take_amount, 
+      status, is_take, take_time, 
+      take_ip, action_admin, check_admin, 
+      account_type, check_time, after_amount, 
+      before_amount, remark, is_read, 
+      ordernotes, type)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{username,jdbcType=CHAR}, 
+      #{topId,jdbcType=INTEGER}, #{upThreeGrade,jdbcType=VARCHAR}, #{takeAmount,jdbcType=DECIMAL}, 
+      #{status,jdbcType=BIT}, #{isTake,jdbcType=TINYINT}, #{takeTime,jdbcType=CHAR}, 
+      #{takeIp,jdbcType=VARCHAR}, #{actionAdmin,jdbcType=CHAR}, #{checkAdmin,jdbcType=CHAR}, 
+      #{accountType,jdbcType=BIT}, #{checkTime,jdbcType=INTEGER}, #{afterAmount,jdbcType=DECIMAL}, 
+      #{beforeAmount,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR}, #{isRead,jdbcType=BIT}, 
+      #{ordernotes,jdbcType=VARCHAR}, #{type,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.PaymentWithdraw">
+    insert into payment_withdraw
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="topId != null">
+        top_id,
+      </if>
+      <if test="upThreeGrade != null">
+        up_three_grade,
+      </if>
+      <if test="takeAmount != null">
+        take_amount,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="isTake != null">
+        is_take,
+      </if>
+      <if test="takeTime != null">
+        take_time,
+      </if>
+      <if test="takeIp != null">
+        take_ip,
+      </if>
+      <if test="actionAdmin != null">
+        action_admin,
+      </if>
+      <if test="checkAdmin != null">
+        check_admin,
+      </if>
+      <if test="accountType != null">
+        account_type,
+      </if>
+      <if test="checkTime != null">
+        check_time,
+      </if>
+      <if test="afterAmount != null">
+        after_amount,
+      </if>
+      <if test="beforeAmount != null">
+        before_amount,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="isRead != null">
+        is_read,
+      </if>
+      <if test="ordernotes != null">
+        ordernotes,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=CHAR},
+      </if>
+      <if test="topId != null">
+        #{topId,jdbcType=INTEGER},
+      </if>
+      <if test="upThreeGrade != null">
+        #{upThreeGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="takeAmount != null">
+        #{takeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="isTake != null">
+        #{isTake,jdbcType=TINYINT},
+      </if>
+      <if test="takeTime != null">
+        #{takeTime,jdbcType=CHAR},
+      </if>
+      <if test="takeIp != null">
+        #{takeIp,jdbcType=VARCHAR},
+      </if>
+      <if test="actionAdmin != null">
+        #{actionAdmin,jdbcType=CHAR},
+      </if>
+      <if test="checkAdmin != null">
+        #{checkAdmin,jdbcType=CHAR},
+      </if>
+      <if test="accountType != null">
+        #{accountType,jdbcType=BIT},
+      </if>
+      <if test="checkTime != null">
+        #{checkTime,jdbcType=INTEGER},
+      </if>
+      <if test="afterAmount != null">
+        #{afterAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="beforeAmount != null">
+        #{beforeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isRead != null">
+        #{isRead,jdbcType=BIT},
+      </if>
+      <if test="ordernotes != null">
+        #{ordernotes,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.PaymentWithdraw">
+    update payment_withdraw
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=CHAR},
+      </if>
+      <if test="topId != null">
+        top_id = #{topId,jdbcType=INTEGER},
+      </if>
+      <if test="upThreeGrade != null">
+        up_three_grade = #{upThreeGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="takeAmount != null">
+        take_amount = #{takeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="isTake != null">
+        is_take = #{isTake,jdbcType=TINYINT},
+      </if>
+      <if test="takeTime != null">
+        take_time = #{takeTime,jdbcType=CHAR},
+      </if>
+      <if test="takeIp != null">
+        take_ip = #{takeIp,jdbcType=VARCHAR},
+      </if>
+      <if test="actionAdmin != null">
+        action_admin = #{actionAdmin,jdbcType=CHAR},
+      </if>
+      <if test="checkAdmin != null">
+        check_admin = #{checkAdmin,jdbcType=CHAR},
+      </if>
+      <if test="accountType != null">
+        account_type = #{accountType,jdbcType=BIT},
+      </if>
+      <if test="checkTime != null">
+        check_time = #{checkTime,jdbcType=INTEGER},
+      </if>
+      <if test="afterAmount != null">
+        after_amount = #{afterAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="beforeAmount != null">
+        before_amount = #{beforeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isRead != null">
+        is_read = #{isRead,jdbcType=BIT},
+      </if>
+      <if test="ordernotes != null">
+        ordernotes = #{ordernotes,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.PaymentWithdraw">
+    update payment_withdraw
+    set user_id = #{userId,jdbcType=INTEGER},
+      username = #{username,jdbcType=CHAR},
+      top_id = #{topId,jdbcType=INTEGER},
+      up_three_grade = #{upThreeGrade,jdbcType=VARCHAR},
+      take_amount = #{takeAmount,jdbcType=DECIMAL},
+      status = #{status,jdbcType=BIT},
+      is_take = #{isTake,jdbcType=TINYINT},
+      take_time = #{takeTime,jdbcType=CHAR},
+      take_ip = #{takeIp,jdbcType=VARCHAR},
+      action_admin = #{actionAdmin,jdbcType=CHAR},
+      check_admin = #{checkAdmin,jdbcType=CHAR},
+      account_type = #{accountType,jdbcType=BIT},
+      check_time = #{checkTime,jdbcType=INTEGER},
+      after_amount = #{afterAmount,jdbcType=DECIMAL},
+      before_amount = #{beforeAmount,jdbcType=DECIMAL},
+      remark = #{remark,jdbcType=VARCHAR},
+      is_read = #{isRead,jdbcType=BIT},
+      ordernotes = #{ordernotes,jdbcType=VARCHAR},
+      type = #{type,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

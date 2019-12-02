@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.LotteryClassifyMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.LotteryClassify">
+    <id column="lottery_classify_id" jdbcType="INTEGER" property="lotteryClassifyId" />
+    <result column="kind_id" jdbcType="VARCHAR" property="kindId" />
+    <result column="kind_name" jdbcType="VARCHAR" property="kindName" />
+    <result column="key" jdbcType="VARCHAR" property="key" />
+    <result column="kind_rebate" jdbcType="DECIMAL" property="kindRebate" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="phone_icon" jdbcType="VARCHAR" property="phoneIcon" />
+    <result column="not_phone_icon" jdbcType="VARCHAR" property="notPhoneIcon" />
+    <result column="sorting" jdbcType="INTEGER" property="sorting" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.Test.model.DBmodel.LotteryClassify">
+    <result column="introduce" jdbcType="LONGVARCHAR" property="introduce" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    lottery_classify_id, kind_id, kind_name, key, kind_rebate, status, icon, phone_icon, 
+    not_phone_icon, sorting
+  </sql>
+  <sql id="Blob_Column_List">
+    introduce
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from lottery_classify
+    where lottery_classify_id = #{lotteryClassifyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from lottery_classify
+    where lottery_classify_id = #{lotteryClassifyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.LotteryClassify">
+    insert into lottery_classify (lottery_classify_id, kind_id, kind_name, 
+      key, kind_rebate, status, 
+      icon, phone_icon, not_phone_icon, 
+      sorting, introduce)
+    values (#{lotteryClassifyId,jdbcType=INTEGER}, #{kindId,jdbcType=VARCHAR}, #{kindName,jdbcType=VARCHAR}, 
+      #{key,jdbcType=VARCHAR}, #{kindRebate,jdbcType=DECIMAL}, #{status,jdbcType=BIT}, 
+      #{icon,jdbcType=VARCHAR}, #{phoneIcon,jdbcType=VARCHAR}, #{notPhoneIcon,jdbcType=VARCHAR}, 
+      #{sorting,jdbcType=INTEGER}, #{introduce,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.LotteryClassify">
+    insert into lottery_classify
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="lotteryClassifyId != null">
+        lottery_classify_id,
+      </if>
+      <if test="kindId != null">
+        kind_id,
+      </if>
+      <if test="kindName != null">
+        kind_name,
+      </if>
+      <if test="key != null">
+        key,
+      </if>
+      <if test="kindRebate != null">
+        kind_rebate,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="phoneIcon != null">
+        phone_icon,
+      </if>
+      <if test="notPhoneIcon != null">
+        not_phone_icon,
+      </if>
+      <if test="sorting != null">
+        sorting,
+      </if>
+      <if test="introduce != null">
+        introduce,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="lotteryClassifyId != null">
+        #{lotteryClassifyId,jdbcType=INTEGER},
+      </if>
+      <if test="kindId != null">
+        #{kindId,jdbcType=VARCHAR},
+      </if>
+      <if test="kindName != null">
+        #{kindName,jdbcType=VARCHAR},
+      </if>
+      <if test="key != null">
+        #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="kindRebate != null">
+        #{kindRebate,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneIcon != null">
+        #{phoneIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="notPhoneIcon != null">
+        #{notPhoneIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="sorting != null">
+        #{sorting,jdbcType=INTEGER},
+      </if>
+      <if test="introduce != null">
+        #{introduce,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.LotteryClassify">
+    update lottery_classify
+    <set>
+      <if test="kindId != null">
+        kind_id = #{kindId,jdbcType=VARCHAR},
+      </if>
+      <if test="kindName != null">
+        kind_name = #{kindName,jdbcType=VARCHAR},
+      </if>
+      <if test="key != null">
+        key = #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="kindRebate != null">
+        kind_rebate = #{kindRebate,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneIcon != null">
+        phone_icon = #{phoneIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="notPhoneIcon != null">
+        not_phone_icon = #{notPhoneIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="sorting != null">
+        sorting = #{sorting,jdbcType=INTEGER},
+      </if>
+      <if test="introduce != null">
+        introduce = #{introduce,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where lottery_classify_id = #{lotteryClassifyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.Test.model.DBmodel.LotteryClassify">
+    update lottery_classify
+    set kind_id = #{kindId,jdbcType=VARCHAR},
+      kind_name = #{kindName,jdbcType=VARCHAR},
+      key = #{key,jdbcType=VARCHAR},
+      kind_rebate = #{kindRebate,jdbcType=DECIMAL},
+      status = #{status,jdbcType=BIT},
+      icon = #{icon,jdbcType=VARCHAR},
+      phone_icon = #{phoneIcon,jdbcType=VARCHAR},
+      not_phone_icon = #{notPhoneIcon,jdbcType=VARCHAR},
+      sorting = #{sorting,jdbcType=INTEGER},
+      introduce = #{introduce,jdbcType=LONGVARCHAR}
+    where lottery_classify_id = #{lotteryClassifyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.LotteryClassify">
+    update lottery_classify
+    set kind_id = #{kindId,jdbcType=VARCHAR},
+      kind_name = #{kindName,jdbcType=VARCHAR},
+      key = #{key,jdbcType=VARCHAR},
+      kind_rebate = #{kindRebate,jdbcType=DECIMAL},
+      status = #{status,jdbcType=BIT},
+      icon = #{icon,jdbcType=VARCHAR},
+      phone_icon = #{phoneIcon,jdbcType=VARCHAR},
+      not_phone_icon = #{notPhoneIcon,jdbcType=VARCHAR},
+      sorting = #{sorting,jdbcType=INTEGER}
+    where lottery_classify_id = #{lotteryClassifyId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.UsersPushMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.UsersPush">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="fstime" jdbcType="INTEGER" property="fstime" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.Test.model.DBmodel.UsersPushWithBLOBs">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="memberid" jdbcType="LONGVARCHAR" property="memberid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, num, fstime, type, operator
+  </sql>
+  <sql id="Blob_Column_List">
+    content, memberid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from users_push
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from users_push
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.UsersPushWithBLOBs">
+    insert into users_push (id, title, num, 
+      fstime, type, operator, 
+      content, memberid)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{num,jdbcType=INTEGER}, 
+      #{fstime,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, #{operator,jdbcType=VARCHAR}, 
+      #{content,jdbcType=LONGVARCHAR}, #{memberid,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.UsersPushWithBLOBs">
+    insert into users_push
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="fstime != null">
+        fstime,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="operator != null">
+        operator,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="memberid != null">
+        memberid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="fstime != null">
+        #{fstime,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="memberid != null">
+        #{memberid,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.UsersPushWithBLOBs">
+    update users_push
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="fstime != null">
+        fstime = #{fstime,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="operator != null">
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="memberid != null">
+        memberid = #{memberid,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.Test.model.DBmodel.UsersPushWithBLOBs">
+    update users_push
+    set title = #{title,jdbcType=VARCHAR},
+      num = #{num,jdbcType=INTEGER},
+      fstime = #{fstime,jdbcType=INTEGER},
+      type = #{type,jdbcType=TINYINT},
+      operator = #{operator,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR},
+      memberid = #{memberid,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.UsersPush">
+    update users_push
+    set title = #{title,jdbcType=VARCHAR},
+      num = #{num,jdbcType=INTEGER},
+      fstime = #{fstime,jdbcType=INTEGER},
+      type = #{type,jdbcType=TINYINT},
+      operator = #{operator,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

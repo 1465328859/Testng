@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.AdminAuthRoleMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.AdminAuthRole">
+    <id column="id" jdbcType="TINYINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="pid" jdbcType="TINYINT" property="pid" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="CHAR" property="createTime" />
+    <result column="update_time" jdbcType="CHAR" property="updateTime" />
+    <result column="listorder" jdbcType="TINYINT" property="listorder" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, pid, status, remark, create_time, update_time, listorder
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Byte" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from admin_auth_role
+    where id = #{id,jdbcType=TINYINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Byte">
+    delete from admin_auth_role
+    where id = #{id,jdbcType=TINYINT}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.AdminAuthRole">
+    insert into admin_auth_role (id, name, pid, 
+      status, remark, create_time, 
+      update_time, listorder)
+    values (#{id,jdbcType=TINYINT}, #{name,jdbcType=VARCHAR}, #{pid,jdbcType=TINYINT}, 
+      #{status,jdbcType=BIT}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=CHAR}, 
+      #{updateTime,jdbcType=CHAR}, #{listorder,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.AdminAuthRole">
+    insert into admin_auth_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="listorder != null">
+        listorder,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=TINYINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=TINYINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=CHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=CHAR},
+      </if>
+      <if test="listorder != null">
+        #{listorder,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.AdminAuthRole">
+    update admin_auth_role
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=TINYINT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=CHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=CHAR},
+      </if>
+      <if test="listorder != null">
+        listorder = #{listorder,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=TINYINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.AdminAuthRole">
+    update admin_auth_role
+    set name = #{name,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=TINYINT},
+      status = #{status,jdbcType=BIT},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=CHAR},
+      update_time = #{updateTime,jdbcType=CHAR},
+      listorder = #{listorder,jdbcType=TINYINT}
+    where id = #{id,jdbcType=TINYINT}
+  </update>
+</mapper>

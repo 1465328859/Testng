@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.AreaMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.Area">
+    <id column="area_id" jdbcType="INTEGER" property="areaId" />
+    <result column="area_name" jdbcType="VARCHAR" property="areaName" />
+    <result column="level" jdbcType="TINYINT" property="level" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="area_type" jdbcType="TINYINT" property="areaType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    area_id, area_name, level, parent_id, area_type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from area
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from area
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.Area">
+    insert into area (area_id, area_name, level, 
+      parent_id, area_type)
+    values (#{areaId,jdbcType=INTEGER}, #{areaName,jdbcType=VARCHAR}, #{level,jdbcType=TINYINT}, 
+      #{parentId,jdbcType=INTEGER}, #{areaType,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.Area">
+    insert into area
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="areaId != null">
+        area_id,
+      </if>
+      <if test="areaName != null">
+        area_name,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="areaType != null">
+        area_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="areaId != null">
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="areaName != null">
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=TINYINT},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="areaType != null">
+        #{areaType,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.Area">
+    update area
+    <set>
+      <if test="areaName != null">
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=TINYINT},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="areaType != null">
+        area_type = #{areaType,jdbcType=TINYINT},
+      </if>
+    </set>
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.Area">
+    update area
+    set area_name = #{areaName,jdbcType=VARCHAR},
+      level = #{level,jdbcType=TINYINT},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      area_type = #{areaType,jdbcType=TINYINT}
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </update>
+</mapper>

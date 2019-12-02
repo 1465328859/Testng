@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.ExternalEgameOrderMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.ExternalEgameOrder">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="billno" jdbcType="VARCHAR" property="billno" />
+    <result column="game_name" jdbcType="VARCHAR" property="gameName" />
+    <result column="productid" jdbcType="VARCHAR" property="productid" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="billtime" jdbcType="TIMESTAMP" property="billtime" />
+    <result column="reckontime" jdbcType="TIMESTAMP" property="reckontime" />
+    <result column="slottype" jdbcType="REAL" property="slottype" />
+    <result column="currency" jdbcType="VARCHAR" property="currency" />
+    <result column="game_type" jdbcType="VARCHAR" property="gameType" />
+    <result column="account" jdbcType="REAL" property="account" />
+    <result column="cus_account" jdbcType="REAL" property="cusAccount" />
+    <result column="valid_account" jdbcType="INTEGER" property="validAccount" />
+    <result column="account_base" jdbcType="REAL" property="accountBase" />
+    <result column="account_bonus" jdbcType="REAL" property="accountBonus" />
+    <result column="cus_account_base" jdbcType="REAL" property="cusAccountBase" />
+    <result column="cus_account_bonus" jdbcType="REAL" property="cusAccountBonus" />
+    <result column="bet_ip" jdbcType="VARCHAR" property="betIp" />
+    <result column="src_amount" jdbcType="VARCHAR" property="srcAmount" />
+    <result column="dst_amount" jdbcType="VARCHAR" property="dstAmount" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="platform_type" jdbcType="VARCHAR" property="platformType" />
+    <result column="devicetype" jdbcType="INTEGER" property="devicetype" />
+    <result column="exttxid" jdbcType="VARCHAR" property="exttxid" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, type, billno, game_name, productid, username, billtime, reckontime, slottype, 
+    currency, game_type, account, cus_account, valid_account, account_base, account_bonus, 
+    cus_account_base, cus_account_bonus, bet_ip, src_amount, dst_amount, flag, platform_type, 
+    devicetype, exttxid, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from external_egame_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from external_egame_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.ExternalEgameOrder">
+    insert into external_egame_order (id, type, billno, 
+      game_name, productid, username, 
+      billtime, reckontime, slottype, 
+      currency, game_type, account, 
+      cus_account, valid_account, account_base, 
+      account_bonus, cus_account_base, cus_account_bonus, 
+      bet_ip, src_amount, dst_amount, 
+      flag, platform_type, devicetype, 
+      exttxid, create_time)
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{billno,jdbcType=VARCHAR}, 
+      #{gameName,jdbcType=VARCHAR}, #{productid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{billtime,jdbcType=TIMESTAMP}, #{reckontime,jdbcType=TIMESTAMP}, #{slottype,jdbcType=REAL}, 
+      #{currency,jdbcType=VARCHAR}, #{gameType,jdbcType=VARCHAR}, #{account,jdbcType=REAL}, 
+      #{cusAccount,jdbcType=REAL}, #{validAccount,jdbcType=INTEGER}, #{accountBase,jdbcType=REAL}, 
+      #{accountBonus,jdbcType=REAL}, #{cusAccountBase,jdbcType=REAL}, #{cusAccountBonus,jdbcType=REAL}, 
+      #{betIp,jdbcType=VARCHAR}, #{srcAmount,jdbcType=VARCHAR}, #{dstAmount,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=INTEGER}, #{platformType,jdbcType=VARCHAR}, #{devicetype,jdbcType=INTEGER}, 
+      #{exttxid,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.ExternalEgameOrder">
+    insert into external_egame_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="billno != null">
+        billno,
+      </if>
+      <if test="gameName != null">
+        game_name,
+      </if>
+      <if test="productid != null">
+        productid,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="billtime != null">
+        billtime,
+      </if>
+      <if test="reckontime != null">
+        reckontime,
+      </if>
+      <if test="slottype != null">
+        slottype,
+      </if>
+      <if test="currency != null">
+        currency,
+      </if>
+      <if test="gameType != null">
+        game_type,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="cusAccount != null">
+        cus_account,
+      </if>
+      <if test="validAccount != null">
+        valid_account,
+      </if>
+      <if test="accountBase != null">
+        account_base,
+      </if>
+      <if test="accountBonus != null">
+        account_bonus,
+      </if>
+      <if test="cusAccountBase != null">
+        cus_account_base,
+      </if>
+      <if test="cusAccountBonus != null">
+        cus_account_bonus,
+      </if>
+      <if test="betIp != null">
+        bet_ip,
+      </if>
+      <if test="srcAmount != null">
+        src_amount,
+      </if>
+      <if test="dstAmount != null">
+        dst_amount,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="platformType != null">
+        platform_type,
+      </if>
+      <if test="devicetype != null">
+        devicetype,
+      </if>
+      <if test="exttxid != null">
+        exttxid,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="billno != null">
+        #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="gameName != null">
+        #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="productid != null">
+        #{productid,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="billtime != null">
+        #{billtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reckontime != null">
+        #{reckontime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="slottype != null">
+        #{slottype,jdbcType=REAL},
+      </if>
+      <if test="currency != null">
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="gameType != null">
+        #{gameType,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=REAL},
+      </if>
+      <if test="cusAccount != null">
+        #{cusAccount,jdbcType=REAL},
+      </if>
+      <if test="validAccount != null">
+        #{validAccount,jdbcType=INTEGER},
+      </if>
+      <if test="accountBase != null">
+        #{accountBase,jdbcType=REAL},
+      </if>
+      <if test="accountBonus != null">
+        #{accountBonus,jdbcType=REAL},
+      </if>
+      <if test="cusAccountBase != null">
+        #{cusAccountBase,jdbcType=REAL},
+      </if>
+      <if test="cusAccountBonus != null">
+        #{cusAccountBonus,jdbcType=REAL},
+      </if>
+      <if test="betIp != null">
+        #{betIp,jdbcType=VARCHAR},
+      </if>
+      <if test="srcAmount != null">
+        #{srcAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="dstAmount != null">
+        #{dstAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="platformType != null">
+        #{platformType,jdbcType=VARCHAR},
+      </if>
+      <if test="devicetype != null">
+        #{devicetype,jdbcType=INTEGER},
+      </if>
+      <if test="exttxid != null">
+        #{exttxid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.ExternalEgameOrder">
+    update external_egame_order
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="billno != null">
+        billno = #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="gameName != null">
+        game_name = #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="productid != null">
+        productid = #{productid,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="billtime != null">
+        billtime = #{billtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reckontime != null">
+        reckontime = #{reckontime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="slottype != null">
+        slottype = #{slottype,jdbcType=REAL},
+      </if>
+      <if test="currency != null">
+        currency = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="gameType != null">
+        game_type = #{gameType,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        account = #{account,jdbcType=REAL},
+      </if>
+      <if test="cusAccount != null">
+        cus_account = #{cusAccount,jdbcType=REAL},
+      </if>
+      <if test="validAccount != null">
+        valid_account = #{validAccount,jdbcType=INTEGER},
+      </if>
+      <if test="accountBase != null">
+        account_base = #{accountBase,jdbcType=REAL},
+      </if>
+      <if test="accountBonus != null">
+        account_bonus = #{accountBonus,jdbcType=REAL},
+      </if>
+      <if test="cusAccountBase != null">
+        cus_account_base = #{cusAccountBase,jdbcType=REAL},
+      </if>
+      <if test="cusAccountBonus != null">
+        cus_account_bonus = #{cusAccountBonus,jdbcType=REAL},
+      </if>
+      <if test="betIp != null">
+        bet_ip = #{betIp,jdbcType=VARCHAR},
+      </if>
+      <if test="srcAmount != null">
+        src_amount = #{srcAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="dstAmount != null">
+        dst_amount = #{dstAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="platformType != null">
+        platform_type = #{platformType,jdbcType=VARCHAR},
+      </if>
+      <if test="devicetype != null">
+        devicetype = #{devicetype,jdbcType=INTEGER},
+      </if>
+      <if test="exttxid != null">
+        exttxid = #{exttxid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.ExternalEgameOrder">
+    update external_egame_order
+    set type = #{type,jdbcType=INTEGER},
+      billno = #{billno,jdbcType=VARCHAR},
+      game_name = #{gameName,jdbcType=VARCHAR},
+      productid = #{productid,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      billtime = #{billtime,jdbcType=TIMESTAMP},
+      reckontime = #{reckontime,jdbcType=TIMESTAMP},
+      slottype = #{slottype,jdbcType=REAL},
+      currency = #{currency,jdbcType=VARCHAR},
+      game_type = #{gameType,jdbcType=VARCHAR},
+      account = #{account,jdbcType=REAL},
+      cus_account = #{cusAccount,jdbcType=REAL},
+      valid_account = #{validAccount,jdbcType=INTEGER},
+      account_base = #{accountBase,jdbcType=REAL},
+      account_bonus = #{accountBonus,jdbcType=REAL},
+      cus_account_base = #{cusAccountBase,jdbcType=REAL},
+      cus_account_bonus = #{cusAccountBonus,jdbcType=REAL},
+      bet_ip = #{betIp,jdbcType=VARCHAR},
+      src_amount = #{srcAmount,jdbcType=VARCHAR},
+      dst_amount = #{dstAmount,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=INTEGER},
+      platform_type = #{platformType,jdbcType=VARCHAR},
+      devicetype = #{devicetype,jdbcType=INTEGER},
+      exttxid = #{exttxid,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

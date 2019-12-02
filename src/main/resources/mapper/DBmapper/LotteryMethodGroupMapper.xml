@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.LotteryMethodGroupMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.LotteryMethodGroup">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="lottery_classify_id" jdbcType="INTEGER" property="lotteryClassifyId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="class_type" jdbcType="BIT" property="classType" />
+    <result column="dft_classid" jdbcType="INTEGER" property="dftClassid" />
+    <result column="source" jdbcType="BIT" property="source" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, lottery_classify_id, name, class_type, dft_classid, source, sort
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from lottery_method_group
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from lottery_method_group
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.LotteryMethodGroup">
+    insert into lottery_method_group (id, lottery_classify_id, name, 
+      class_type, dft_classid, source, 
+      sort)
+    values (#{id,jdbcType=INTEGER}, #{lotteryClassifyId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{classType,jdbcType=BIT}, #{dftClassid,jdbcType=INTEGER}, #{source,jdbcType=BIT}, 
+      #{sort,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.LotteryMethodGroup">
+    insert into lottery_method_group
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="lotteryClassifyId != null">
+        lottery_classify_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="classType != null">
+        class_type,
+      </if>
+      <if test="dftClassid != null">
+        dft_classid,
+      </if>
+      <if test="source != null">
+        source,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="lotteryClassifyId != null">
+        #{lotteryClassifyId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="classType != null">
+        #{classType,jdbcType=BIT},
+      </if>
+      <if test="dftClassid != null">
+        #{dftClassid,jdbcType=INTEGER},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=BIT},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.LotteryMethodGroup">
+    update lottery_method_group
+    <set>
+      <if test="lotteryClassifyId != null">
+        lottery_classify_id = #{lotteryClassifyId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="classType != null">
+        class_type = #{classType,jdbcType=BIT},
+      </if>
+      <if test="dftClassid != null">
+        dft_classid = #{dftClassid,jdbcType=INTEGER},
+      </if>
+      <if test="source != null">
+        source = #{source,jdbcType=BIT},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.LotteryMethodGroup">
+    update lottery_method_group
+    set lottery_classify_id = #{lotteryClassifyId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      class_type = #{classType,jdbcType=BIT},
+      dft_classid = #{dftClassid,jdbcType=INTEGER},
+      source = #{source,jdbcType=BIT},
+      sort = #{sort,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

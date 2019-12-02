@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.OrdersTracesMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.OrdersTraces">
+    <id column="trace_id" jdbcType="INTEGER" property="traceId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="top_id" jdbcType="INTEGER" property="topId" />
+    <result column="lottery_id" jdbcType="TINYINT" property="lotteryId" />
+    <result column="start_issue" jdbcType="VARCHAR" property="startIssue" />
+    <result column="single_num" jdbcType="INTEGER" property="singleNum" />
+    <result column="total_amount" jdbcType="DECIMAL" property="totalAmount" />
+    <result column="draw_money" jdbcType="DECIMAL" property="drawMoney" />
+    <result column="draw_num" jdbcType="INTEGER" property="drawNum" />
+    <result column="is_locked" jdbcType="TINYINT" property="isLocked" />
+    <result column="trace_times" jdbcType="SMALLINT" property="traceTimes" />
+    <result column="prize" jdbcType="DECIMAL" property="prize" />
+    <result column="win_times" jdbcType="SMALLINT" property="winTimes" />
+    <result column="finish_times" jdbcType="SMALLINT" property="finishTimes" />
+    <result column="cancel_times" jdbcType="SMALLINT" property="cancelTimes" />
+    <result column="stop_on_win" jdbcType="BIT" property="stopOnWin" />
+    <result column="create_time" jdbcType="INTEGER" property="createTime" />
+    <result column="is_rejudge" jdbcType="BIT" property="isRejudge" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="client_ip" jdbcType="CHAR" property="clientIp" />
+    <result column="server_ip" jdbcType="CHAR" property="serverIp" />
+    <result column="from" jdbcType="TINYINT" property="from" />
+    <result column="ts" jdbcType="TIMESTAMP" property="ts" />
+    <result column="username" jdbcType="CHAR" property="username" />
+    <result column="up_three_grade" jdbcType="VARCHAR" property="upThreeGrade" />
+    <result column="grade" jdbcType="TINYINT" property="grade" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    trace_id, user_id, top_id, lottery_id, start_issue, single_num, total_amount, draw_money, 
+    draw_num, is_locked, trace_times, prize, win_times, finish_times, cancel_times, stop_on_win, 
+    create_time, is_rejudge, status, client_ip, server_ip, from, ts, username, up_three_grade, 
+    grade
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from orders_traces
+    where trace_id = #{traceId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from orders_traces
+    where trace_id = #{traceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.OrdersTraces">
+    insert into orders_traces (trace_id, user_id, top_id, 
+      lottery_id, start_issue, single_num, 
+      total_amount, draw_money, draw_num, 
+      is_locked, trace_times, prize, 
+      win_times, finish_times, cancel_times, 
+      stop_on_win, create_time, is_rejudge, 
+      status, client_ip, server_ip, from, 
+      ts, username, up_three_grade, 
+      grade)
+    values (#{traceId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{topId,jdbcType=INTEGER}, 
+      #{lotteryId,jdbcType=TINYINT}, #{startIssue,jdbcType=VARCHAR}, #{singleNum,jdbcType=INTEGER}, 
+      #{totalAmount,jdbcType=DECIMAL}, #{drawMoney,jdbcType=DECIMAL}, #{drawNum,jdbcType=INTEGER}, 
+      #{isLocked,jdbcType=TINYINT}, #{traceTimes,jdbcType=SMALLINT}, #{prize,jdbcType=DECIMAL}, 
+      #{winTimes,jdbcType=SMALLINT}, #{finishTimes,jdbcType=SMALLINT}, #{cancelTimes,jdbcType=SMALLINT}, 
+      #{stopOnWin,jdbcType=BIT}, #{createTime,jdbcType=INTEGER}, #{isRejudge,jdbcType=BIT}, 
+      #{status,jdbcType=BIT}, #{clientIp,jdbcType=CHAR}, #{serverIp,jdbcType=CHAR}, #{from,jdbcType=TINYINT}, 
+      #{ts,jdbcType=TIMESTAMP}, #{username,jdbcType=CHAR}, #{upThreeGrade,jdbcType=VARCHAR}, 
+      #{grade,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.OrdersTraces">
+    insert into orders_traces
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="traceId != null">
+        trace_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="topId != null">
+        top_id,
+      </if>
+      <if test="lotteryId != null">
+        lottery_id,
+      </if>
+      <if test="startIssue != null">
+        start_issue,
+      </if>
+      <if test="singleNum != null">
+        single_num,
+      </if>
+      <if test="totalAmount != null">
+        total_amount,
+      </if>
+      <if test="drawMoney != null">
+        draw_money,
+      </if>
+      <if test="drawNum != null">
+        draw_num,
+      </if>
+      <if test="isLocked != null">
+        is_locked,
+      </if>
+      <if test="traceTimes != null">
+        trace_times,
+      </if>
+      <if test="prize != null">
+        prize,
+      </if>
+      <if test="winTimes != null">
+        win_times,
+      </if>
+      <if test="finishTimes != null">
+        finish_times,
+      </if>
+      <if test="cancelTimes != null">
+        cancel_times,
+      </if>
+      <if test="stopOnWin != null">
+        stop_on_win,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="isRejudge != null">
+        is_rejudge,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="clientIp != null">
+        client_ip,
+      </if>
+      <if test="serverIp != null">
+        server_ip,
+      </if>
+      <if test="from != null">
+        from,
+      </if>
+      <if test="ts != null">
+        ts,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="upThreeGrade != null">
+        up_three_grade,
+      </if>
+      <if test="grade != null">
+        grade,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="traceId != null">
+        #{traceId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="topId != null">
+        #{topId,jdbcType=INTEGER},
+      </if>
+      <if test="lotteryId != null">
+        #{lotteryId,jdbcType=TINYINT},
+      </if>
+      <if test="startIssue != null">
+        #{startIssue,jdbcType=VARCHAR},
+      </if>
+      <if test="singleNum != null">
+        #{singleNum,jdbcType=INTEGER},
+      </if>
+      <if test="totalAmount != null">
+        #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="drawMoney != null">
+        #{drawMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="drawNum != null">
+        #{drawNum,jdbcType=INTEGER},
+      </if>
+      <if test="isLocked != null">
+        #{isLocked,jdbcType=TINYINT},
+      </if>
+      <if test="traceTimes != null">
+        #{traceTimes,jdbcType=SMALLINT},
+      </if>
+      <if test="prize != null">
+        #{prize,jdbcType=DECIMAL},
+      </if>
+      <if test="winTimes != null">
+        #{winTimes,jdbcType=SMALLINT},
+      </if>
+      <if test="finishTimes != null">
+        #{finishTimes,jdbcType=SMALLINT},
+      </if>
+      <if test="cancelTimes != null">
+        #{cancelTimes,jdbcType=SMALLINT},
+      </if>
+      <if test="stopOnWin != null">
+        #{stopOnWin,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="isRejudge != null">
+        #{isRejudge,jdbcType=BIT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="clientIp != null">
+        #{clientIp,jdbcType=CHAR},
+      </if>
+      <if test="serverIp != null">
+        #{serverIp,jdbcType=CHAR},
+      </if>
+      <if test="from != null">
+        #{from,jdbcType=TINYINT},
+      </if>
+      <if test="ts != null">
+        #{ts,jdbcType=TIMESTAMP},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=CHAR},
+      </if>
+      <if test="upThreeGrade != null">
+        #{upThreeGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.OrdersTraces">
+    update orders_traces
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="topId != null">
+        top_id = #{topId,jdbcType=INTEGER},
+      </if>
+      <if test="lotteryId != null">
+        lottery_id = #{lotteryId,jdbcType=TINYINT},
+      </if>
+      <if test="startIssue != null">
+        start_issue = #{startIssue,jdbcType=VARCHAR},
+      </if>
+      <if test="singleNum != null">
+        single_num = #{singleNum,jdbcType=INTEGER},
+      </if>
+      <if test="totalAmount != null">
+        total_amount = #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="drawMoney != null">
+        draw_money = #{drawMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="drawNum != null">
+        draw_num = #{drawNum,jdbcType=INTEGER},
+      </if>
+      <if test="isLocked != null">
+        is_locked = #{isLocked,jdbcType=TINYINT},
+      </if>
+      <if test="traceTimes != null">
+        trace_times = #{traceTimes,jdbcType=SMALLINT},
+      </if>
+      <if test="prize != null">
+        prize = #{prize,jdbcType=DECIMAL},
+      </if>
+      <if test="winTimes != null">
+        win_times = #{winTimes,jdbcType=SMALLINT},
+      </if>
+      <if test="finishTimes != null">
+        finish_times = #{finishTimes,jdbcType=SMALLINT},
+      </if>
+      <if test="cancelTimes != null">
+        cancel_times = #{cancelTimes,jdbcType=SMALLINT},
+      </if>
+      <if test="stopOnWin != null">
+        stop_on_win = #{stopOnWin,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="isRejudge != null">
+        is_rejudge = #{isRejudge,jdbcType=BIT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="clientIp != null">
+        client_ip = #{clientIp,jdbcType=CHAR},
+      </if>
+      <if test="serverIp != null">
+        server_ip = #{serverIp,jdbcType=CHAR},
+      </if>
+      <if test="from != null">
+        from = #{from,jdbcType=TINYINT},
+      </if>
+      <if test="ts != null">
+        ts = #{ts,jdbcType=TIMESTAMP},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=CHAR},
+      </if>
+      <if test="upThreeGrade != null">
+        up_three_grade = #{upThreeGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        grade = #{grade,jdbcType=TINYINT},
+      </if>
+    </set>
+    where trace_id = #{traceId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.OrdersTraces">
+    update orders_traces
+    set user_id = #{userId,jdbcType=INTEGER},
+      top_id = #{topId,jdbcType=INTEGER},
+      lottery_id = #{lotteryId,jdbcType=TINYINT},
+      start_issue = #{startIssue,jdbcType=VARCHAR},
+      single_num = #{singleNum,jdbcType=INTEGER},
+      total_amount = #{totalAmount,jdbcType=DECIMAL},
+      draw_money = #{drawMoney,jdbcType=DECIMAL},
+      draw_num = #{drawNum,jdbcType=INTEGER},
+      is_locked = #{isLocked,jdbcType=TINYINT},
+      trace_times = #{traceTimes,jdbcType=SMALLINT},
+      prize = #{prize,jdbcType=DECIMAL},
+      win_times = #{winTimes,jdbcType=SMALLINT},
+      finish_times = #{finishTimes,jdbcType=SMALLINT},
+      cancel_times = #{cancelTimes,jdbcType=SMALLINT},
+      stop_on_win = #{stopOnWin,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=INTEGER},
+      is_rejudge = #{isRejudge,jdbcType=BIT},
+      status = #{status,jdbcType=BIT},
+      client_ip = #{clientIp,jdbcType=CHAR},
+      server_ip = #{serverIp,jdbcType=CHAR},
+      from = #{from,jdbcType=TINYINT},
+      ts = #{ts,jdbcType=TIMESTAMP},
+      username = #{username,jdbcType=CHAR},
+      up_three_grade = #{upThreeGrade,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=TINYINT}
+    where trace_id = #{traceId,jdbcType=INTEGER}
+  </update>
+</mapper>
