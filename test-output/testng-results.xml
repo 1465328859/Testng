@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="0" passed="0">
+  <reporter-output>
+  </reporter-output>
+  <suite name="用户管理系统测试套件" duration-ms="2" started-at="2019-12-02T10:00:48Z" finished-at="2019-12-02T10:00:48Z">
+    <groups>
+    </groups>
+    <test name="用户管理系统测试用例" duration-ms="2" started-at="2019-12-02T10:00:48Z" finished-at="2019-12-02T10:00:48Z">
+    </test> <!-- 用户管理系统测试用例 -->
+  </suite> <!-- 用户管理系统测试套件 -->
+</testng-results>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [用户管理系统测试套件]">
+  <listeners>
+    <listener class-name="com.Test.config.ExtentTestNGIReporterListener"/>
+  </listeners>
+  <test name="用户管理系统测试用例">
+    <classes>
+      <class name="com.Test.cases.LoginTest"/>
+      <class name="com.Test.cases.AddUserTest"/>
+      <class name="com.Test.cases.GetUserInfoTest"/>
+      <class name="com.Test.cases.GetUserListTest"/>
+      <class name="com.Test.cases.updateUserInfo"/>
+    </classes>
+  </test> <!-- 用户管理系统测试用例 -->
+</suite> <!-- Failed suite [用户管理系统测试套件] -->
