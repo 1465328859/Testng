@@ -3,11 +3,21 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default Suite]">
   <test name="Testng">
     <classes>
-      <class name="com.Test.utils.DatabaseUtil">
+      <class name="com.Test.cases.LoginTest">
         <methods>
-          <include name="getsqlSession"/>
+          <include name="LoginTrue"/>
         </methods>
-      </class> <!-- com.Test.utils.DatabaseUtil -->
+      </class> <!-- com.Test.cases.LoginTest -->
     </classes>
   </test> <!-- Testng -->
+  <test name="Testng(failed)">
+    <classes>
+      <class name="com.Test.cases.LoginTest">
+        <methods>
+          <include name="LoginTrue"/>
+          <include name="beforeTest"/>
+        </methods>
+      </class> <!-- com.Test.cases.LoginTest -->
+    </classes>
+  </test> <!-- Testng(failed) -->
 </suite> <!-- Failed suite [Default Suite] -->
