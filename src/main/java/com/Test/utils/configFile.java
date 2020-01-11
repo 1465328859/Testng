@@ -21,11 +21,11 @@ public class configFile {
         if(name == InterfaceName.LOGIN){
             uri = resourceBundle.getString("login.uri");
         }
-        if(name == InterfaceName.UPDATEUSERINFO){
-            uri = resourceBundle.getString("updateUserInfo.uri");
+        if(name == InterfaceName.Betting){
+            uri = resourceBundle.getString("Betting.uri");
         }
-        if(name == InterfaceName.GETUSERLIST){
-            uri = resourceBundle.getString("getUserList.uri");
+        if(name == InterfaceName.HistoryRecording){
+            uri = resourceBundle.getString("HistoryRecording.uri");
         }
         if (name == InterfaceName.GETUSERINFO){
             uri = resourceBundle.getString("getUserInfo.uri");

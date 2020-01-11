@@ -8,8 +8,8 @@
     <classes>
       <class name="com.Test.cases.LoginTest"/>
       <class name="com.Test.cases.AddUserTest"/>
-      <class name="com.Test.cases.GetUserInfoTest"/>
-      <class name="com.Test.cases.GetUserListTest"/>
+      <class name="com.Test.cases.Betting"/>
+      <class name="com.Test.cases.HistoryRecording"/>
       <class name="com.Test.cases.updateUserInfo"/>
     </classes>
   </test> <!-- 用户管理系统测试用例 -->
@@ -26,6 +26,16 @@
           <include name="beforeTest"/>
         </methods>
       </class> <!-- com.Test.cases.LoginTest -->
+      <class name="com.Test.cases.HistoryRecording">
+        <methods>
+          <include name="beforeTest"/>
+        </methods>
+      </class> <!-- com.Test.cases.HistoryRecording -->
+      <class name="com.Test.cases.Betting">
+        <methods>
+          <include name="beforeTest"/>
+        </methods>
+      </class> <!-- com.Test.cases.Betting -->
     </classes>
   </test> <!-- 用户管理系统测试用例(failed) -->
 </suite> <!-- Failed suite [用户管理系统测试套件] -->

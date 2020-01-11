@@ -49,7 +49,7 @@
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<li>
                 <a href='#!'>
-                    <span class='label suite-start-time blue darken-3'>Jan 11, 2020 03:09:34 PM</span>
+                    <span class='label suite-start-time blue darken-3'>Jan 11, 2020 04:46:43 PM</span>
 				</a>
 			</li>
 			<li>
@@ -90,6 +90,8 @@
 				<ul id='category-toggle' class='dropdown-content'>
 					<li><a href='#'>AddUser</a></li>
 					<li><a href='#'>LoginTrue</a></li>
+					<li><a href='#'>Betting</a></li>
+					<li><a href='#'>HistoryRecording</a></li>
 					<li class='divider'></li>
 					<li class='clear'><a href='#!' clear='true'>Clear Filters</a></li>
 				</ul>
@@ -137,10 +139,10 @@
 					<canvas id='parent-analysis' width='100' height='80'></canvas>
 				</div>
 				<div class='block text-small'>
-					<span class='tooltipped' data-position='top' data-tooltip='50%'><span class='strong'>1</span> test(s) passed</span>
+					<span class='tooltipped' data-position='top' data-tooltip='75%'><span class='strong'>3</span> test(s) passed</span>
 				</div>
 				<div class='block text-small'>
-					<span class='strong tooltipped' data-position='top' data-tooltip='50%'>1</span> test(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
+					<span class='strong tooltipped' data-position='top' data-tooltip='25%'>1</span> test(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
 				</div>
 			</div>
 		</div>
@@ -152,10 +154,10 @@
 					<canvas id='child-analysis' width='100' height='80'></canvas>
 				</div>
 				<div class='block text-small'>
-					<span class='tooltipped' data-position='top' data-tooltip='50%'><span class='strong'>1</span> step(s) passed</span>
+					<span class='tooltipped' data-position='top' data-tooltip='75%'><span class='strong'>3</span> step(s) passed</span>
 				</div>
 				<div class='block text-small'>
-					<span class='strong tooltipped' data-position='top' data-tooltip='50%'>1</span> step(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
+					<span class='strong tooltipped' data-position='top' data-tooltip='25%'>1</span> step(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
 				</div>
 			</div>
 		</div>
@@ -173,14 +175,14 @@
 				<li class='test displayed active  fail' status='fail' bdd='false' test-id='1'>
 					<div class='test-heading'>
 						<span class='test-name'>AddUser</span>
-						<span class='test-time'>Jan 11, 2020 03:09:35 PM</span>
+						<span class='test-time'>Jan 11, 2020 04:46:44 PM</span>
 						<span class='test-status right fail'>fail</span>
 					</div>
 					<div class='test-content hide'>
 <div class='test-time-info'>
-	<span class='label start-time'>Jan 11, 2020 03:09:35 PM</span>
-	<span class='label end-time'>Jan 11, 2020 03:09:35 PM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+26ms</span>
+	<span class='label start-time'>Jan 11, 2020 04:46:44 PM</span>
+	<span class='label end-time'>Jan 11, 2020 04:46:44 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+27ms</span>
 </div>
 	<div class='test-attributes'>
 			<div class='category-list'>
@@ -199,9 +201,9 @@
 			<tbody>
 				<tr class='log' status='fail'>
 					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
-					<td class='timestamp'>3:09:35 PM</td>
-					<td class='step-details'><pre>java.lang.RuntimeException: {"result":0,"data":{},"msg":"账号已经被注册","timestamp":1578726574}
-	at com.Test.cases.AddUserTest.AddUser(AddUserTest.java:44)
+					<td class='timestamp'>4:46:44 PM</td>
+					<td class='step-details'><pre>java.lang.RuntimeException: {"result":0,"data":{},"msg":"账号已经被注册","timestamp":1578732403}
+	at com.Test.cases.AddUserTest.AddUser(AddUserTest.java:42)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -237,14 +239,14 @@
 				<li class='test displayed active  pass' status='pass' bdd='false' test-id='2'>
 					<div class='test-heading'>
 						<span class='test-name'>LoginTrue</span>
-						<span class='test-time'>Jan 11, 2020 03:09:34 PM</span>
+						<span class='test-time'>Jan 11, 2020 04:46:43 PM</span>
 						<span class='test-status right pass'>pass</span>
 					</div>
 					<div class='test-content hide'>
 <div class='test-time-info'>
-	<span class='label start-time'>Jan 11, 2020 03:09:34 PM</span>
-	<span class='label end-time'>Jan 11, 2020 03:09:35 PM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 0m 1s+181ms</span>
+	<span class='label start-time'>Jan 11, 2020 04:46:43 PM</span>
+	<span class='label end-time'>Jan 11, 2020 04:46:44 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 1s+164ms</span>
 </div>
 	<div class='test-attributes'>
 			<div class='category-list'>
@@ -263,7 +265,85 @@
 			<tbody>
 				<tr class='log' status='pass'>
 					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-					<td class='timestamp'>3:09:35 PM</td>
+					<td class='timestamp'>4:46:44 PM</td>
+					<td class='step-details'>Test passed</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='3'>
+					<div class='test-heading'>
+						<span class='test-name'>Betting</span>
+						<span class='test-time'>Jan 11, 2020 04:46:44 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Jan 11, 2020 04:46:44 PM</span>
+	<span class='label end-time'>Jan 11, 2020 04:46:44 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+55ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>Betting</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>4:46:44 PM</td>
+					<td class='step-details'>Test passed</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='4'>
+					<div class='test-heading'>
+						<span class='test-name'>HistoryRecording</span>
+						<span class='test-time'>Jan 11, 2020 04:46:44 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Jan 11, 2020 04:46:44 PM</span>
+	<span class='label end-time'>Jan 11, 2020 04:46:44 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+41ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>HistoryRecording</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>4:46:44 PM</td>
 					<td class='step-details'>Test passed</td>
 				</tr>
 			</tbody>
@@ -346,7 +426,7 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Jan 11, 2020 03:09:35 PM</td>
+										<td>Jan 11, 2020 04:46:44 PM</td>
 										<td class='linked' test-id='1'>AddUser</td>
 										<td><span class='test-status fail'>fail</span></td>
 									</tr>
@@ -380,8 +460,76 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Jan 11, 2020 03:09:34 PM</td>
+										<td>Jan 11, 2020 04:46:43 PM</td>
 										<td class='linked' test-id='2'>LoginTrue</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>Betting</span>
+						<span class='category-status right'>
+							<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+					
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Jan 11, 2020 04:46:44 PM</td>
+										<td class='linked' test-id='3'>Betting</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>HistoryRecording</span>
+						<span class='category-status right'>
+							<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+					
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Jan 11, 2020 04:46:44 PM</td>
+										<td class='linked' test-id='4'>HistoryRecording</td>
 										<td><span class='test-status pass'>pass</span></td>
 									</tr>
 								</tbody>
@@ -443,10 +591,10 @@
                                         </thead>
                                         <tbody>
                                                     <tr>
-                                                        <td>Jan 11, 2020 03:09:35 PM</td>
+                                                        <td>Jan 11, 2020 04:46:44 PM</td>
                                                         <td class='linked' test-id='1'>AddUser</td>
-                                                        <td><pre><pre>java.lang.RuntimeException: {"result":0,"data":{},"msg":"账号已经被注册","timestamp":1578726574}
-	at com.Test.cases.AddUserTest.AddUser(AddUserTest.java:44)
+                                                        <td><pre><pre>java.lang.RuntimeException: {"result":0,"data":{},"msg":"账号已经被注册","timestamp":1578732403}
+	at com.Test.cases.AddUserTest.AddUser(AddUserTest.java:42)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -496,31 +644,31 @@
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Tests
-					<div class='panel-lead'>2</div>
+					<div class='panel-lead'>4</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Steps
-					<div class='panel-lead'>2</div>
+					<div class='panel-lead'>4</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>Jan 11, 2020 03:09:34 PM</div>
+					<div class='panel-lead'>Jan 11, 2020 04:46:43 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>Jan 11, 2020 03:09:35 PM</div>
+			 		<div class='panel-lead'>Jan 11, 2020 04:46:44 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Time Taken
-					<div class='panel-lead'>1,181ms</div>
+					<div class='panel-lead'>1,164ms</div>
 				</div>
 			</div>
 			<div class='col s4'>
@@ -546,6 +694,18 @@
 							<td>0</td>
 							<td>0</td>
 						</tr>
+						<tr>
+							<td>Betting</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+						</tr>
+						<tr>
+							<td>HistoryRecording</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+						</tr>
 					</table>
 				</div>
 			</div>
@@ -559,7 +719,7 @@
 
 		<script>
 			var statusGroup = {
-				passParent: 1,
+				passParent: 3,
 				failParent: 1,
 				fatalParent: 0,
 				errorParent: 0,
@@ -567,7 +727,7 @@
 				skipParent: 0,
 				exceptionsParent: 1,
 				
-				passChild: 1,
+				passChild: 3,
 				failChild: 1,
 				fatalChild: 0,
 				errorChild: 0,

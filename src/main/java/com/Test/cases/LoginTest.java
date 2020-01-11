@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 public class LoginTest {
-
+    static String token;
     //加@BeforeTest注解，在用例执行前先获取接口的url
     @BeforeTest(groups = "LoginTrue",description = "登录接口")
     public void beforeTest(){
@@ -34,13 +34,14 @@ public class LoginTest {
         //System.out.println(a);
         Map map =new HashMap();
         map.put("username","testjack01");
-        map.put("password","testjack02");
+        map.put("password","testjack01");
         map.put("version","1.2.2");
         map.put("platform","2");
         map.put("from","2");
         String responsejosn = new Request().post(TestConfig.loginuri,map);
         JSONObject jsonObject = JSONObject.fromObject(responsejosn);
         Integer resule = (Integer) jsonObject.get("timestamp");
+        token = (String) jsonObject.getJSONObject("data").get("token");
         //定义sqlsession对象，从DatabaseUtil类中调getsqlSession方法，直接获取到sqlsession对象，可以执行sql语句，不需要配置数据库信息
         SqlSession sqlSession = DatabaseUtil.getsqlSession();
         UsersMapper mapper = sqlSession.getMapper(UsersMapper.class);
@@ -52,5 +53,8 @@ public class LoginTest {
         }else {
             throw new RuntimeException(jsonObject.toString());
         }
+    }
+    public String GetToken(){
+        return token;
     }
 }

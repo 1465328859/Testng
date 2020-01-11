@@ -8,11 +8,11 @@
             <class name="com.Test.cases.AddUserTest">
                 <include name="AddUser" />
             </class>
-            <class name="com.Test.cases.GetUserInfoTest">
-                <include name="getUserInfo" />
+            <class name="com.Test.cases.Betting">
+                <include name="Betting" />
             </class>
-            <class name="com.Test.cases.GetUserListTest">
-                <include name="getUserList" />
+            <class name="com.Test.cases.HistoryRecording">
+                <include name="HistoryRecording" />
             </class>
             <class name="com.Test.cases.updateUserInfo">
                 <include name="updateUserInfo" />

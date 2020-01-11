@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" total="2" passed="1">
+<testng-results skipped="0" failed="1" total="4" passed="3">
   <reporter-output>
   </reporter-output>
-  <suite name="用户管理系统测试套件" duration-ms="1248" started-at="2020-01-11T07:09:34Z" finished-at="2020-01-11T07:09:35Z">
+  <suite name="用户管理系统测试套件" duration-ms="1328" started-at="2020-01-11T08:46:43Z" finished-at="2020-01-11T08:46:44Z">
     <groups>
+      <group name="Betting">
+        <method signature="Betting.Betting()[pri:0, instance:com.Test.cases.Betting@babb1]" name="Betting" class="com.Test.cases.Betting"/>
+      </group> <!-- Betting -->
+      <group name="HistoryRecording">
+        <method signature="HistoryRecording.HistoryRecording()[pri:0, instance:com.Test.cases.HistoryRecording@1ebcae2]" name="HistoryRecording" class="com.Test.cases.HistoryRecording"/>
+      </group> <!-- HistoryRecording -->
       <group name="AddUser">
         <method signature="AddUserTest.AddUser()[pri:0, instance:com.Test.cases.AddUserTest@f10a6f]" name="AddUser" class="com.Test.cases.AddUserTest"/>
       </group> <!-- AddUser -->
@@ -11,24 +17,38 @@
         <method signature="LoginTest.LoginTrue()[pri:0, instance:com.Test.cases.LoginTest@66d33a]" name="LoginTrue" class="com.Test.cases.LoginTest"/>
       </group> <!-- LoginTrue -->
     </groups>
-    <test name="用户管理系统测试用例" duration-ms="1248" started-at="2020-01-11T07:09:34Z" finished-at="2020-01-11T07:09:35Z">
+    <test name="用户管理系统测试用例" duration-ms="1328" started-at="2020-01-11T08:46:43Z" finished-at="2020-01-11T08:46:44Z">
+      <class name="com.Test.cases.Betting">
+        <test-method status="PASS" signature="Betting()[pri:0, instance:com.Test.cases.Betting@babb1]" name="Betting" duration-ms="55" started-at="2020-01-11T16:46:44Z" description="投注的接口" finished-at="2020-01-11T16:46:44Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Betting -->
+      </class> <!-- com.Test.cases.Betting -->
       <class name="com.Test.cases.AddUserTest">
-        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.Test.cases.AddUserTest@f10a6f]" name="beforeTest" is-config="true" duration-ms="31" started-at="2020-01-11T15:09:34Z" description="创建用户接口" finished-at="2020-01-11T15:09:34Z">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.Test.cases.AddUserTest@f10a6f]" name="beforeTest" is-config="true" duration-ms="31" started-at="2020-01-11T16:46:43Z" description="创建用户接口" finished-at="2020-01-11T16:46:43Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeTest -->
-        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.Test.cases.LoginTest@66d33a]" name="beforeTest" is-config="true" duration-ms="1" started-at="2020-01-11T15:09:34Z" description="登录接口" finished-at="2020-01-11T15:09:34Z">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.Test.cases.Betting@babb1]" name="beforeTest" is-config="true" duration-ms="1" started-at="2020-01-11T16:46:43Z" description="投注接口" finished-at="2020-01-11T16:46:43Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeTest -->
-        <test-method status="FAIL" signature="AddUser()[pri:0, instance:com.Test.cases.AddUserTest@f10a6f]" name="AddUser" duration-ms="26" started-at="2020-01-11T15:09:35Z" description="创建用户的接口" finished-at="2020-01-11T15:09:35Z">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.Test.cases.HistoryRecording@1ebcae2]" name="beforeTest" is-config="true" duration-ms="0" started-at="2020-01-11T16:46:43Z" description="历史开奖接口" finished-at="2020-01-11T16:46:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.Test.cases.LoginTest@66d33a]" name="beforeTest" is-config="true" duration-ms="0" started-at="2020-01-11T16:46:43Z" description="登录接口" finished-at="2020-01-11T16:46:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="FAIL" signature="AddUser()[pri:0, instance:com.Test.cases.AddUserTest@f10a6f]" name="AddUser" duration-ms="27" started-at="2020-01-11T16:46:44Z" description="创建用户的接口" finished-at="2020-01-11T16:46:44Z">
           <exception class="java.lang.RuntimeException">
             <message>
-              <![CDATA[{"result":0,"data":{},"msg":"账号已经被注册","timestamp":1578726574}]]>
+              <![CDATA[{"result":0,"data":{},"msg":"账号已经被注册","timestamp":1578732403}]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.RuntimeException: {"result":0,"data":{},"msg":"账号已经被注册","timestamp":1578726574}
-	at com.Test.cases.AddUserTest.AddUser(AddUserTest.java:44)
+              <![CDATA[java.lang.RuntimeException: {"result":0,"data":{},"msg":"账号已经被注册","timestamp":1578732403}
+	at com.Test.cases.AddUserTest.AddUser(AddUserTest.java:42)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -59,8 +79,14 @@
           </reporter-output>
         </test-method> <!-- AddUser -->
       </class> <!-- com.Test.cases.AddUserTest -->
+      <class name="com.Test.cases.HistoryRecording">
+        <test-method status="PASS" signature="HistoryRecording()[pri:0, instance:com.Test.cases.HistoryRecording@1ebcae2]" name="HistoryRecording" duration-ms="41" started-at="2020-01-11T16:46:44Z" description="历史开奖的接口" finished-at="2020-01-11T16:46:44Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- HistoryRecording -->
+      </class> <!-- com.Test.cases.HistoryRecording -->
       <class name="com.Test.cases.LoginTest">
-        <test-method status="PASS" signature="LoginTrue()[pri:0, instance:com.Test.cases.LoginTest@66d33a]" name="LoginTrue" duration-ms="1181" started-at="2020-01-11T15:09:34Z" description="登录成功的接口" finished-at="2020-01-11T15:09:35Z">
+        <test-method status="PASS" signature="LoginTrue()[pri:0, instance:com.Test.cases.LoginTest@66d33a]" name="LoginTrue" duration-ms="1164" started-at="2020-01-11T16:46:43Z" description="登录成功的接口" finished-at="2020-01-11T16:46:44Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- LoginTrue -->
