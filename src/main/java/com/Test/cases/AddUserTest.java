@@ -29,8 +29,6 @@ public class AddUserTest {
     }
     @Test(groups = "AddUser", description = "创建用户的接口")
     public void AddUser() throws IOException {
-        //String a = configFile.getResourceBundle().getString("paramslogin");
-        //System.out.println(a);
         Map map =new HashMap();
         map.put("username","testjack20004");
         map.put("password","testjack200");

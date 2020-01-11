@@ -34,7 +34,7 @@ public class LoginTest {
         //System.out.println(a);
         Map map =new HashMap();
         map.put("username","testjack01");
-        map.put("password","testjack01");
+        map.put("password","testjack02");
         map.put("version","1.2.2");
         map.put("platform","2");
         map.put("from","2");
