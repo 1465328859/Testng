@@ -30,7 +30,7 @@ public class AddUserTest {
     @Test(groups = "AddUser", description = "创建用户的接口")
     public void AddUser() throws IOException {
         Map map =new HashMap();
-        map.put("username","testjack20004");
+        map.put("username","testjack20003");
         map.put("password","testjack200");
         map.put("version","1.2.2");
         map.put("platform","2");
