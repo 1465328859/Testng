@@ -21,6 +21,64 @@
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.Test.model.DBmodel.OrdersReSettlement">
     <result column="mark" jdbcType="LONGVARCHAR" property="mark" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
   <sql id="Base_Column_List">
     id, username, lottery_id, lottery_name, issue, before_code, after_code, order_id, 
     user_before_balance, loss, user_after_balance, order_before_prize, order_after_prize, 
@@ -29,6 +87,36 @@
   <sql id="Blob_Column_List">
     mark
   </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.Test.model.DBmodel.OrdersReSettlementExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from orders_re_settlement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.Test.model.DBmodel.OrdersReSettlementExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from orders_re_settlement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
@@ -40,6 +128,12 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from orders_re_settlement
     where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.Test.model.DBmodel.OrdersReSettlementExample">
+    delete from orders_re_settlement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="com.Test.model.DBmodel.OrdersReSettlement">
     insert into orders_re_settlement (id, username, lottery_id, 
@@ -158,6 +252,111 @@
       </if>
     </trim>
   </insert>
+  <select id="countByExample" parameterType="com.Test.model.DBmodel.OrdersReSettlementExample" resultType="java.lang.Long">
+    select count(*) from orders_re_settlement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update orders_re_settlement
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lotteryId != null">
+        lottery_id = #{record.lotteryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.lotteryName != null">
+        lottery_name = #{record.lotteryName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.issue != null">
+        issue = #{record.issue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beforeCode != null">
+        before_code = #{record.beforeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.afterCode != null">
+        after_code = #{record.afterCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderId != null">
+        order_id = #{record.orderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userBeforeBalance != null">
+        user_before_balance = #{record.userBeforeBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.loss != null">
+        loss = #{record.loss,jdbcType=DECIMAL},
+      </if>
+      <if test="record.userAfterBalance != null">
+        user_after_balance = #{record.userAfterBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.orderBeforePrize != null">
+        order_before_prize = #{record.orderBeforePrize,jdbcType=DECIMAL},
+      </if>
+      <if test="record.orderAfterPrize != null">
+        order_after_prize = #{record.orderAfterPrize,jdbcType=DECIMAL},
+      </if>
+      <if test="record.money != null">
+        money = #{record.money,jdbcType=DECIMAL},
+      </if>
+      <if test="record.time != null">
+        time = #{record.time,jdbcType=INTEGER},
+      </if>
+      <if test="record.mark != null">
+        mark = #{record.mark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update orders_re_settlement
+    set id = #{record.id,jdbcType=INTEGER},
+      username = #{record.username,jdbcType=VARCHAR},
+      lottery_id = #{record.lotteryId,jdbcType=INTEGER},
+      lottery_name = #{record.lotteryName,jdbcType=VARCHAR},
+      issue = #{record.issue,jdbcType=VARCHAR},
+      before_code = #{record.beforeCode,jdbcType=VARCHAR},
+      after_code = #{record.afterCode,jdbcType=VARCHAR},
+      order_id = #{record.orderId,jdbcType=INTEGER},
+      user_before_balance = #{record.userBeforeBalance,jdbcType=DECIMAL},
+      loss = #{record.loss,jdbcType=DECIMAL},
+      user_after_balance = #{record.userAfterBalance,jdbcType=DECIMAL},
+      order_before_prize = #{record.orderBeforePrize,jdbcType=DECIMAL},
+      order_after_prize = #{record.orderAfterPrize,jdbcType=DECIMAL},
+      money = #{record.money,jdbcType=DECIMAL},
+      time = #{record.time,jdbcType=INTEGER},
+      mark = #{record.mark,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update orders_re_settlement
+    set id = #{record.id,jdbcType=INTEGER},
+      username = #{record.username,jdbcType=VARCHAR},
+      lottery_id = #{record.lotteryId,jdbcType=INTEGER},
+      lottery_name = #{record.lotteryName,jdbcType=VARCHAR},
+      issue = #{record.issue,jdbcType=VARCHAR},
+      before_code = #{record.beforeCode,jdbcType=VARCHAR},
+      after_code = #{record.afterCode,jdbcType=VARCHAR},
+      order_id = #{record.orderId,jdbcType=INTEGER},
+      user_before_balance = #{record.userBeforeBalance,jdbcType=DECIMAL},
+      loss = #{record.loss,jdbcType=DECIMAL},
+      user_after_balance = #{record.userAfterBalance,jdbcType=DECIMAL},
+      order_before_prize = #{record.orderBeforePrize,jdbcType=DECIMAL},
+      order_after_prize = #{record.orderAfterPrize,jdbcType=DECIMAL},
+      money = #{record.money,jdbcType=DECIMAL},
+      time = #{record.time,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.OrdersReSettlement">
     update orders_re_settlement
     <set>

@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default Suite]">
-  <test name="Testng">
+<suite name="Failed suite [用户管理系统测试套件]">
+  <listeners>
+    <listener class-name="com.Test.config.ExtentTestNGIReporterListener"/>
+  </listeners>
+  <test name="用户管理系统测试用例">
     <classes>
-      <class name="com.Test.cases.LoginTest">
-        <methods>
-          <include name="LoginTrue"/>
-        </methods>
-      </class> <!-- com.Test.cases.LoginTest -->
+      <class name="com.Test.cases.LoginTest"/>
+      <class name="com.Test.cases.AddUserTest"/>
+      <class name="com.Test.cases.GetUserInfoTest"/>
+      <class name="com.Test.cases.GetUserListTest"/>
+      <class name="com.Test.cases.updateUserInfo"/>
     </classes>
-  </test> <!-- Testng -->
-  <test name="Testng(failed)">
+  </test> <!-- 用户管理系统测试用例 -->
+  <test name="用户管理系统测试用例(failed)">
     <classes>
+      <class name="com.Test.cases.AddUserTest">
+        <methods>
+          <include name="beforeTest"/>
+          <include name="AddUser"/>
+        </methods>
+      </class> <!-- com.Test.cases.AddUserTest -->
       <class name="com.Test.cases.LoginTest">
         <methods>
-          <include name="LoginTrue"/>
           <include name="beforeTest"/>
         </methods>
       </class> <!-- com.Test.cases.LoginTest -->
     </classes>
-  </test> <!-- Testng(failed) -->
-</suite> <!-- Failed suite [Default Suite] -->
+  </test> <!-- 用户管理系统测试用例(failed) -->
+</suite> <!-- Failed suite [用户管理系统测试套件] -->

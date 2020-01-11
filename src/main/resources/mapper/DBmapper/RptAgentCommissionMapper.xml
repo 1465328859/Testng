@@ -14,10 +14,82 @@
     <result column="add_time" jdbcType="INTEGER" property="addTime" />
     <result column="belong_date" jdbcType="DATE" property="belongDate" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
   <sql id="Base_Column_List">
     id, up_three_grade, top_id, user_id, agent, balance, status, rebate_type, rebate_time, 
     add_time, belong_date
   </sql>
+  <select id="selectByExample" parameterType="com.Test.model.DBmodel.RptAgentCommissionExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rpt_agent_commission
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -27,6 +99,12 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from rpt_agent_commission
     where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.Test.model.DBmodel.RptAgentCommissionExample">
+    delete from rpt_agent_commission
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="com.Test.model.DBmodel.RptAgentCommission">
     insert into rpt_agent_commission (id, up_three_grade, top_id, 
@@ -111,6 +189,70 @@
       </if>
     </trim>
   </insert>
+  <select id="countByExample" parameterType="com.Test.model.DBmodel.RptAgentCommissionExample" resultType="java.lang.Long">
+    select count(*) from rpt_agent_commission
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update rpt_agent_commission
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.upThreeGrade != null">
+        up_three_grade = #{record.upThreeGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.topId != null">
+        top_id = #{record.topId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.agent != null">
+        agent = #{record.agent,jdbcType=CHAR},
+      </if>
+      <if test="record.balance != null">
+        balance = #{record.balance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=BIT},
+      </if>
+      <if test="record.rebateType != null">
+        rebate_type = #{record.rebateType,jdbcType=BIT},
+      </if>
+      <if test="record.rebateTime != null">
+        rebate_time = #{record.rebateTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.addTime != null">
+        add_time = #{record.addTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.belongDate != null">
+        belong_date = #{record.belongDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update rpt_agent_commission
+    set id = #{record.id,jdbcType=INTEGER},
+      up_three_grade = #{record.upThreeGrade,jdbcType=VARCHAR},
+      top_id = #{record.topId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      agent = #{record.agent,jdbcType=CHAR},
+      balance = #{record.balance,jdbcType=DECIMAL},
+      status = #{record.status,jdbcType=BIT},
+      rebate_type = #{record.rebateType,jdbcType=BIT},
+      rebate_time = #{record.rebateTime,jdbcType=INTEGER},
+      add_time = #{record.addTime,jdbcType=INTEGER},
+      belong_date = #{record.belongDate,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.RptAgentCommission">
     update rpt_agent_commission
     <set>

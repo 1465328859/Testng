@@ -21,11 +21,83 @@
     <result column="is_self_open" jdbcType="INTEGER" property="isSelfOpen" />
     <result column="kill_off" jdbcType="INTEGER" property="killOff" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
   <sql id="Base_Column_List">
     lottery_id, lottery_name, remark, desc, num_day, close_time, judge_expired_time, 
     sort, hall_recommend, is_enabled, lottery_type, initial_class_id, logo, kill, across_day_time, 
     lottery_classify_id, is_self_open, kill_off
   </sql>
+  <select id="selectByExample" parameterType="com.Test.model.DBmodel.LotteryExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from lottery
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -35,6 +107,12 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from lottery
     where lottery_id = #{lotteryId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.Test.model.DBmodel.LotteryExample">
+    delete from lottery
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="com.Test.model.DBmodel.Lottery">
     insert into lottery (lottery_id, lottery_name, remark, 
@@ -167,6 +245,98 @@
       </if>
     </trim>
   </insert>
+  <select id="countByExample" parameterType="com.Test.model.DBmodel.LotteryExample" resultType="java.lang.Long">
+    select count(*) from lottery
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update lottery
+    <set>
+      <if test="record.lotteryId != null">
+        lottery_id = #{record.lotteryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.lotteryName != null">
+        lottery_name = #{record.lotteryName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desc != null">
+        desc = #{record.desc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.numDay != null">
+        num_day = #{record.numDay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.closeTime != null">
+        close_time = #{record.closeTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.judgeExpiredTime != null">
+        judge_expired_time = #{record.judgeExpiredTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.sort != null">
+        sort = #{record.sort,jdbcType=TINYINT},
+      </if>
+      <if test="record.hallRecommend != null">
+        hall_recommend = #{record.hallRecommend,jdbcType=TINYINT},
+      </if>
+      <if test="record.isEnabled != null">
+        is_enabled = #{record.isEnabled,jdbcType=BIT},
+      </if>
+      <if test="record.lotteryType != null">
+        lottery_type = #{record.lotteryType,jdbcType=BIT},
+      </if>
+      <if test="record.initialClassId != null">
+        initial_class_id = #{record.initialClassId,jdbcType=INTEGER},
+      </if>
+      <if test="record.logo != null">
+        logo = #{record.logo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kill != null">
+        kill = #{record.kill,jdbcType=DECIMAL},
+      </if>
+      <if test="record.acrossDayTime != null">
+        across_day_time = #{record.acrossDayTime,jdbcType=CHAR},
+      </if>
+      <if test="record.lotteryClassifyId != null">
+        lottery_classify_id = #{record.lotteryClassifyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.isSelfOpen != null">
+        is_self_open = #{record.isSelfOpen,jdbcType=INTEGER},
+      </if>
+      <if test="record.killOff != null">
+        kill_off = #{record.killOff,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update lottery
+    set lottery_id = #{record.lotteryId,jdbcType=INTEGER},
+      lottery_name = #{record.lotteryName,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      desc = #{record.desc,jdbcType=VARCHAR},
+      num_day = #{record.numDay,jdbcType=VARCHAR},
+      close_time = #{record.closeTime,jdbcType=INTEGER},
+      judge_expired_time = #{record.judgeExpiredTime,jdbcType=INTEGER},
+      sort = #{record.sort,jdbcType=TINYINT},
+      hall_recommend = #{record.hallRecommend,jdbcType=TINYINT},
+      is_enabled = #{record.isEnabled,jdbcType=BIT},
+      lottery_type = #{record.lotteryType,jdbcType=BIT},
+      initial_class_id = #{record.initialClassId,jdbcType=INTEGER},
+      logo = #{record.logo,jdbcType=VARCHAR},
+      kill = #{record.kill,jdbcType=DECIMAL},
+      across_day_time = #{record.acrossDayTime,jdbcType=CHAR},
+      lottery_classify_id = #{record.lotteryClassifyId,jdbcType=INTEGER},
+      is_self_open = #{record.isSelfOpen,jdbcType=INTEGER},
+      kill_off = #{record.killOff,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.Lottery">
     update lottery
     <set>

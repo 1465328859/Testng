@@ -19,6 +19,64 @@
     <result column="odds_ids" jdbcType="LONGVARCHAR" property="oddsIds" />
     <result column="all_code" jdbcType="LONGVARCHAR" property="allCode" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
   <sql id="Base_Column_List">
     methods_id, methods_group_id, min_group, method_name, key, name_ab, min_num, max_num, 
     open, max_money, digit, sort
@@ -26,6 +84,36 @@
   <sql id="Blob_Column_List">
     odds_ids, all_code
   </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.Test.model.DBmodel.LotteryMethodsExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from lottery_methods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.Test.model.DBmodel.LotteryMethodsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from lottery_methods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
@@ -37,6 +125,12 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from lottery_methods
     where methods_id = #{methodsId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.Test.model.DBmodel.LotteryMethodsExample">
+    delete from lottery_methods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="com.Test.model.DBmodel.LotteryMethodsWithBLOBs">
     insert into lottery_methods (methods_id, methods_group_id, min_group, 
@@ -141,6 +235,100 @@
       </if>
     </trim>
   </insert>
+  <select id="countByExample" parameterType="com.Test.model.DBmodel.LotteryMethodsExample" resultType="java.lang.Long">
+    select count(*) from lottery_methods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update lottery_methods
+    <set>
+      <if test="record.methodsId != null">
+        methods_id = #{record.methodsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.methodsGroupId != null">
+        methods_group_id = #{record.methodsGroupId,jdbcType=INTEGER},
+      </if>
+      <if test="record.minGroup != null">
+        min_group = #{record.minGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.methodName != null">
+        method_name = #{record.methodName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.key != null">
+        key = #{record.key,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nameAb != null">
+        name_ab = #{record.nameAb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.minNum != null">
+        min_num = #{record.minNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxNum != null">
+        max_num = #{record.maxNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.open != null">
+        open = #{record.open,jdbcType=BIT},
+      </if>
+      <if test="record.maxMoney != null">
+        max_money = #{record.maxMoney,jdbcType=INTEGER},
+      </if>
+      <if test="record.digit != null">
+        digit = #{record.digit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sort != null">
+        sort = #{record.sort,jdbcType=INTEGER},
+      </if>
+      <if test="record.oddsIds != null">
+        odds_ids = #{record.oddsIds,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.allCode != null">
+        all_code = #{record.allCode,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update lottery_methods
+    set methods_id = #{record.methodsId,jdbcType=INTEGER},
+      methods_group_id = #{record.methodsGroupId,jdbcType=INTEGER},
+      min_group = #{record.minGroup,jdbcType=VARCHAR},
+      method_name = #{record.methodName,jdbcType=VARCHAR},
+      key = #{record.key,jdbcType=VARCHAR},
+      name_ab = #{record.nameAb,jdbcType=VARCHAR},
+      min_num = #{record.minNum,jdbcType=INTEGER},
+      max_num = #{record.maxNum,jdbcType=INTEGER},
+      open = #{record.open,jdbcType=BIT},
+      max_money = #{record.maxMoney,jdbcType=INTEGER},
+      digit = #{record.digit,jdbcType=VARCHAR},
+      sort = #{record.sort,jdbcType=INTEGER},
+      odds_ids = #{record.oddsIds,jdbcType=LONGVARCHAR},
+      all_code = #{record.allCode,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update lottery_methods
+    set methods_id = #{record.methodsId,jdbcType=INTEGER},
+      methods_group_id = #{record.methodsGroupId,jdbcType=INTEGER},
+      min_group = #{record.minGroup,jdbcType=VARCHAR},
+      method_name = #{record.methodName,jdbcType=VARCHAR},
+      key = #{record.key,jdbcType=VARCHAR},
+      name_ab = #{record.nameAb,jdbcType=VARCHAR},
+      min_num = #{record.minNum,jdbcType=INTEGER},
+      max_num = #{record.maxNum,jdbcType=INTEGER},
+      open = #{record.open,jdbcType=BIT},
+      max_money = #{record.maxMoney,jdbcType=INTEGER},
+      digit = #{record.digit,jdbcType=VARCHAR},
+      sort = #{record.sort,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.LotteryMethodsWithBLOBs">
     update lottery_methods
     <set>

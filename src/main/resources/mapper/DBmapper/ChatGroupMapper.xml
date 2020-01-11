@@ -15,10 +15,82 @@
     <result column="group_time" jdbcType="TIMESTAMP" property="groupTime" />
     <result column="group_img" jdbcType="VARCHAR" property="groupImg" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
   <sql id="Base_Column_List">
     id, group_name, group_desc, speak_cd, is_restricted, is_official, personnumber, send_msg_limit, 
     sort, status, group_time, group_img
   </sql>
+  <select id="selectByExample" parameterType="com.Test.model.DBmodel.ChatGroupExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from chat_group
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -28,6 +100,12 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from chat_group
     where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.Test.model.DBmodel.ChatGroupExample">
+    delete from chat_group
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="com.Test.model.DBmodel.ChatGroup">
     insert into chat_group (id, group_name, group_desc, 
@@ -120,6 +198,74 @@
       </if>
     </trim>
   </insert>
+  <select id="countByExample" parameterType="com.Test.model.DBmodel.ChatGroupExample" resultType="java.lang.Long">
+    select count(*) from chat_group
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update chat_group
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.groupName != null">
+        group_name = #{record.groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupDesc != null">
+        group_desc = #{record.groupDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.speakCd != null">
+        speak_cd = #{record.speakCd,jdbcType=TINYINT},
+      </if>
+      <if test="record.isRestricted != null">
+        is_restricted = #{record.isRestricted,jdbcType=TINYINT},
+      </if>
+      <if test="record.isOfficial != null">
+        is_official = #{record.isOfficial,jdbcType=BIT},
+      </if>
+      <if test="record.personnumber != null">
+        personnumber = #{record.personnumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendMsgLimit != null">
+        send_msg_limit = #{record.sendMsgLimit,jdbcType=INTEGER},
+      </if>
+      <if test="record.sort != null">
+        sort = #{record.sort,jdbcType=TINYINT},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.groupTime != null">
+        group_time = #{record.groupTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.groupImg != null">
+        group_img = #{record.groupImg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update chat_group
+    set id = #{record.id,jdbcType=INTEGER},
+      group_name = #{record.groupName,jdbcType=VARCHAR},
+      group_desc = #{record.groupDesc,jdbcType=VARCHAR},
+      speak_cd = #{record.speakCd,jdbcType=TINYINT},
+      is_restricted = #{record.isRestricted,jdbcType=TINYINT},
+      is_official = #{record.isOfficial,jdbcType=BIT},
+      personnumber = #{record.personnumber,jdbcType=INTEGER},
+      send_msg_limit = #{record.sendMsgLimit,jdbcType=INTEGER},
+      sort = #{record.sort,jdbcType=TINYINT},
+      status = #{record.status,jdbcType=TINYINT},
+      group_time = #{record.groupTime,jdbcType=TIMESTAMP},
+      group_img = #{record.groupImg,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.ChatGroup">
     update chat_group
     <set>

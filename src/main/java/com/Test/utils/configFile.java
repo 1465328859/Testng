@@ -9,6 +9,10 @@ public class configFile {
     //从application文件中取url
     private static ResourceBundle resourceBundle = ResourceBundle.getBundle("application", Locale.CHINA);
 
+    public static ResourceBundle getResourceBundle() {
+        return resourceBundle;
+    }
+
     public static String getUrl(InterfaceName name){
         //取域名和端口号
         String baseurl = resourceBundle.getString("test.url");

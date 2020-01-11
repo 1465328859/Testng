@@ -4,7 +4,6 @@
         <classes>
             <class name="com.Test.cases.LoginTest">
                 <include name="LoginTrue" />
-                <include name="LoginFalse" />
             </class>
             <class name="com.Test.cases.AddUserTest">
                 <include name="AddUser" />

@@ -37,6 +37,64 @@
     <result column="currency" jdbcType="VARCHAR" property="currency" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
   <sql id="Base_Column_List">
     id, type, order_id, productid, tran_id, sn, uid, login_id, username, module_id, module_name, 
     game_id, tablecode, flatfrom_type, remark, befor_credit, game_name, order_status, 
@@ -44,6 +102,20 @@
     issue_id, play_id, play_name, play_name_en, valid_bet, payment, no_comm, currency, 
     create_time
   </sql>
+  <select id="selectByExample" parameterType="com.Test.model.DBmodel.ExternalVideoOrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from external_video_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -53,6 +125,12 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from external_video_order
     where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.Test.model.DBmodel.ExternalVideoOrderExample">
+    delete from external_video_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="com.Test.model.DBmodel.ExternalVideoOrder">
     insert into external_video_order (id, type, order_id, 
@@ -291,6 +369,162 @@
       </if>
     </trim>
   </insert>
+  <select id="countByExample" parameterType="com.Test.model.DBmodel.ExternalVideoOrderExample" resultType="java.lang.Long">
+    select count(*) from external_video_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update external_video_order
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderId != null">
+        order_id = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productid != null">
+        productid = #{record.productid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tranId != null">
+        tran_id = #{record.tranId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sn != null">
+        sn = #{record.sn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uid != null">
+        uid = #{record.uid,jdbcType=INTEGER},
+      </if>
+      <if test="record.loginId != null">
+        login_id = #{record.loginId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.moduleId != null">
+        module_id = #{record.moduleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.moduleName != null">
+        module_name = #{record.moduleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gameId != null">
+        game_id = #{record.gameId,jdbcType=INTEGER},
+      </if>
+      <if test="record.tablecode != null">
+        tablecode = #{record.tablecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flatfromType != null">
+        flatfrom_type = #{record.flatfromType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beforCredit != null">
+        befor_credit = #{record.beforCredit,jdbcType=REAL},
+      </if>
+      <if test="record.gameName != null">
+        game_name = #{record.gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderStatus != null">
+        order_status = #{record.orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderStatusOriginal != null">
+        order_status_original = #{record.orderStatusOriginal,jdbcType=INTEGER},
+      </if>
+      <if test="record.bAmount != null">
+        b_amount = #{record.bAmount,jdbcType=REAL},
+      </if>
+      <if test="record.aAmount != null">
+        a_amount = #{record.aAmount,jdbcType=REAL},
+      </if>
+      <if test="record.orderFrom != null">
+        order_from = #{record.orderFrom,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderTime != null">
+        order_time = #{record.orderTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.reckontime != null">
+        reckontime = #{record.reckontime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fromIp != null">
+        from_ip = #{record.fromIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.issueId != null">
+        issue_id = #{record.issueId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.playId != null">
+        play_id = #{record.playId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.playName != null">
+        play_name = #{record.playName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.playNameEn != null">
+        play_name_en = #{record.playNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.validBet != null">
+        valid_bet = #{record.validBet,jdbcType=REAL},
+      </if>
+      <if test="record.payment != null">
+        payment = #{record.payment,jdbcType=REAL},
+      </if>
+      <if test="record.noComm != null">
+        no_comm = #{record.noComm,jdbcType=INTEGER},
+      </if>
+      <if test="record.currency != null">
+        currency = #{record.currency,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update external_video_order
+    set id = #{record.id,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=INTEGER},
+      order_id = #{record.orderId,jdbcType=VARCHAR},
+      productid = #{record.productid,jdbcType=VARCHAR},
+      tran_id = #{record.tranId,jdbcType=VARCHAR},
+      sn = #{record.sn,jdbcType=VARCHAR},
+      uid = #{record.uid,jdbcType=INTEGER},
+      login_id = #{record.loginId,jdbcType=VARCHAR},
+      username = #{record.username,jdbcType=VARCHAR},
+      module_id = #{record.moduleId,jdbcType=INTEGER},
+      module_name = #{record.moduleName,jdbcType=VARCHAR},
+      game_id = #{record.gameId,jdbcType=INTEGER},
+      tablecode = #{record.tablecode,jdbcType=VARCHAR},
+      flatfrom_type = #{record.flatfromType,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      befor_credit = #{record.beforCredit,jdbcType=REAL},
+      game_name = #{record.gameName,jdbcType=VARCHAR},
+      order_status = #{record.orderStatus,jdbcType=INTEGER},
+      order_status_original = #{record.orderStatusOriginal,jdbcType=INTEGER},
+      b_amount = #{record.bAmount,jdbcType=REAL},
+      a_amount = #{record.aAmount,jdbcType=REAL},
+      order_from = #{record.orderFrom,jdbcType=INTEGER},
+      order_time = #{record.orderTime,jdbcType=INTEGER},
+      reckontime = #{record.reckontime,jdbcType=TIMESTAMP},
+      from_ip = #{record.fromIp,jdbcType=VARCHAR},
+      issue_id = #{record.issueId,jdbcType=VARCHAR},
+      play_id = #{record.playId,jdbcType=VARCHAR},
+      play_name = #{record.playName,jdbcType=VARCHAR},
+      play_name_en = #{record.playNameEn,jdbcType=VARCHAR},
+      valid_bet = #{record.validBet,jdbcType=REAL},
+      payment = #{record.payment,jdbcType=REAL},
+      no_comm = #{record.noComm,jdbcType=INTEGER},
+      currency = #{record.currency,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.ExternalVideoOrder">
     update external_video_order
     <set>

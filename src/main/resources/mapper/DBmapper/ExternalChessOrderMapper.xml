@@ -18,10 +18,82 @@
     <result column="game_start_time" jdbcType="TIMESTAMP" property="gameStartTime" />
     <result column="game_end_time" jdbcType="TIMESTAMP" property="gameEndTime" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
   <sql id="Base_Column_List">
     id, order_no, game_name, account, room_name, game_id, table_id, chair_id, user_count, 
     cell_score, all_bet, profit, revenue, game_start_time, game_end_time
   </sql>
+  <select id="selectByExample" parameterType="com.Test.model.DBmodel.ExternalChessOrderExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from external_chess_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -31,6 +103,12 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from external_chess_order
     where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.Test.model.DBmodel.ExternalChessOrderExample">
+    delete from external_chess_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="com.Test.model.DBmodel.ExternalChessOrder">
     insert into external_chess_order (id, order_no, game_name, 
@@ -143,6 +221,86 @@
       </if>
     </trim>
   </insert>
+  <select id="countByExample" parameterType="com.Test.model.DBmodel.ExternalChessOrderExample" resultType="java.lang.Long">
+    select count(*) from external_chess_order
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update external_chess_order
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderNo != null">
+        order_no = #{record.orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gameName != null">
+        game_name = #{record.gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.account != null">
+        account = #{record.account,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roomName != null">
+        room_name = #{record.roomName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gameId != null">
+        game_id = #{record.gameId,jdbcType=INTEGER},
+      </if>
+      <if test="record.tableId != null">
+        table_id = #{record.tableId,jdbcType=INTEGER},
+      </if>
+      <if test="record.chairId != null">
+        chair_id = #{record.chairId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userCount != null">
+        user_count = #{record.userCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.cellScore != null">
+        cell_score = #{record.cellScore,jdbcType=DECIMAL},
+      </if>
+      <if test="record.allBet != null">
+        all_bet = #{record.allBet,jdbcType=DECIMAL},
+      </if>
+      <if test="record.profit != null">
+        profit = #{record.profit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.revenue != null">
+        revenue = #{record.revenue,jdbcType=DECIMAL},
+      </if>
+      <if test="record.gameStartTime != null">
+        game_start_time = #{record.gameStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gameEndTime != null">
+        game_end_time = #{record.gameEndTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update external_chess_order
+    set id = #{record.id,jdbcType=INTEGER},
+      order_no = #{record.orderNo,jdbcType=VARCHAR},
+      game_name = #{record.gameName,jdbcType=VARCHAR},
+      account = #{record.account,jdbcType=VARCHAR},
+      room_name = #{record.roomName,jdbcType=VARCHAR},
+      game_id = #{record.gameId,jdbcType=INTEGER},
+      table_id = #{record.tableId,jdbcType=INTEGER},
+      chair_id = #{record.chairId,jdbcType=INTEGER},
+      user_count = #{record.userCount,jdbcType=INTEGER},
+      cell_score = #{record.cellScore,jdbcType=DECIMAL},
+      all_bet = #{record.allBet,jdbcType=DECIMAL},
+      profit = #{record.profit,jdbcType=DECIMAL},
+      revenue = #{record.revenue,jdbcType=DECIMAL},
+      game_start_time = #{record.gameStartTime,jdbcType=TIMESTAMP},
+      game_end_time = #{record.gameEndTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.ExternalChessOrder">
     update external_chess_order
     <set>

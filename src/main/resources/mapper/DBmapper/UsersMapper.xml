@@ -25,11 +25,83 @@
     <result column="edit_time" jdbcType="TIMESTAMP" property="editTime" />
     <result column="ctime" jdbcType="INTEGER" property="ctime" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
   <sql id="Base_Column_List">
     user_id, username, pwd, safe_pwd, salt, balance, total_bet_money, total_deposit_money, 
     total_withdraw_money, bet_money, parent_id, top_id, grade, up_three_grade, status, 
     reg_from, reg_ip, last_login, last_ip, login_count, edit_time, ctime
   </sql>
+  <select id="selectByExample" parameterType="com.Test.model.DBmodel.UsersExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from users
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -39,6 +111,12 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from users
     where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.Test.model.DBmodel.UsersExample">
+    delete from users
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="com.Test.model.DBmodel.Users">
     insert into users (user_id, username, pwd, 
@@ -197,6 +275,114 @@
       </if>
     </trim>
   </insert>
+  <select id="countByExample" parameterType="com.Test.model.DBmodel.UsersExample" resultType="java.lang.Long">
+    select count(*) from users
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update users
+    <set>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pwd != null">
+        pwd = #{record.pwd,jdbcType=CHAR},
+      </if>
+      <if test="record.safePwd != null">
+        safe_pwd = #{record.safePwd,jdbcType=CHAR},
+      </if>
+      <if test="record.salt != null">
+        salt = #{record.salt,jdbcType=CHAR},
+      </if>
+      <if test="record.balance != null">
+        balance = #{record.balance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalBetMoney != null">
+        total_bet_money = #{record.totalBetMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalDepositMoney != null">
+        total_deposit_money = #{record.totalDepositMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalWithdrawMoney != null">
+        total_withdraw_money = #{record.totalWithdrawMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.betMoney != null">
+        bet_money = #{record.betMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.parentId != null">
+        parent_id = #{record.parentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.topId != null">
+        top_id = #{record.topId,jdbcType=INTEGER},
+      </if>
+      <if test="record.grade != null">
+        grade = #{record.grade,jdbcType=TINYINT},
+      </if>
+      <if test="record.upThreeGrade != null">
+        up_three_grade = #{record.upThreeGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.regFrom != null">
+        reg_from = #{record.regFrom,jdbcType=TINYINT},
+      </if>
+      <if test="record.regIp != null">
+        reg_ip = #{record.regIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastLogin != null">
+        last_login = #{record.lastLogin,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastIp != null">
+        last_ip = #{record.lastIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginCount != null">
+        login_count = #{record.loginCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.editTime != null">
+        edit_time = #{record.editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ctime != null">
+        ctime = #{record.ctime,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update users
+    set user_id = #{record.userId,jdbcType=INTEGER},
+      username = #{record.username,jdbcType=VARCHAR},
+      pwd = #{record.pwd,jdbcType=CHAR},
+      safe_pwd = #{record.safePwd,jdbcType=CHAR},
+      salt = #{record.salt,jdbcType=CHAR},
+      balance = #{record.balance,jdbcType=DECIMAL},
+      total_bet_money = #{record.totalBetMoney,jdbcType=DECIMAL},
+      total_deposit_money = #{record.totalDepositMoney,jdbcType=DECIMAL},
+      total_withdraw_money = #{record.totalWithdrawMoney,jdbcType=DECIMAL},
+      bet_money = #{record.betMoney,jdbcType=DECIMAL},
+      parent_id = #{record.parentId,jdbcType=INTEGER},
+      top_id = #{record.topId,jdbcType=INTEGER},
+      grade = #{record.grade,jdbcType=TINYINT},
+      up_three_grade = #{record.upThreeGrade,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=TINYINT},
+      reg_from = #{record.regFrom,jdbcType=TINYINT},
+      reg_ip = #{record.regIp,jdbcType=VARCHAR},
+      last_login = #{record.lastLogin,jdbcType=INTEGER},
+      last_ip = #{record.lastIp,jdbcType=VARCHAR},
+      login_count = #{record.loginCount,jdbcType=INTEGER},
+      edit_time = #{record.editTime,jdbcType=TIMESTAMP},
+      ctime = #{record.ctime,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.Users">
     update users
     <set>

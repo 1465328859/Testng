@@ -1,32 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" total="1" passed="0">
+<testng-results skipped="0" failed="1" total="2" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default Suite" duration-ms="657" started-at="2019-12-03T06:36:52Z" finished-at="2019-12-03T06:36:53Z">
+  <suite name="用户管理系统测试套件" duration-ms="1248" started-at="2020-01-11T07:09:34Z" finished-at="2020-01-11T07:09:35Z">
     <groups>
-      <group name="loginTrue">
-        <method signature="LoginTest.LoginTrue()[pri:0, instance:com.Test.cases.LoginTest@1bb089b]" name="LoginTrue" class="com.Test.cases.LoginTest"/>
-      </group> <!-- loginTrue -->
+      <group name="AddUser">
+        <method signature="AddUserTest.AddUser()[pri:0, instance:com.Test.cases.AddUserTest@f10a6f]" name="AddUser" class="com.Test.cases.AddUserTest"/>
+      </group> <!-- AddUser -->
+      <group name="LoginTrue">
+        <method signature="LoginTest.LoginTrue()[pri:0, instance:com.Test.cases.LoginTest@66d33a]" name="LoginTrue" class="com.Test.cases.LoginTest"/>
+      </group> <!-- LoginTrue -->
     </groups>
-    <test name="Testng" duration-ms="657" started-at="2019-12-03T06:36:52Z" finished-at="2019-12-03T06:36:53Z">
-      <class name="com.Test.cases.LoginTest">
-        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.Test.cases.LoginTest@1bb089b]" name="beforeTest" is-config="true" duration-ms="33" started-at="2019-12-03T14:36:52Z" description="登录接口" finished-at="2019-12-03T14:36:52Z">
+    <test name="用户管理系统测试用例" duration-ms="1248" started-at="2020-01-11T07:09:34Z" finished-at="2020-01-11T07:09:35Z">
+      <class name="com.Test.cases.AddUserTest">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.Test.cases.AddUserTest@f10a6f]" name="beforeTest" is-config="true" duration-ms="31" started-at="2020-01-11T15:09:34Z" description="创建用户接口" finished-at="2020-01-11T15:09:34Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeTest -->
-        <test-method status="FAIL" signature="LoginTrue()[pri:0, instance:com.Test.cases.LoginTest@1bb089b]" name="LoginTrue" duration-ms="614" started-at="2019-12-03T14:36:52Z" description="登录成功的接口" finished-at="2019-12-03T14:36:53Z">
-          <exception class="org.apache.ibatis.binding.BindingException">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.Test.cases.LoginTest@66d33a]" name="beforeTest" is-config="true" duration-ms="1" started-at="2020-01-11T15:09:34Z" description="登录接口" finished-at="2020-01-11T15:09:34Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="FAIL" signature="AddUser()[pri:0, instance:com.Test.cases.AddUserTest@f10a6f]" name="AddUser" duration-ms="26" started-at="2020-01-11T15:09:35Z" description="创建用户的接口" finished-at="2020-01-11T15:09:35Z">
+          <exception class="java.lang.RuntimeException">
             <message>
-              <![CDATA[Invalid bound statement (not found): com.Test.model.DBmodel.UsersMapper.selectOne]]>
+              <![CDATA[{"result":0,"data":{},"msg":"账号已经被注册","timestamp":1578726574}]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.Test.model.DBmodel.UsersMapper.selectOne
-	at org.apache.ibatis.binding.MapperMethod$SqlCommand.<init>(MapperMethod.java:225)
-	at org.apache.ibatis.binding.MapperMethod.<init>(MapperMethod.java:48)
-	at org.apache.ibatis.binding.MapperProxy.cachedMapperMethod(MapperProxy.java:65)
-	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:58)
-	at com.sun.proxy.$Proxy4.selectOne(Unknown Source)
-	at com.Test.cases.LoginTest.LoginTrue(LoginTest.java:44)
+              <![CDATA[java.lang.RuntimeException: {"result":0,"data":{},"msg":"账号已经被注册","timestamp":1578726574}
+	at com.Test.cases.AddUserTest.AddUser(AddUserTest.java:44)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -52,11 +54,17 @@
 	at org.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:123)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.apache.ibatis.binding.BindingException -->
+          </exception> <!-- java.lang.RuntimeException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AddUser -->
+      </class> <!-- com.Test.cases.AddUserTest -->
+      <class name="com.Test.cases.LoginTest">
+        <test-method status="PASS" signature="LoginTrue()[pri:0, instance:com.Test.cases.LoginTest@66d33a]" name="LoginTrue" duration-ms="1181" started-at="2020-01-11T15:09:34Z" description="登录成功的接口" finished-at="2020-01-11T15:09:35Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- LoginTrue -->
       </class> <!-- com.Test.cases.LoginTest -->
-    </test> <!-- Testng -->
-  </suite> <!-- Default Suite -->
+    </test> <!-- 用户管理系统测试用例 -->
+  </suite> <!-- 用户管理系统测试套件 -->
 </testng-results>

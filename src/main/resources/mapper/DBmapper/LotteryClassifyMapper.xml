@@ -16,6 +16,64 @@
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.Test.model.DBmodel.LotteryClassify">
     <result column="introduce" jdbcType="LONGVARCHAR" property="introduce" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
   <sql id="Base_Column_List">
     lottery_classify_id, kind_id, kind_name, key, kind_rebate, status, icon, phone_icon, 
     not_phone_icon, sorting
@@ -23,6 +81,36 @@
   <sql id="Blob_Column_List">
     introduce
   </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.Test.model.DBmodel.LotteryClassifyExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from lottery_classify
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.Test.model.DBmodel.LotteryClassifyExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from lottery_classify
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
@@ -34,6 +122,12 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from lottery_classify
     where lottery_classify_id = #{lotteryClassifyId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.Test.model.DBmodel.LotteryClassifyExample">
+    delete from lottery_classify
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="com.Test.model.DBmodel.LotteryClassify">
     insert into lottery_classify (lottery_classify_id, kind_id, kind_name, 
@@ -118,6 +212,86 @@
       </if>
     </trim>
   </insert>
+  <select id="countByExample" parameterType="com.Test.model.DBmodel.LotteryClassifyExample" resultType="java.lang.Long">
+    select count(*) from lottery_classify
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update lottery_classify
+    <set>
+      <if test="record.lotteryClassifyId != null">
+        lottery_classify_id = #{record.lotteryClassifyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.kindId != null">
+        kind_id = #{record.kindId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kindName != null">
+        kind_name = #{record.kindName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.key != null">
+        key = #{record.key,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kindRebate != null">
+        kind_rebate = #{record.kindRebate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=BIT},
+      </if>
+      <if test="record.icon != null">
+        icon = #{record.icon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phoneIcon != null">
+        phone_icon = #{record.phoneIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.notPhoneIcon != null">
+        not_phone_icon = #{record.notPhoneIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sorting != null">
+        sorting = #{record.sorting,jdbcType=INTEGER},
+      </if>
+      <if test="record.introduce != null">
+        introduce = #{record.introduce,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update lottery_classify
+    set lottery_classify_id = #{record.lotteryClassifyId,jdbcType=INTEGER},
+      kind_id = #{record.kindId,jdbcType=VARCHAR},
+      kind_name = #{record.kindName,jdbcType=VARCHAR},
+      key = #{record.key,jdbcType=VARCHAR},
+      kind_rebate = #{record.kindRebate,jdbcType=DECIMAL},
+      status = #{record.status,jdbcType=BIT},
+      icon = #{record.icon,jdbcType=VARCHAR},
+      phone_icon = #{record.phoneIcon,jdbcType=VARCHAR},
+      not_phone_icon = #{record.notPhoneIcon,jdbcType=VARCHAR},
+      sorting = #{record.sorting,jdbcType=INTEGER},
+      introduce = #{record.introduce,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update lottery_classify
+    set lottery_classify_id = #{record.lotteryClassifyId,jdbcType=INTEGER},
+      kind_id = #{record.kindId,jdbcType=VARCHAR},
+      kind_name = #{record.kindName,jdbcType=VARCHAR},
+      key = #{record.key,jdbcType=VARCHAR},
+      kind_rebate = #{record.kindRebate,jdbcType=DECIMAL},
+      status = #{record.status,jdbcType=BIT},
+      icon = #{record.icon,jdbcType=VARCHAR},
+      phone_icon = #{record.phoneIcon,jdbcType=VARCHAR},
+      not_phone_icon = #{record.notPhoneIcon,jdbcType=VARCHAR},
+      sorting = #{record.sorting,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.LotteryClassify">
     update lottery_classify
     <set>

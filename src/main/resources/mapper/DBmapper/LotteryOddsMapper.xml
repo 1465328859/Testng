@@ -12,9 +12,81 @@
     <result column="is_origin" jdbcType="BIT" property="isOrigin" />
     <result column="way_class_id" jdbcType="INTEGER" property="wayClassId" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
   <sql id="Base_Column_List">
     id, lottery_id, odds_name, odds_alias, top_odds, low_odds, spare, is_origin, way_class_id
   </sql>
+  <select id="selectByExample" parameterType="com.Test.model.DBmodel.LotteryOddsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from lottery_odds
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -24,6 +96,12 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from lottery_odds
     where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.Test.model.DBmodel.LotteryOddsExample">
+    delete from lottery_odds
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="com.Test.model.DBmodel.LotteryOdds">
     insert into lottery_odds (id, lottery_id, odds_name, 
@@ -96,6 +174,62 @@
       </if>
     </trim>
   </insert>
+  <select id="countByExample" parameterType="com.Test.model.DBmodel.LotteryOddsExample" resultType="java.lang.Long">
+    select count(*) from lottery_odds
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update lottery_odds
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.lotteryId != null">
+        lottery_id = #{record.lotteryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.oddsName != null">
+        odds_name = #{record.oddsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oddsAlias != null">
+        odds_alias = #{record.oddsAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="record.topOdds != null">
+        top_odds = #{record.topOdds,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lowOdds != null">
+        low_odds = #{record.lowOdds,jdbcType=DECIMAL},
+      </if>
+      <if test="record.spare != null">
+        spare = #{record.spare,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isOrigin != null">
+        is_origin = #{record.isOrigin,jdbcType=BIT},
+      </if>
+      <if test="record.wayClassId != null">
+        way_class_id = #{record.wayClassId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update lottery_odds
+    set id = #{record.id,jdbcType=INTEGER},
+      lottery_id = #{record.lotteryId,jdbcType=INTEGER},
+      odds_name = #{record.oddsName,jdbcType=VARCHAR},
+      odds_alias = #{record.oddsAlias,jdbcType=VARCHAR},
+      top_odds = #{record.topOdds,jdbcType=DECIMAL},
+      low_odds = #{record.lowOdds,jdbcType=DECIMAL},
+      spare = #{record.spare,jdbcType=VARCHAR},
+      is_origin = #{record.isOrigin,jdbcType=BIT},
+      way_class_id = #{record.wayClassId,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.LotteryOdds">
     update lottery_odds
     <set>

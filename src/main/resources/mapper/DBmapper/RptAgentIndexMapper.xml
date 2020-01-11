@@ -46,6 +46,64 @@
     <result column="member_withdrawal_users" jdbcType="LONGVARCHAR" property="memberWithdrawalUsers" />
     <result column="backstage_payment_users" jdbcType="LONGVARCHAR" property="backstagePaymentUsers" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
   <sql id="Base_Column_List">
     id, statistics_day, top_id, register_num, first_recharge_num, first_recharge_amount, 
     bet_num, new_bet_number_num, agent_commission, top_agent_commission, lottery_total_money, 
@@ -60,6 +118,36 @@
     bet_users, company_deposits_users, online_deposits_users, manual_deposits_users, 
     manual_out_users, member_withdrawal_users, backstage_payment_users
   </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.Test.model.DBmodel.RptAgentIndexExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from rpt_agent_index
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.Test.model.DBmodel.RptAgentIndexExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rpt_agent_index
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
@@ -71,6 +159,12 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from rpt_agent_index
     where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.Test.model.DBmodel.RptAgentIndexExample">
+    delete from rpt_agent_index
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="com.Test.model.DBmodel.RptAgentIndexWithBLOBs">
     insert into rpt_agent_index (id, statistics_day, top_id, 
@@ -363,6 +457,230 @@
       </if>
     </trim>
   </insert>
+  <select id="countByExample" parameterType="com.Test.model.DBmodel.RptAgentIndexExample" resultType="java.lang.Long">
+    select count(*) from rpt_agent_index
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update rpt_agent_index
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.statisticsDay != null">
+        statistics_day = #{record.statisticsDay,jdbcType=DATE},
+      </if>
+      <if test="record.topId != null">
+        top_id = #{record.topId,jdbcType=INTEGER},
+      </if>
+      <if test="record.registerNum != null">
+        register_num = #{record.registerNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.firstRechargeNum != null">
+        first_recharge_num = #{record.firstRechargeNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.firstRechargeAmount != null">
+        first_recharge_amount = #{record.firstRechargeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.betNum != null">
+        bet_num = #{record.betNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.newBetNumberNum != null">
+        new_bet_number_num = #{record.newBetNumberNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.agentCommission != null">
+        agent_commission = #{record.agentCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="record.topAgentCommission != null">
+        top_agent_commission = #{record.topAgentCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lotteryTotalMoney != null">
+        lottery_total_money = #{record.lotteryTotalMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lotteryBetAmount != null">
+        lottery_bet_amount = #{record.lotteryBetAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.payoutAmount != null">
+        payout_amount = #{record.payoutAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.returnAmount != null">
+        return_amount = #{record.returnAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.companyDepositsNum != null">
+        company_deposits_num = #{record.companyDepositsNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.onlineDepositsNum != null">
+        online_deposits_num = #{record.onlineDepositsNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.manualDepositsNum != null">
+        manual_deposits_num = #{record.manualDepositsNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.manualOutNum != null">
+        manual_out_num = #{record.manualOutNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyDepositsUser != null">
+        company_deposits_user = #{record.companyDepositsUser,jdbcType=INTEGER},
+      </if>
+      <if test="record.onlineDepositsUser != null">
+        online_deposits_user = #{record.onlineDepositsUser,jdbcType=INTEGER},
+      </if>
+      <if test="record.manualDepositsUser != null">
+        manual_deposits_user = #{record.manualDepositsUser,jdbcType=INTEGER},
+      </if>
+      <if test="record.manualOutUser != null">
+        manual_out_user = #{record.manualOutUser,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyDepositsAmount != null">
+        company_deposits_amount = #{record.companyDepositsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.onlineDepositsAmount != null">
+        online_deposits_amount = #{record.onlineDepositsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.manualDepositsAmount != null">
+        manual_deposits_amount = #{record.manualDepositsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.memberWithdrawalCount != null">
+        member_withdrawal_count = #{record.memberWithdrawalCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.backstagePaymentCount != null">
+        backstage_payment_count = #{record.backstagePaymentCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberWithdrawalUser != null">
+        member_withdrawal_user = #{record.memberWithdrawalUser,jdbcType=INTEGER},
+      </if>
+      <if test="record.backstagePaymentUser != null">
+        backstage_payment_user = #{record.backstagePaymentUser,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberWithdrawalMoney != null">
+        member_withdrawal_money = #{record.memberWithdrawalMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.backstagePaymentMoney != null">
+        backstage_payment_money = #{record.backstagePaymentMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.manualOutMoney != null">
+        manual_out_money = #{record.manualOutMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.vaildUser != null">
+        vaild_user = #{record.vaildUser,jdbcType=INTEGER},
+      </if>
+      <if test="record.backwaterUser != null">
+        backwater_user = #{record.backwaterUser,jdbcType=INTEGER},
+      </if>
+      <if test="record.betUsers != null">
+        bet_users = #{record.betUsers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.companyDepositsUsers != null">
+        company_deposits_users = #{record.companyDepositsUsers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.onlineDepositsUsers != null">
+        online_deposits_users = #{record.onlineDepositsUsers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.manualDepositsUsers != null">
+        manual_deposits_users = #{record.manualDepositsUsers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.manualOutUsers != null">
+        manual_out_users = #{record.manualOutUsers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.memberWithdrawalUsers != null">
+        member_withdrawal_users = #{record.memberWithdrawalUsers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.backstagePaymentUsers != null">
+        backstage_payment_users = #{record.backstagePaymentUsers,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update rpt_agent_index
+    set id = #{record.id,jdbcType=INTEGER},
+      statistics_day = #{record.statisticsDay,jdbcType=DATE},
+      top_id = #{record.topId,jdbcType=INTEGER},
+      register_num = #{record.registerNum,jdbcType=INTEGER},
+      first_recharge_num = #{record.firstRechargeNum,jdbcType=INTEGER},
+      first_recharge_amount = #{record.firstRechargeAmount,jdbcType=DECIMAL},
+      bet_num = #{record.betNum,jdbcType=INTEGER},
+      new_bet_number_num = #{record.newBetNumberNum,jdbcType=INTEGER},
+      agent_commission = #{record.agentCommission,jdbcType=DECIMAL},
+      top_agent_commission = #{record.topAgentCommission,jdbcType=DECIMAL},
+      lottery_total_money = #{record.lotteryTotalMoney,jdbcType=DECIMAL},
+      lottery_bet_amount = #{record.lotteryBetAmount,jdbcType=DECIMAL},
+      payout_amount = #{record.payoutAmount,jdbcType=DECIMAL},
+      return_amount = #{record.returnAmount,jdbcType=DECIMAL},
+      company_deposits_num = #{record.companyDepositsNum,jdbcType=INTEGER},
+      online_deposits_num = #{record.onlineDepositsNum,jdbcType=INTEGER},
+      manual_deposits_num = #{record.manualDepositsNum,jdbcType=INTEGER},
+      manual_out_num = #{record.manualOutNum,jdbcType=INTEGER},
+      company_deposits_user = #{record.companyDepositsUser,jdbcType=INTEGER},
+      online_deposits_user = #{record.onlineDepositsUser,jdbcType=INTEGER},
+      manual_deposits_user = #{record.manualDepositsUser,jdbcType=INTEGER},
+      manual_out_user = #{record.manualOutUser,jdbcType=INTEGER},
+      company_deposits_amount = #{record.companyDepositsAmount,jdbcType=DECIMAL},
+      online_deposits_amount = #{record.onlineDepositsAmount,jdbcType=DECIMAL},
+      manual_deposits_amount = #{record.manualDepositsAmount,jdbcType=DECIMAL},
+      member_withdrawal_count = #{record.memberWithdrawalCount,jdbcType=INTEGER},
+      backstage_payment_count = #{record.backstagePaymentCount,jdbcType=INTEGER},
+      member_withdrawal_user = #{record.memberWithdrawalUser,jdbcType=INTEGER},
+      backstage_payment_user = #{record.backstagePaymentUser,jdbcType=INTEGER},
+      member_withdrawal_money = #{record.memberWithdrawalMoney,jdbcType=DECIMAL},
+      backstage_payment_money = #{record.backstagePaymentMoney,jdbcType=DECIMAL},
+      manual_out_money = #{record.manualOutMoney,jdbcType=DECIMAL},
+      vaild_user = #{record.vaildUser,jdbcType=INTEGER},
+      backwater_user = #{record.backwaterUser,jdbcType=INTEGER},
+      bet_users = #{record.betUsers,jdbcType=LONGVARCHAR},
+      company_deposits_users = #{record.companyDepositsUsers,jdbcType=LONGVARCHAR},
+      online_deposits_users = #{record.onlineDepositsUsers,jdbcType=LONGVARCHAR},
+      manual_deposits_users = #{record.manualDepositsUsers,jdbcType=LONGVARCHAR},
+      manual_out_users = #{record.manualOutUsers,jdbcType=LONGVARCHAR},
+      member_withdrawal_users = #{record.memberWithdrawalUsers,jdbcType=LONGVARCHAR},
+      backstage_payment_users = #{record.backstagePaymentUsers,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update rpt_agent_index
+    set id = #{record.id,jdbcType=INTEGER},
+      statistics_day = #{record.statisticsDay,jdbcType=DATE},
+      top_id = #{record.topId,jdbcType=INTEGER},
+      register_num = #{record.registerNum,jdbcType=INTEGER},
+      first_recharge_num = #{record.firstRechargeNum,jdbcType=INTEGER},
+      first_recharge_amount = #{record.firstRechargeAmount,jdbcType=DECIMAL},
+      bet_num = #{record.betNum,jdbcType=INTEGER},
+      new_bet_number_num = #{record.newBetNumberNum,jdbcType=INTEGER},
+      agent_commission = #{record.agentCommission,jdbcType=DECIMAL},
+      top_agent_commission = #{record.topAgentCommission,jdbcType=DECIMAL},
+      lottery_total_money = #{record.lotteryTotalMoney,jdbcType=DECIMAL},
+      lottery_bet_amount = #{record.lotteryBetAmount,jdbcType=DECIMAL},
+      payout_amount = #{record.payoutAmount,jdbcType=DECIMAL},
+      return_amount = #{record.returnAmount,jdbcType=DECIMAL},
+      company_deposits_num = #{record.companyDepositsNum,jdbcType=INTEGER},
+      online_deposits_num = #{record.onlineDepositsNum,jdbcType=INTEGER},
+      manual_deposits_num = #{record.manualDepositsNum,jdbcType=INTEGER},
+      manual_out_num = #{record.manualOutNum,jdbcType=INTEGER},
+      company_deposits_user = #{record.companyDepositsUser,jdbcType=INTEGER},
+      online_deposits_user = #{record.onlineDepositsUser,jdbcType=INTEGER},
+      manual_deposits_user = #{record.manualDepositsUser,jdbcType=INTEGER},
+      manual_out_user = #{record.manualOutUser,jdbcType=INTEGER},
+      company_deposits_amount = #{record.companyDepositsAmount,jdbcType=DECIMAL},
+      online_deposits_amount = #{record.onlineDepositsAmount,jdbcType=DECIMAL},
+      manual_deposits_amount = #{record.manualDepositsAmount,jdbcType=DECIMAL},
+      member_withdrawal_count = #{record.memberWithdrawalCount,jdbcType=INTEGER},
+      backstage_payment_count = #{record.backstagePaymentCount,jdbcType=INTEGER},
+      member_withdrawal_user = #{record.memberWithdrawalUser,jdbcType=INTEGER},
+      backstage_payment_user = #{record.backstagePaymentUser,jdbcType=INTEGER},
+      member_withdrawal_money = #{record.memberWithdrawalMoney,jdbcType=DECIMAL},
+      backstage_payment_money = #{record.backstagePaymentMoney,jdbcType=DECIMAL},
+      manual_out_money = #{record.manualOutMoney,jdbcType=DECIMAL},
+      vaild_user = #{record.vaildUser,jdbcType=INTEGER},
+      backwater_user = #{record.backwaterUser,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.RptAgentIndexWithBLOBs">
     update rpt_agent_index
     <set>

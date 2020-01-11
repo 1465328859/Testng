@@ -13,10 +13,82 @@
     <result column="belong_date" jdbcType="DATE" property="belongDate" />
     <result column="add_time" jdbcType="INTEGER" property="addTime" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
   <sql id="Base_Column_List">
     lottery_issues_id, end_bet_time, lottery_id, issue, prize_res, is_bet, pre_prize, 
     status_check_prize, belong_date, add_time
   </sql>
+  <select id="selectByExample" parameterType="com.Test.model.DBmodel.LotteryIssuesExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from lottery_issues
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByPrimaryKey" parameterType="com.Test.model.DBmodel.LotteryIssuesKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -28,6 +100,12 @@
     delete from lottery_issues
     where lottery_issues_id = #{lotteryIssuesId,jdbcType=INTEGER}
       and end_bet_time = #{endBetTime,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.Test.model.DBmodel.LotteryIssuesExample">
+    delete from lottery_issues
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="com.Test.model.DBmodel.LotteryIssues">
     insert into lottery_issues (lottery_issues_id, end_bet_time, lottery_id, 
@@ -106,6 +184,66 @@
       </if>
     </trim>
   </insert>
+  <select id="countByExample" parameterType="com.Test.model.DBmodel.LotteryIssuesExample" resultType="java.lang.Long">
+    select count(*) from lottery_issues
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update lottery_issues
+    <set>
+      <if test="record.lotteryIssuesId != null">
+        lottery_issues_id = #{record.lotteryIssuesId,jdbcType=INTEGER},
+      </if>
+      <if test="record.endBetTime != null">
+        end_bet_time = #{record.endBetTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.lotteryId != null">
+        lottery_id = #{record.lotteryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.issue != null">
+        issue = #{record.issue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prizeRes != null">
+        prize_res = #{record.prizeRes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isBet != null">
+        is_bet = #{record.isBet,jdbcType=BIT},
+      </if>
+      <if test="record.prePrize != null">
+        pre_prize = #{record.prePrize,jdbcType=BIT},
+      </if>
+      <if test="record.statusCheckPrize != null">
+        status_check_prize = #{record.statusCheckPrize,jdbcType=BIT},
+      </if>
+      <if test="record.belongDate != null">
+        belong_date = #{record.belongDate,jdbcType=DATE},
+      </if>
+      <if test="record.addTime != null">
+        add_time = #{record.addTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update lottery_issues
+    set lottery_issues_id = #{record.lotteryIssuesId,jdbcType=INTEGER},
+      end_bet_time = #{record.endBetTime,jdbcType=INTEGER},
+      lottery_id = #{record.lotteryId,jdbcType=INTEGER},
+      issue = #{record.issue,jdbcType=VARCHAR},
+      prize_res = #{record.prizeRes,jdbcType=VARCHAR},
+      is_bet = #{record.isBet,jdbcType=BIT},
+      pre_prize = #{record.prePrize,jdbcType=BIT},
+      status_check_prize = #{record.statusCheckPrize,jdbcType=BIT},
+      belong_date = #{record.belongDate,jdbcType=DATE},
+      add_time = #{record.addTime,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.LotteryIssues">
     update lottery_issues
     <set>
