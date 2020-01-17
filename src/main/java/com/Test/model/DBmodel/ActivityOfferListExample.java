@@ -1,6 +1,7 @@
 package com.Test.model.DBmodel;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ActivityOfferListExample {
@@ -161,6 +162,136 @@ public class ActivityOfferListExample {
 
         public Criteria andIdNotBetween(Byte value1, Byte value2) {
             addCriterion("id not between", value1, value2, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlatformIsNull() {
+            addCriterion("platform is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlatformIsNotNull() {
+            addCriterion("platform is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlatformEqualTo(String value) {
+            addCriterion("platform =", value, "platform");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlatformNotEqualTo(String value) {
+            addCriterion("platform <>", value, "platform");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlatformGreaterThan(String value) {
+            addCriterion("platform >", value, "platform");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlatformGreaterThanOrEqualTo(String value) {
+            addCriterion("platform >=", value, "platform");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlatformLessThan(String value) {
+            addCriterion("platform <", value, "platform");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlatformLessThanOrEqualTo(String value) {
+            addCriterion("platform <=", value, "platform");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlatformLike(String value) {
+            addCriterion("platform like", value, "platform");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlatformNotLike(String value) {
+            addCriterion("platform not like", value, "platform");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlatformIn(List<String> values) {
+            addCriterion("platform in", values, "platform");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlatformNotIn(List<String> values) {
+            addCriterion("platform not in", values, "platform");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlatformBetween(String value1, String value2) {
+            addCriterion("platform between", value1, value2, "platform");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlatformNotBetween(String value1, String value2) {
+            addCriterion("platform not between", value1, value2, "platform");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityTypeIsNull() {
+            addCriterion("activity_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityTypeIsNotNull() {
+            addCriterion("activity_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityTypeEqualTo(Byte value) {
+            addCriterion("activity_type =", value, "activityType");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityTypeNotEqualTo(Byte value) {
+            addCriterion("activity_type <>", value, "activityType");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityTypeGreaterThan(Byte value) {
+            addCriterion("activity_type >", value, "activityType");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityTypeGreaterThanOrEqualTo(Byte value) {
+            addCriterion("activity_type >=", value, "activityType");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityTypeLessThan(Byte value) {
+            addCriterion("activity_type <", value, "activityType");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityTypeLessThanOrEqualTo(Byte value) {
+            addCriterion("activity_type <=", value, "activityType");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityTypeIn(List<Byte> values) {
+            addCriterion("activity_type in", values, "activityType");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityTypeNotIn(List<Byte> values) {
+            addCriterion("activity_type not in", values, "activityType");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityTypeBetween(Byte value1, Byte value2) {
+            addCriterion("activity_type between", value1, value2, "activityType");
+            return (Criteria) this;
+        }
+
+        public Criteria andActivityTypeNotBetween(Byte value1, Byte value2) {
+            addCriterion("activity_type not between", value1, value2, "activityType");
             return (Criteria) this;
         }
 
@@ -644,62 +775,52 @@ public class ActivityOfferListExample {
             return (Criteria) this;
         }
 
-        public Criteria andStartTimeEqualTo(String value) {
+        public Criteria andStartTimeEqualTo(Date value) {
             addCriterion("start_time =", value, "startTime");
             return (Criteria) this;
         }
 
-        public Criteria andStartTimeNotEqualTo(String value) {
+        public Criteria andStartTimeNotEqualTo(Date value) {
             addCriterion("start_time <>", value, "startTime");
             return (Criteria) this;
         }
 
-        public Criteria andStartTimeGreaterThan(String value) {
+        public Criteria andStartTimeGreaterThan(Date value) {
             addCriterion("start_time >", value, "startTime");
             return (Criteria) this;
         }
 
-        public Criteria andStartTimeGreaterThanOrEqualTo(String value) {
+        public Criteria andStartTimeGreaterThanOrEqualTo(Date value) {
             addCriterion("start_time >=", value, "startTime");
             return (Criteria) this;
         }
 
-        public Criteria andStartTimeLessThan(String value) {
+        public Criteria andStartTimeLessThan(Date value) {
             addCriterion("start_time <", value, "startTime");
             return (Criteria) this;
         }
 
-        public Criteria andStartTimeLessThanOrEqualTo(String value) {
+        public Criteria andStartTimeLessThanOrEqualTo(Date value) {
             addCriterion("start_time <=", value, "startTime");
             return (Criteria) this;
         }
 
-        public Criteria andStartTimeLike(String value) {
-            addCriterion("start_time like", value, "startTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andStartTimeNotLike(String value) {
-            addCriterion("start_time not like", value, "startTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andStartTimeIn(List<String> values) {
+        public Criteria andStartTimeIn(List<Date> values) {
             addCriterion("start_time in", values, "startTime");
             return (Criteria) this;
         }
 
-        public Criteria andStartTimeNotIn(List<String> values) {
+        public Criteria andStartTimeNotIn(List<Date> values) {
             addCriterion("start_time not in", values, "startTime");
             return (Criteria) this;
         }
 
-        public Criteria andStartTimeBetween(String value1, String value2) {
+        public Criteria andStartTimeBetween(Date value1, Date value2) {
             addCriterion("start_time between", value1, value2, "startTime");
             return (Criteria) this;
         }
 
-        public Criteria andStartTimeNotBetween(String value1, String value2) {
+        public Criteria andStartTimeNotBetween(Date value1, Date value2) {
             addCriterion("start_time not between", value1, value2, "startTime");
             return (Criteria) this;
         }
@@ -714,63 +835,113 @@ public class ActivityOfferListExample {
             return (Criteria) this;
         }
 
-        public Criteria andEndTimeEqualTo(String value) {
+        public Criteria andEndTimeEqualTo(Date value) {
             addCriterion("end_time =", value, "endTime");
             return (Criteria) this;
         }
 
-        public Criteria andEndTimeNotEqualTo(String value) {
+        public Criteria andEndTimeNotEqualTo(Date value) {
             addCriterion("end_time <>", value, "endTime");
             return (Criteria) this;
         }
 
-        public Criteria andEndTimeGreaterThan(String value) {
+        public Criteria andEndTimeGreaterThan(Date value) {
             addCriterion("end_time >", value, "endTime");
             return (Criteria) this;
         }
 
-        public Criteria andEndTimeGreaterThanOrEqualTo(String value) {
+        public Criteria andEndTimeGreaterThanOrEqualTo(Date value) {
             addCriterion("end_time >=", value, "endTime");
             return (Criteria) this;
         }
 
-        public Criteria andEndTimeLessThan(String value) {
+        public Criteria andEndTimeLessThan(Date value) {
             addCriterion("end_time <", value, "endTime");
             return (Criteria) this;
         }
 
-        public Criteria andEndTimeLessThanOrEqualTo(String value) {
+        public Criteria andEndTimeLessThanOrEqualTo(Date value) {
             addCriterion("end_time <=", value, "endTime");
             return (Criteria) this;
         }
 
-        public Criteria andEndTimeLike(String value) {
-            addCriterion("end_time like", value, "endTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andEndTimeNotLike(String value) {
-            addCriterion("end_time not like", value, "endTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andEndTimeIn(List<String> values) {
+        public Criteria andEndTimeIn(List<Date> values) {
             addCriterion("end_time in", values, "endTime");
             return (Criteria) this;
         }
 
-        public Criteria andEndTimeNotIn(List<String> values) {
+        public Criteria andEndTimeNotIn(List<Date> values) {
             addCriterion("end_time not in", values, "endTime");
             return (Criteria) this;
         }
 
-        public Criteria andEndTimeBetween(String value1, String value2) {
+        public Criteria andEndTimeBetween(Date value1, Date value2) {
             addCriterion("end_time between", value1, value2, "endTime");
             return (Criteria) this;
         }
 
-        public Criteria andEndTimeNotBetween(String value1, String value2) {
+        public Criteria andEndTimeNotBetween(Date value1, Date value2) {
             addCriterion("end_time not between", value1, value2, "endTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedAtIsNull() {
+            addCriterion("updated_at is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedAtIsNotNull() {
+            addCriterion("updated_at is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedAtEqualTo(Date value) {
+            addCriterion("updated_at =", value, "updatedAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedAtNotEqualTo(Date value) {
+            addCriterion("updated_at <>", value, "updatedAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedAtGreaterThan(Date value) {
+            addCriterion("updated_at >", value, "updatedAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedAtGreaterThanOrEqualTo(Date value) {
+            addCriterion("updated_at >=", value, "updatedAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedAtLessThan(Date value) {
+            addCriterion("updated_at <", value, "updatedAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedAtLessThanOrEqualTo(Date value) {
+            addCriterion("updated_at <=", value, "updatedAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedAtIn(List<Date> values) {
+            addCriterion("updated_at in", values, "updatedAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedAtNotIn(List<Date> values) {
+            addCriterion("updated_at not in", values, "updatedAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedAtBetween(Date value1, Date value2) {
+            addCriterion("updated_at between", value1, value2, "updatedAt");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedAtNotBetween(Date value1, Date value2) {
+            addCriterion("updated_at not between", value1, value2, "updatedAt");
             return (Criteria) this;
         }
     }

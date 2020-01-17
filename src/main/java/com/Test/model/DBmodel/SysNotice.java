@@ -3,6 +3,8 @@ package com.Test.model.DBmodel;
 public class SysNotice {
     private Byte id;
 
+    private String platform;
+
     private String title;
 
     private String createdAt;
@@ -27,6 +29,14 @@ public class SysNotice {
 
     public void setId(Byte id) {
         this.id = id;
+    }
+
+    public String getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(String platform) {
+        this.platform = platform == null ? null : platform.trim();
     }
 
     public String getTitle() {

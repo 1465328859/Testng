@@ -6,6 +6,7 @@
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="offline_rebate" jdbcType="VARCHAR" property="offlineRebate" />
     <result column="proxy_domain" jdbcType="VARCHAR" property="proxyDomain" />
+    <result column="game_switch" jdbcType="VARCHAR" property="gameSwitch" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    host_id, user_id, offline_rebate, proxy_domain
+    host_id, user_id, offline_rebate, proxy_domain, game_switch
   </sql>
   <select id="selectByExample" parameterType="com.Test.model.DBmodel.AgentHostExample" resultMap="BaseResultMap">
     select
@@ -100,9 +101,9 @@
   </delete>
   <insert id="insert" parameterType="com.Test.model.DBmodel.AgentHost">
     insert into agent_host (host_id, user_id, offline_rebate, 
-      proxy_domain)
+      proxy_domain, game_switch)
     values (#{hostId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{offlineRebate,jdbcType=VARCHAR}, 
-      #{proxyDomain,jdbcType=VARCHAR})
+      #{proxyDomain,jdbcType=VARCHAR}, #{gameSwitch,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.Test.model.DBmodel.AgentHost">
     insert into agent_host
@@ -119,6 +120,9 @@
       <if test="proxyDomain != null">
         proxy_domain,
       </if>
+      <if test="gameSwitch != null">
+        game_switch,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="hostId != null">
@@ -132,6 +136,9 @@
       </if>
       <if test="proxyDomain != null">
         #{proxyDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="gameSwitch != null">
+        #{gameSwitch,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -156,6 +163,9 @@
       <if test="record.proxyDomain != null">
         proxy_domain = #{record.proxyDomain,jdbcType=VARCHAR},
       </if>
+      <if test="record.gameSwitch != null">
+        game_switch = #{record.gameSwitch,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -166,7 +176,8 @@
     set host_id = #{record.hostId,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
       offline_rebate = #{record.offlineRebate,jdbcType=VARCHAR},
-      proxy_domain = #{record.proxyDomain,jdbcType=VARCHAR}
+      proxy_domain = #{record.proxyDomain,jdbcType=VARCHAR},
+      game_switch = #{record.gameSwitch,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -183,6 +194,9 @@
       <if test="proxyDomain != null">
         proxy_domain = #{proxyDomain,jdbcType=VARCHAR},
       </if>
+      <if test="gameSwitch != null">
+        game_switch = #{gameSwitch,jdbcType=VARCHAR},
+      </if>
     </set>
     where host_id = #{hostId,jdbcType=INTEGER}
   </update>
@@ -190,7 +204,8 @@
     update agent_host
     set user_id = #{userId,jdbcType=INTEGER},
       offline_rebate = #{offlineRebate,jdbcType=VARCHAR},
-      proxy_domain = #{proxyDomain,jdbcType=VARCHAR}
+      proxy_domain = #{proxyDomain,jdbcType=VARCHAR},
+      game_switch = #{gameSwitch,jdbcType=VARCHAR}
     where host_id = #{hostId,jdbcType=INTEGER}
   </update>
 </mapper>

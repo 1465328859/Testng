@@ -3,6 +3,8 @@ package com.Test.model.DBmodel;
 public class UsersPush {
     private Integer id;
 
+    private String platform;
+
     private String title;
 
     private Integer num;
@@ -19,6 +21,14 @@ public class UsersPush {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(String platform) {
+        this.platform = platform == null ? null : platform.trim();
     }
 
     public String getTitle() {

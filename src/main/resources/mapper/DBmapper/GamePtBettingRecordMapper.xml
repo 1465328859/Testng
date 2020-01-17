@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.GamePtBettingRecordMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.GamePtBettingRecord">
+    <id column="game_code" jdbcType="BIGINT" property="gameCode" />
+    <result column="game_id" jdbcType="INTEGER" property="gameId" />
+    <result column="playername" jdbcType="VARCHAR" property="playername" />
+    <result column="window_code" jdbcType="INTEGER" property="windowCode" />
+    <result column="game_category" jdbcType="VARCHAR" property="gameCategory" />
+    <result column="game_cn_name" jdbcType="VARCHAR" property="gameCnName" />
+    <result column="game_name" jdbcType="VARCHAR" property="gameName" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="session_id" jdbcType="BIGINT" property="sessionId" />
+    <result column="bet" jdbcType="DECIMAL" property="bet" />
+    <result column="win" jdbcType="DECIMAL" property="win" />
+    <result column="progressive_bet" jdbcType="DECIMAL" property="progressiveBet" />
+    <result column="progressive_win" jdbcType="DECIMAL" property="progressiveWin" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+    <result column="current_bet" jdbcType="DECIMAL" property="currentBet" />
+    <result column="game_date" jdbcType="TIMESTAMP" property="gameDate" />
+    <result column="exit_game" jdbcType="VARCHAR" property="exitGame" />
+    <result column="live_network" jdbcType="VARCHAR" property="liveNetwork" />
+    <result column="rnum" jdbcType="VARCHAR" property="rnum" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    game_code, game_id, playername, window_code, game_category, game_cn_name, game_name, 
+    code, session_id, bet, win, progressive_bet, progressive_win, balance, current_bet, 
+    game_date, exit_game, live_network, rnum, created_at, updated_at
+  </sql>
+  <select id="selectByExample" parameterType="com.Test.model.DBmodel.GamePtBettingRecordExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from game_pt_betting_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from game_pt_betting_record
+    where game_code = #{gameCode,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from game_pt_betting_record
+    where game_code = #{gameCode,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.Test.model.DBmodel.GamePtBettingRecordExample">
+    delete from game_pt_betting_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.GamePtBettingRecord">
+    insert into game_pt_betting_record (game_code, game_id, playername, 
+      window_code, game_category, game_cn_name, 
+      game_name, code, session_id, 
+      bet, win, progressive_bet, 
+      progressive_win, balance, current_bet, 
+      game_date, exit_game, live_network, 
+      rnum, created_at, updated_at
+      )
+    values (#{gameCode,jdbcType=BIGINT}, #{gameId,jdbcType=INTEGER}, #{playername,jdbcType=VARCHAR}, 
+      #{windowCode,jdbcType=INTEGER}, #{gameCategory,jdbcType=VARCHAR}, #{gameCnName,jdbcType=VARCHAR}, 
+      #{gameName,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{sessionId,jdbcType=BIGINT}, 
+      #{bet,jdbcType=DECIMAL}, #{win,jdbcType=DECIMAL}, #{progressiveBet,jdbcType=DECIMAL}, 
+      #{progressiveWin,jdbcType=DECIMAL}, #{balance,jdbcType=DECIMAL}, #{currentBet,jdbcType=DECIMAL}, 
+      #{gameDate,jdbcType=TIMESTAMP}, #{exitGame,jdbcType=VARCHAR}, #{liveNetwork,jdbcType=VARCHAR}, 
+      #{rnum,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.GamePtBettingRecord">
+    insert into game_pt_betting_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gameCode != null">
+        game_code,
+      </if>
+      <if test="gameId != null">
+        game_id,
+      </if>
+      <if test="playername != null">
+        playername,
+      </if>
+      <if test="windowCode != null">
+        window_code,
+      </if>
+      <if test="gameCategory != null">
+        game_category,
+      </if>
+      <if test="gameCnName != null">
+        game_cn_name,
+      </if>
+      <if test="gameName != null">
+        game_name,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="sessionId != null">
+        session_id,
+      </if>
+      <if test="bet != null">
+        bet,
+      </if>
+      <if test="win != null">
+        win,
+      </if>
+      <if test="progressiveBet != null">
+        progressive_bet,
+      </if>
+      <if test="progressiveWin != null">
+        progressive_win,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="currentBet != null">
+        current_bet,
+      </if>
+      <if test="gameDate != null">
+        game_date,
+      </if>
+      <if test="exitGame != null">
+        exit_game,
+      </if>
+      <if test="liveNetwork != null">
+        live_network,
+      </if>
+      <if test="rnum != null">
+        rnum,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gameCode != null">
+        #{gameCode,jdbcType=BIGINT},
+      </if>
+      <if test="gameId != null">
+        #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="playername != null">
+        #{playername,jdbcType=VARCHAR},
+      </if>
+      <if test="windowCode != null">
+        #{windowCode,jdbcType=INTEGER},
+      </if>
+      <if test="gameCategory != null">
+        #{gameCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="gameCnName != null">
+        #{gameCnName,jdbcType=VARCHAR},
+      </if>
+      <if test="gameName != null">
+        #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionId != null">
+        #{sessionId,jdbcType=BIGINT},
+      </if>
+      <if test="bet != null">
+        #{bet,jdbcType=DECIMAL},
+      </if>
+      <if test="win != null">
+        #{win,jdbcType=DECIMAL},
+      </if>
+      <if test="progressiveBet != null">
+        #{progressiveBet,jdbcType=DECIMAL},
+      </if>
+      <if test="progressiveWin != null">
+        #{progressiveWin,jdbcType=DECIMAL},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="currentBet != null">
+        #{currentBet,jdbcType=DECIMAL},
+      </if>
+      <if test="gameDate != null">
+        #{gameDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exitGame != null">
+        #{exitGame,jdbcType=VARCHAR},
+      </if>
+      <if test="liveNetwork != null">
+        #{liveNetwork,jdbcType=VARCHAR},
+      </if>
+      <if test="rnum != null">
+        #{rnum,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.Test.model.DBmodel.GamePtBettingRecordExample" resultType="java.lang.Long">
+    select count(*) from game_pt_betting_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update game_pt_betting_record
+    <set>
+      <if test="record.gameCode != null">
+        game_code = #{record.gameCode,jdbcType=BIGINT},
+      </if>
+      <if test="record.gameId != null">
+        game_id = #{record.gameId,jdbcType=INTEGER},
+      </if>
+      <if test="record.playername != null">
+        playername = #{record.playername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.windowCode != null">
+        window_code = #{record.windowCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.gameCategory != null">
+        game_category = #{record.gameCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gameCnName != null">
+        game_cn_name = #{record.gameCnName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gameName != null">
+        game_name = #{record.gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sessionId != null">
+        session_id = #{record.sessionId,jdbcType=BIGINT},
+      </if>
+      <if test="record.bet != null">
+        bet = #{record.bet,jdbcType=DECIMAL},
+      </if>
+      <if test="record.win != null">
+        win = #{record.win,jdbcType=DECIMAL},
+      </if>
+      <if test="record.progressiveBet != null">
+        progressive_bet = #{record.progressiveBet,jdbcType=DECIMAL},
+      </if>
+      <if test="record.progressiveWin != null">
+        progressive_win = #{record.progressiveWin,jdbcType=DECIMAL},
+      </if>
+      <if test="record.balance != null">
+        balance = #{record.balance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.currentBet != null">
+        current_bet = #{record.currentBet,jdbcType=DECIMAL},
+      </if>
+      <if test="record.gameDate != null">
+        game_date = #{record.gameDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.exitGame != null">
+        exit_game = #{record.exitGame,jdbcType=VARCHAR},
+      </if>
+      <if test="record.liveNetwork != null">
+        live_network = #{record.liveNetwork,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rnum != null">
+        rnum = #{record.rnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdAt != null">
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedAt != null">
+        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update game_pt_betting_record
+    set game_code = #{record.gameCode,jdbcType=BIGINT},
+      game_id = #{record.gameId,jdbcType=INTEGER},
+      playername = #{record.playername,jdbcType=VARCHAR},
+      window_code = #{record.windowCode,jdbcType=INTEGER},
+      game_category = #{record.gameCategory,jdbcType=VARCHAR},
+      game_cn_name = #{record.gameCnName,jdbcType=VARCHAR},
+      game_name = #{record.gameName,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR},
+      session_id = #{record.sessionId,jdbcType=BIGINT},
+      bet = #{record.bet,jdbcType=DECIMAL},
+      win = #{record.win,jdbcType=DECIMAL},
+      progressive_bet = #{record.progressiveBet,jdbcType=DECIMAL},
+      progressive_win = #{record.progressiveWin,jdbcType=DECIMAL},
+      balance = #{record.balance,jdbcType=DECIMAL},
+      current_bet = #{record.currentBet,jdbcType=DECIMAL},
+      game_date = #{record.gameDate,jdbcType=TIMESTAMP},
+      exit_game = #{record.exitGame,jdbcType=VARCHAR},
+      live_network = #{record.liveNetwork,jdbcType=VARCHAR},
+      rnum = #{record.rnum,jdbcType=VARCHAR},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.GamePtBettingRecord">
+    update game_pt_betting_record
+    <set>
+      <if test="gameId != null">
+        game_id = #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="playername != null">
+        playername = #{playername,jdbcType=VARCHAR},
+      </if>
+      <if test="windowCode != null">
+        window_code = #{windowCode,jdbcType=INTEGER},
+      </if>
+      <if test="gameCategory != null">
+        game_category = #{gameCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="gameCnName != null">
+        game_cn_name = #{gameCnName,jdbcType=VARCHAR},
+      </if>
+      <if test="gameName != null">
+        game_name = #{gameName,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionId != null">
+        session_id = #{sessionId,jdbcType=BIGINT},
+      </if>
+      <if test="bet != null">
+        bet = #{bet,jdbcType=DECIMAL},
+      </if>
+      <if test="win != null">
+        win = #{win,jdbcType=DECIMAL},
+      </if>
+      <if test="progressiveBet != null">
+        progressive_bet = #{progressiveBet,jdbcType=DECIMAL},
+      </if>
+      <if test="progressiveWin != null">
+        progressive_win = #{progressiveWin,jdbcType=DECIMAL},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="currentBet != null">
+        current_bet = #{currentBet,jdbcType=DECIMAL},
+      </if>
+      <if test="gameDate != null">
+        game_date = #{gameDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exitGame != null">
+        exit_game = #{exitGame,jdbcType=VARCHAR},
+      </if>
+      <if test="liveNetwork != null">
+        live_network = #{liveNetwork,jdbcType=VARCHAR},
+      </if>
+      <if test="rnum != null">
+        rnum = #{rnum,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where game_code = #{gameCode,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.GamePtBettingRecord">
+    update game_pt_betting_record
+    set game_id = #{gameId,jdbcType=INTEGER},
+      playername = #{playername,jdbcType=VARCHAR},
+      window_code = #{windowCode,jdbcType=INTEGER},
+      game_category = #{gameCategory,jdbcType=VARCHAR},
+      game_cn_name = #{gameCnName,jdbcType=VARCHAR},
+      game_name = #{gameName,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      session_id = #{sessionId,jdbcType=BIGINT},
+      bet = #{bet,jdbcType=DECIMAL},
+      win = #{win,jdbcType=DECIMAL},
+      progressive_bet = #{progressiveBet,jdbcType=DECIMAL},
+      progressive_win = #{progressiveWin,jdbcType=DECIMAL},
+      balance = #{balance,jdbcType=DECIMAL},
+      current_bet = #{currentBet,jdbcType=DECIMAL},
+      game_date = #{gameDate,jdbcType=TIMESTAMP},
+      exit_game = #{exitGame,jdbcType=VARCHAR},
+      live_network = #{liveNetwork,jdbcType=VARCHAR},
+      rnum = #{rnum,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+    where game_code = #{gameCode,jdbcType=BIGINT}
+  </update>
+</mapper>

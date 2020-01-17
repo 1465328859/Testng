@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.GameJdbTransferMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.GameJdbTransfer">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="agent_user" jdbcType="VARCHAR" property="agentUser" />
+    <result column="uid" jdbcType="VARCHAR" property="uid" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="state" jdbcType="TINYINT" property="state" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="all_cash_out_flag" jdbcType="TINYINT" property="allCashOutFlag" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="user_balance" jdbcType="DECIMAL" property="userBalance" />
+    <result column="user_cash_balance" jdbcType="DECIMAL" property="userCashBalance" />
+    <result column="agent_cash_balance" jdbcType="DECIMAL" property="agentCashBalance" />
+    <result column="pid" jdbcType="INTEGER" property="pid" />
+    <result column="pay_date" jdbcType="TIMESTAMP" property="payDate" />
+    <result column="submit_time" jdbcType="TIMESTAMP" property="submitTime" />
+    <result column="confirm_time" jdbcType="TIMESTAMP" property="confirmTime" />
+    <result column="settlement_time" jdbcType="TIMESTAMP" property="settlementTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, user_id, username, agent_user, uid, order_no, type, state, amount, all_cash_out_flag, 
+    remark, user_balance, user_cash_balance, agent_cash_balance, pid, pay_date, submit_time, 
+    confirm_time, settlement_time
+  </sql>
+  <select id="selectByExample" parameterType="com.Test.model.DBmodel.GameJdbTransferExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from game_jdb_transfer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from game_jdb_transfer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from game_jdb_transfer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.Test.model.DBmodel.GameJdbTransferExample">
+    delete from game_jdb_transfer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.GameJdbTransfer">
+    insert into game_jdb_transfer (id, user_id, username, 
+      agent_user, uid, order_no, 
+      type, state, amount, 
+      all_cash_out_flag, remark, user_balance, 
+      user_cash_balance, agent_cash_balance, pid, 
+      pay_date, submit_time, confirm_time, 
+      settlement_time)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{agentUser,jdbcType=VARCHAR}, #{uid,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{state,jdbcType=TINYINT}, #{amount,jdbcType=DECIMAL}, 
+      #{allCashOutFlag,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}, #{userBalance,jdbcType=DECIMAL}, 
+      #{userCashBalance,jdbcType=DECIMAL}, #{agentCashBalance,jdbcType=DECIMAL}, #{pid,jdbcType=INTEGER}, 
+      #{payDate,jdbcType=TIMESTAMP}, #{submitTime,jdbcType=TIMESTAMP}, #{confirmTime,jdbcType=TIMESTAMP}, 
+      #{settlementTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.GameJdbTransfer">
+    insert into game_jdb_transfer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="agentUser != null">
+        agent_user,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="allCashOutFlag != null">
+        all_cash_out_flag,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="userBalance != null">
+        user_balance,
+      </if>
+      <if test="userCashBalance != null">
+        user_cash_balance,
+      </if>
+      <if test="agentCashBalance != null">
+        agent_cash_balance,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="payDate != null">
+        pay_date,
+      </if>
+      <if test="submitTime != null">
+        submit_time,
+      </if>
+      <if test="confirmTime != null">
+        confirm_time,
+      </if>
+      <if test="settlementTime != null">
+        settlement_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="agentUser != null">
+        #{agentUser,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="allCashOutFlag != null">
+        #{allCashOutFlag,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="userBalance != null">
+        #{userBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="userCashBalance != null">
+        #{userCashBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="agentCashBalance != null">
+        #{agentCashBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="payDate != null">
+        #{payDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="submitTime != null">
+        #{submitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="confirmTime != null">
+        #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="settlementTime != null">
+        #{settlementTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.Test.model.DBmodel.GameJdbTransferExample" resultType="java.lang.Long">
+    select count(*) from game_jdb_transfer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update game_jdb_transfer
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agentUser != null">
+        agent_user = #{record.agentUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uid != null">
+        uid = #{record.uid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderNo != null">
+        order_no = #{record.orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null">
+        state = #{record.state,jdbcType=TINYINT},
+      </if>
+      <if test="record.amount != null">
+        amount = #{record.amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.allCashOutFlag != null">
+        all_cash_out_flag = #{record.allCashOutFlag,jdbcType=TINYINT},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userBalance != null">
+        user_balance = #{record.userBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.userCashBalance != null">
+        user_cash_balance = #{record.userCashBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.agentCashBalance != null">
+        agent_cash_balance = #{record.agentCashBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pid != null">
+        pid = #{record.pid,jdbcType=INTEGER},
+      </if>
+      <if test="record.payDate != null">
+        pay_date = #{record.payDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.submitTime != null">
+        submit_time = #{record.submitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.confirmTime != null">
+        confirm_time = #{record.confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.settlementTime != null">
+        settlement_time = #{record.settlementTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update game_jdb_transfer
+    set id = #{record.id,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      username = #{record.username,jdbcType=VARCHAR},
+      agent_user = #{record.agentUser,jdbcType=VARCHAR},
+      uid = #{record.uid,jdbcType=VARCHAR},
+      order_no = #{record.orderNo,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=TINYINT},
+      amount = #{record.amount,jdbcType=DECIMAL},
+      all_cash_out_flag = #{record.allCashOutFlag,jdbcType=TINYINT},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      user_balance = #{record.userBalance,jdbcType=DECIMAL},
+      user_cash_balance = #{record.userCashBalance,jdbcType=DECIMAL},
+      agent_cash_balance = #{record.agentCashBalance,jdbcType=DECIMAL},
+      pid = #{record.pid,jdbcType=INTEGER},
+      pay_date = #{record.payDate,jdbcType=TIMESTAMP},
+      submit_time = #{record.submitTime,jdbcType=TIMESTAMP},
+      confirm_time = #{record.confirmTime,jdbcType=TIMESTAMP},
+      settlement_time = #{record.settlementTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.GameJdbTransfer">
+    update game_jdb_transfer
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="agentUser != null">
+        agent_user = #{agentUser,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=TINYINT},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="allCashOutFlag != null">
+        all_cash_out_flag = #{allCashOutFlag,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="userBalance != null">
+        user_balance = #{userBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="userCashBalance != null">
+        user_cash_balance = #{userCashBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="agentCashBalance != null">
+        agent_cash_balance = #{agentCashBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="payDate != null">
+        pay_date = #{payDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="submitTime != null">
+        submit_time = #{submitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="confirmTime != null">
+        confirm_time = #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="settlementTime != null">
+        settlement_time = #{settlementTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.GameJdbTransfer">
+    update game_jdb_transfer
+    set user_id = #{userId,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR},
+      agent_user = #{agentUser,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      state = #{state,jdbcType=TINYINT},
+      amount = #{amount,jdbcType=DECIMAL},
+      all_cash_out_flag = #{allCashOutFlag,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      user_balance = #{userBalance,jdbcType=DECIMAL},
+      user_cash_balance = #{userCashBalance,jdbcType=DECIMAL},
+      agent_cash_balance = #{agentCashBalance,jdbcType=DECIMAL},
+      pid = #{pid,jdbcType=INTEGER},
+      pay_date = #{payDate,jdbcType=TIMESTAMP},
+      submit_time = #{submitTime,jdbcType=TIMESTAMP},
+      confirm_time = #{confirmTime,jdbcType=TIMESTAMP},
+      settlement_time = #{settlementTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

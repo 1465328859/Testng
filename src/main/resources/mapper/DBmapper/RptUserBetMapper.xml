@@ -13,10 +13,17 @@
     <result column="bet_amount" jdbcType="DECIMAL" property="betAmount" />
     <result column="rebate_amount" jdbcType="DECIMAL" property="rebateAmount" />
     <result column="prize_amount" jdbcType="DECIMAL" property="prizeAmount" />
+    <result column="mg_number" jdbcType="INTEGER" property="mgNumber" />
+    <result column="mg_tzzs" jdbcType="INTEGER" property="mgTzzs" />
+    <result column="mg_zjzs" jdbcType="INTEGER" property="mgZjzs" />
+    <result column="mg_bet_amount" jdbcType="DECIMAL" property="mgBetAmount" />
+    <result column="mg_rebate_amount" jdbcType="DECIMAL" property="mgRebateAmount" />
+    <result column="mg_prize_amount" jdbcType="DECIMAL" property="mgPrizeAmount" />
     <result column="online_amount" jdbcType="DECIMAL" property="onlineAmount" />
     <result column="manual_in" jdbcType="DECIMAL" property="manualIn" />
     <result column="offline_amount" jdbcType="DECIMAL" property="offlineAmount" />
     <result column="agent_rebate" jdbcType="DECIMAL" property="agentRebate" />
+    <result column="mg_agent_rebate" jdbcType="DECIMAL" property="mgAgentRebate" />
     <result column="member_take" jdbcType="DECIMAL" property="memberTake" />
     <result column="member_take_count" jdbcType="INTEGER" property="memberTakeCount" />
     <result column="manual_out" jdbcType="DECIMAL" property="manualOut" />
@@ -97,7 +104,8 @@
   </sql>
   <sql id="Base_Column_List">
     id, user_id, username, top_id, up_three_grade, number, tzzs, zjzs, bet_amount, rebate_amount, 
-    prize_amount, online_amount, manual_in, offline_amount, agent_rebate, member_take, 
+    prize_amount, mg_number, mg_tzzs, mg_zjzs, mg_bet_amount, mg_rebate_amount, mg_prize_amount, 
+    online_amount, manual_in, offline_amount, agent_rebate, mg_agent_rebate, member_take, 
     member_take_count, manual_out, manual_out_count, deposits_norpt_amount, withdrawal_norpt_amount, 
     register_offer, lottery_offer, charge_rebate, create_time, company_deposits_num, 
     online_deposits_num, manual_deposits_num, member_withdrawal_count, member_withdrawal_money, 
@@ -137,25 +145,29 @@
     insert into rpt_user_bet (id, user_id, username, 
       top_id, up_three_grade, number, 
       tzzs, zjzs, bet_amount, 
-      rebate_amount, prize_amount, online_amount, 
+      rebate_amount, prize_amount, mg_number, 
+      mg_tzzs, mg_zjzs, mg_bet_amount, 
+      mg_rebate_amount, mg_prize_amount, online_amount, 
       manual_in, offline_amount, agent_rebate, 
-      member_take, member_take_count, manual_out, 
-      manual_out_count, deposits_norpt_amount, withdrawal_norpt_amount, 
-      register_offer, lottery_offer, charge_rebate, 
-      create_time, company_deposits_num, online_deposits_num, 
-      manual_deposits_num, member_withdrawal_count, 
+      mg_agent_rebate, member_take, member_take_count, 
+      manual_out, manual_out_count, deposits_norpt_amount, 
+      withdrawal_norpt_amount, register_offer, lottery_offer, 
+      charge_rebate, create_time, company_deposits_num, 
+      online_deposits_num, manual_deposits_num, member_withdrawal_count, 
       member_withdrawal_money, vaild_user, backwater_user, 
       lottery_amount, belong_date)
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
       #{topId,jdbcType=INTEGER}, #{upThreeGrade,jdbcType=VARCHAR}, #{number,jdbcType=INTEGER}, 
       #{tzzs,jdbcType=INTEGER}, #{zjzs,jdbcType=INTEGER}, #{betAmount,jdbcType=DECIMAL}, 
-      #{rebateAmount,jdbcType=DECIMAL}, #{prizeAmount,jdbcType=DECIMAL}, #{onlineAmount,jdbcType=DECIMAL}, 
+      #{rebateAmount,jdbcType=DECIMAL}, #{prizeAmount,jdbcType=DECIMAL}, #{mgNumber,jdbcType=INTEGER}, 
+      #{mgTzzs,jdbcType=INTEGER}, #{mgZjzs,jdbcType=INTEGER}, #{mgBetAmount,jdbcType=DECIMAL}, 
+      #{mgRebateAmount,jdbcType=DECIMAL}, #{mgPrizeAmount,jdbcType=DECIMAL}, #{onlineAmount,jdbcType=DECIMAL}, 
       #{manualIn,jdbcType=DECIMAL}, #{offlineAmount,jdbcType=DECIMAL}, #{agentRebate,jdbcType=DECIMAL}, 
-      #{memberTake,jdbcType=DECIMAL}, #{memberTakeCount,jdbcType=INTEGER}, #{manualOut,jdbcType=DECIMAL}, 
-      #{manualOutCount,jdbcType=INTEGER}, #{depositsNorptAmount,jdbcType=DECIMAL}, #{withdrawalNorptAmount,jdbcType=DECIMAL}, 
-      #{registerOffer,jdbcType=DECIMAL}, #{lotteryOffer,jdbcType=DECIMAL}, #{chargeRebate,jdbcType=DECIMAL}, 
-      #{createTime,jdbcType=INTEGER}, #{companyDepositsNum,jdbcType=INTEGER}, #{onlineDepositsNum,jdbcType=INTEGER}, 
-      #{manualDepositsNum,jdbcType=INTEGER}, #{memberWithdrawalCount,jdbcType=INTEGER}, 
+      #{mgAgentRebate,jdbcType=DECIMAL}, #{memberTake,jdbcType=DECIMAL}, #{memberTakeCount,jdbcType=INTEGER}, 
+      #{manualOut,jdbcType=DECIMAL}, #{manualOutCount,jdbcType=INTEGER}, #{depositsNorptAmount,jdbcType=DECIMAL}, 
+      #{withdrawalNorptAmount,jdbcType=DECIMAL}, #{registerOffer,jdbcType=DECIMAL}, #{lotteryOffer,jdbcType=DECIMAL}, 
+      #{chargeRebate,jdbcType=DECIMAL}, #{createTime,jdbcType=INTEGER}, #{companyDepositsNum,jdbcType=INTEGER}, 
+      #{onlineDepositsNum,jdbcType=INTEGER}, #{manualDepositsNum,jdbcType=INTEGER}, #{memberWithdrawalCount,jdbcType=INTEGER}, 
       #{memberWithdrawalMoney,jdbcType=DECIMAL}, #{vaildUser,jdbcType=INTEGER}, #{backwaterUser,jdbcType=INTEGER}, 
       #{lotteryAmount,jdbcType=VARCHAR}, #{belongDate,jdbcType=DATE})
   </insert>
@@ -195,6 +207,24 @@
       <if test="prizeAmount != null">
         prize_amount,
       </if>
+      <if test="mgNumber != null">
+        mg_number,
+      </if>
+      <if test="mgTzzs != null">
+        mg_tzzs,
+      </if>
+      <if test="mgZjzs != null">
+        mg_zjzs,
+      </if>
+      <if test="mgBetAmount != null">
+        mg_bet_amount,
+      </if>
+      <if test="mgRebateAmount != null">
+        mg_rebate_amount,
+      </if>
+      <if test="mgPrizeAmount != null">
+        mg_prize_amount,
+      </if>
       <if test="onlineAmount != null">
         online_amount,
       </if>
@@ -206,6 +236,9 @@
       </if>
       <if test="agentRebate != null">
         agent_rebate,
+      </if>
+      <if test="mgAgentRebate != null">
+        mg_agent_rebate,
       </if>
       <if test="memberTake != null">
         member_take,
@@ -299,6 +332,24 @@
       <if test="prizeAmount != null">
         #{prizeAmount,jdbcType=DECIMAL},
       </if>
+      <if test="mgNumber != null">
+        #{mgNumber,jdbcType=INTEGER},
+      </if>
+      <if test="mgTzzs != null">
+        #{mgTzzs,jdbcType=INTEGER},
+      </if>
+      <if test="mgZjzs != null">
+        #{mgZjzs,jdbcType=INTEGER},
+      </if>
+      <if test="mgBetAmount != null">
+        #{mgBetAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="mgRebateAmount != null">
+        #{mgRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="mgPrizeAmount != null">
+        #{mgPrizeAmount,jdbcType=DECIMAL},
+      </if>
       <if test="onlineAmount != null">
         #{onlineAmount,jdbcType=DECIMAL},
       </if>
@@ -310,6 +361,9 @@
       </if>
       <if test="agentRebate != null">
         #{agentRebate,jdbcType=DECIMAL},
+      </if>
+      <if test="mgAgentRebate != null">
+        #{mgAgentRebate,jdbcType=DECIMAL},
       </if>
       <if test="memberTake != null">
         #{memberTake,jdbcType=DECIMAL},
@@ -412,6 +466,24 @@
       <if test="record.prizeAmount != null">
         prize_amount = #{record.prizeAmount,jdbcType=DECIMAL},
       </if>
+      <if test="record.mgNumber != null">
+        mg_number = #{record.mgNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.mgTzzs != null">
+        mg_tzzs = #{record.mgTzzs,jdbcType=INTEGER},
+      </if>
+      <if test="record.mgZjzs != null">
+        mg_zjzs = #{record.mgZjzs,jdbcType=INTEGER},
+      </if>
+      <if test="record.mgBetAmount != null">
+        mg_bet_amount = #{record.mgBetAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mgRebateAmount != null">
+        mg_rebate_amount = #{record.mgRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mgPrizeAmount != null">
+        mg_prize_amount = #{record.mgPrizeAmount,jdbcType=DECIMAL},
+      </if>
       <if test="record.onlineAmount != null">
         online_amount = #{record.onlineAmount,jdbcType=DECIMAL},
       </if>
@@ -423,6 +495,9 @@
       </if>
       <if test="record.agentRebate != null">
         agent_rebate = #{record.agentRebate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mgAgentRebate != null">
+        mg_agent_rebate = #{record.mgAgentRebate,jdbcType=DECIMAL},
       </if>
       <if test="record.memberTake != null">
         member_take = #{record.memberTake,jdbcType=DECIMAL},
@@ -499,10 +574,17 @@
       bet_amount = #{record.betAmount,jdbcType=DECIMAL},
       rebate_amount = #{record.rebateAmount,jdbcType=DECIMAL},
       prize_amount = #{record.prizeAmount,jdbcType=DECIMAL},
+      mg_number = #{record.mgNumber,jdbcType=INTEGER},
+      mg_tzzs = #{record.mgTzzs,jdbcType=INTEGER},
+      mg_zjzs = #{record.mgZjzs,jdbcType=INTEGER},
+      mg_bet_amount = #{record.mgBetAmount,jdbcType=DECIMAL},
+      mg_rebate_amount = #{record.mgRebateAmount,jdbcType=DECIMAL},
+      mg_prize_amount = #{record.mgPrizeAmount,jdbcType=DECIMAL},
       online_amount = #{record.onlineAmount,jdbcType=DECIMAL},
       manual_in = #{record.manualIn,jdbcType=DECIMAL},
       offline_amount = #{record.offlineAmount,jdbcType=DECIMAL},
       agent_rebate = #{record.agentRebate,jdbcType=DECIMAL},
+      mg_agent_rebate = #{record.mgAgentRebate,jdbcType=DECIMAL},
       member_take = #{record.memberTake,jdbcType=DECIMAL},
       member_take_count = #{record.memberTakeCount,jdbcType=INTEGER},
       manual_out = #{record.manualOut,jdbcType=DECIMAL},
@@ -559,6 +641,24 @@
       <if test="prizeAmount != null">
         prize_amount = #{prizeAmount,jdbcType=DECIMAL},
       </if>
+      <if test="mgNumber != null">
+        mg_number = #{mgNumber,jdbcType=INTEGER},
+      </if>
+      <if test="mgTzzs != null">
+        mg_tzzs = #{mgTzzs,jdbcType=INTEGER},
+      </if>
+      <if test="mgZjzs != null">
+        mg_zjzs = #{mgZjzs,jdbcType=INTEGER},
+      </if>
+      <if test="mgBetAmount != null">
+        mg_bet_amount = #{mgBetAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="mgRebateAmount != null">
+        mg_rebate_amount = #{mgRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="mgPrizeAmount != null">
+        mg_prize_amount = #{mgPrizeAmount,jdbcType=DECIMAL},
+      </if>
       <if test="onlineAmount != null">
         online_amount = #{onlineAmount,jdbcType=DECIMAL},
       </if>
@@ -570,6 +670,9 @@
       </if>
       <if test="agentRebate != null">
         agent_rebate = #{agentRebate,jdbcType=DECIMAL},
+      </if>
+      <if test="mgAgentRebate != null">
+        mg_agent_rebate = #{mgAgentRebate,jdbcType=DECIMAL},
       </if>
       <if test="memberTake != null">
         member_take = #{memberTake,jdbcType=DECIMAL},
@@ -643,10 +746,17 @@
       bet_amount = #{betAmount,jdbcType=DECIMAL},
       rebate_amount = #{rebateAmount,jdbcType=DECIMAL},
       prize_amount = #{prizeAmount,jdbcType=DECIMAL},
+      mg_number = #{mgNumber,jdbcType=INTEGER},
+      mg_tzzs = #{mgTzzs,jdbcType=INTEGER},
+      mg_zjzs = #{mgZjzs,jdbcType=INTEGER},
+      mg_bet_amount = #{mgBetAmount,jdbcType=DECIMAL},
+      mg_rebate_amount = #{mgRebateAmount,jdbcType=DECIMAL},
+      mg_prize_amount = #{mgPrizeAmount,jdbcType=DECIMAL},
       online_amount = #{onlineAmount,jdbcType=DECIMAL},
       manual_in = #{manualIn,jdbcType=DECIMAL},
       offline_amount = #{offlineAmount,jdbcType=DECIMAL},
       agent_rebate = #{agentRebate,jdbcType=DECIMAL},
+      mg_agent_rebate = #{mgAgentRebate,jdbcType=DECIMAL},
       member_take = #{memberTake,jdbcType=DECIMAL},
       member_take_count = #{memberTakeCount,jdbcType=INTEGER},
       manual_out = #{manualOut,jdbcType=DECIMAL},

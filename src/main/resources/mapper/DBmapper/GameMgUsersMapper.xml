@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.GameMgUsersMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.GameMgUsers">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="mg_id" jdbcType="INTEGER" property="mgId" />
+    <result column="my_path" jdbcType="VARCHAR" property="myPath" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="mg_user_id" jdbcType="INTEGER" property="mgUserId" />
+    <result column="mg_username" jdbcType="VARCHAR" property="mgUsername" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="group_id" jdbcType="INTEGER" property="groupId" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="cur" jdbcType="VARCHAR" property="cur" />
+    <result column="state" jdbcType="TINYINT" property="state" />
+    <result column="is_test" jdbcType="TINYINT" property="isTest" />
+    <result column="registered_time" jdbcType="TIMESTAMP" property="registeredTime" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, user_id, username, mg_id, my_path, version, mg_user_id, mg_username, password, 
+    group_id, parent_id, name, type, cur, state, is_test, registered_time, updated_time
+  </sql>
+  <select id="selectByExample" parameterType="com.Test.model.DBmodel.GameMgUsersExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from game_mg_users
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from game_mg_users
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from game_mg_users
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.Test.model.DBmodel.GameMgUsersExample">
+    delete from game_mg_users
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.GameMgUsers">
+    insert into game_mg_users (id, user_id, username, 
+      mg_id, my_path, version, 
+      mg_user_id, mg_username, password, 
+      group_id, parent_id, name, 
+      type, cur, state, is_test, 
+      registered_time, updated_time)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{mgId,jdbcType=INTEGER}, #{myPath,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, 
+      #{mgUserId,jdbcType=INTEGER}, #{mgUsername,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{groupId,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{cur,jdbcType=VARCHAR}, #{state,jdbcType=TINYINT}, #{isTest,jdbcType=TINYINT}, 
+      #{registeredTime,jdbcType=TIMESTAMP}, #{updatedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.GameMgUsers">
+    insert into game_mg_users
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="mgId != null">
+        mg_id,
+      </if>
+      <if test="myPath != null">
+        my_path,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="mgUserId != null">
+        mg_user_id,
+      </if>
+      <if test="mgUsername != null">
+        mg_username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="groupId != null">
+        group_id,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="cur != null">
+        cur,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="isTest != null">
+        is_test,
+      </if>
+      <if test="registeredTime != null">
+        registered_time,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="mgId != null">
+        #{mgId,jdbcType=INTEGER},
+      </if>
+      <if test="myPath != null">
+        #{myPath,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="mgUserId != null">
+        #{mgUserId,jdbcType=INTEGER},
+      </if>
+      <if test="mgUsername != null">
+        #{mgUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="cur != null">
+        #{cur,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="isTest != null">
+        #{isTest,jdbcType=TINYINT},
+      </if>
+      <if test="registeredTime != null">
+        #{registeredTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.Test.model.DBmodel.GameMgUsersExample" resultType="java.lang.Long">
+    select count(*) from game_mg_users
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update game_mg_users
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mgId != null">
+        mg_id = #{record.mgId,jdbcType=INTEGER},
+      </if>
+      <if test="record.myPath != null">
+        my_path = #{record.myPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null">
+        version = #{record.version,jdbcType=INTEGER},
+      </if>
+      <if test="record.mgUserId != null">
+        mg_user_id = #{record.mgUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.mgUsername != null">
+        mg_username = #{record.mgUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null">
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupId != null">
+        group_id = #{record.groupId,jdbcType=INTEGER},
+      </if>
+      <if test="record.parentId != null">
+        parent_id = #{record.parentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cur != null">
+        cur = #{record.cur,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null">
+        state = #{record.state,jdbcType=TINYINT},
+      </if>
+      <if test="record.isTest != null">
+        is_test = #{record.isTest,jdbcType=TINYINT},
+      </if>
+      <if test="record.registeredTime != null">
+        registered_time = #{record.registeredTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedTime != null">
+        updated_time = #{record.updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update game_mg_users
+    set id = #{record.id,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      username = #{record.username,jdbcType=VARCHAR},
+      mg_id = #{record.mgId,jdbcType=INTEGER},
+      my_path = #{record.myPath,jdbcType=VARCHAR},
+      version = #{record.version,jdbcType=INTEGER},
+      mg_user_id = #{record.mgUserId,jdbcType=INTEGER},
+      mg_username = #{record.mgUsername,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      group_id = #{record.groupId,jdbcType=INTEGER},
+      parent_id = #{record.parentId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      cur = #{record.cur,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=TINYINT},
+      is_test = #{record.isTest,jdbcType=TINYINT},
+      registered_time = #{record.registeredTime,jdbcType=TIMESTAMP},
+      updated_time = #{record.updatedTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.GameMgUsers">
+    update game_mg_users
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="mgId != null">
+        mg_id = #{mgId,jdbcType=INTEGER},
+      </if>
+      <if test="myPath != null">
+        my_path = #{myPath,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="mgUserId != null">
+        mg_user_id = #{mgUserId,jdbcType=INTEGER},
+      </if>
+      <if test="mgUsername != null">
+        mg_username = #{mgUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null">
+        group_id = #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="cur != null">
+        cur = #{cur,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=TINYINT},
+      </if>
+      <if test="isTest != null">
+        is_test = #{isTest,jdbcType=TINYINT},
+      </if>
+      <if test="registeredTime != null">
+        registered_time = #{registeredTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.GameMgUsers">
+    update game_mg_users
+    set user_id = #{userId,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR},
+      mg_id = #{mgId,jdbcType=INTEGER},
+      my_path = #{myPath,jdbcType=VARCHAR},
+      version = #{version,jdbcType=INTEGER},
+      mg_user_id = #{mgUserId,jdbcType=INTEGER},
+      mg_username = #{mgUsername,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      group_id = #{groupId,jdbcType=INTEGER},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      cur = #{cur,jdbcType=VARCHAR},
+      state = #{state,jdbcType=TINYINT},
+      is_test = #{isTest,jdbcType=TINYINT},
+      registered_time = #{registeredTime,jdbcType=TIMESTAMP},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -673,6 +673,126 @@ public class RptAdminIndexExample {
             return (Criteria) this;
         }
 
+        public Criteria andMgAgentCommissionIsNull() {
+            addCriterion("mg_agent_commission is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgAgentCommissionIsNotNull() {
+            addCriterion("mg_agent_commission is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgAgentCommissionEqualTo(BigDecimal value) {
+            addCriterion("mg_agent_commission =", value, "mgAgentCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgAgentCommissionNotEqualTo(BigDecimal value) {
+            addCriterion("mg_agent_commission <>", value, "mgAgentCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgAgentCommissionGreaterThan(BigDecimal value) {
+            addCriterion("mg_agent_commission >", value, "mgAgentCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgAgentCommissionGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("mg_agent_commission >=", value, "mgAgentCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgAgentCommissionLessThan(BigDecimal value) {
+            addCriterion("mg_agent_commission <", value, "mgAgentCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgAgentCommissionLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("mg_agent_commission <=", value, "mgAgentCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgAgentCommissionIn(List<BigDecimal> values) {
+            addCriterion("mg_agent_commission in", values, "mgAgentCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgAgentCommissionNotIn(List<BigDecimal> values) {
+            addCriterion("mg_agent_commission not in", values, "mgAgentCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgAgentCommissionBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("mg_agent_commission between", value1, value2, "mgAgentCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgAgentCommissionNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("mg_agent_commission not between", value1, value2, "mgAgentCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgTopAgentCommissionIsNull() {
+            addCriterion("mg_top_agent_commission is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgTopAgentCommissionIsNotNull() {
+            addCriterion("mg_top_agent_commission is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgTopAgentCommissionEqualTo(BigDecimal value) {
+            addCriterion("mg_top_agent_commission =", value, "mgTopAgentCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgTopAgentCommissionNotEqualTo(BigDecimal value) {
+            addCriterion("mg_top_agent_commission <>", value, "mgTopAgentCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgTopAgentCommissionGreaterThan(BigDecimal value) {
+            addCriterion("mg_top_agent_commission >", value, "mgTopAgentCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgTopAgentCommissionGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("mg_top_agent_commission >=", value, "mgTopAgentCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgTopAgentCommissionLessThan(BigDecimal value) {
+            addCriterion("mg_top_agent_commission <", value, "mgTopAgentCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgTopAgentCommissionLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("mg_top_agent_commission <=", value, "mgTopAgentCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgTopAgentCommissionIn(List<BigDecimal> values) {
+            addCriterion("mg_top_agent_commission in", values, "mgTopAgentCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgTopAgentCommissionNotIn(List<BigDecimal> values) {
+            addCriterion("mg_top_agent_commission not in", values, "mgTopAgentCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgTopAgentCommissionBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("mg_top_agent_commission between", value1, value2, "mgTopAgentCommission");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgTopAgentCommissionNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("mg_top_agent_commission not between", value1, value2, "mgTopAgentCommission");
+            return (Criteria) this;
+        }
+
         public Criteria andLotteryTotalMoneyIsNull() {
             addCriterion("lottery_total_money is null");
             return (Criteria) this;
@@ -910,6 +1030,186 @@ public class RptAdminIndexExample {
 
         public Criteria andReturnAmountNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("return_amount not between", value1, value2, "returnAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgBetAmountIsNull() {
+            addCriterion("mg_bet_amount is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgBetAmountIsNotNull() {
+            addCriterion("mg_bet_amount is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgBetAmountEqualTo(BigDecimal value) {
+            addCriterion("mg_bet_amount =", value, "mgBetAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgBetAmountNotEqualTo(BigDecimal value) {
+            addCriterion("mg_bet_amount <>", value, "mgBetAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgBetAmountGreaterThan(BigDecimal value) {
+            addCriterion("mg_bet_amount >", value, "mgBetAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgBetAmountGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("mg_bet_amount >=", value, "mgBetAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgBetAmountLessThan(BigDecimal value) {
+            addCriterion("mg_bet_amount <", value, "mgBetAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgBetAmountLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("mg_bet_amount <=", value, "mgBetAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgBetAmountIn(List<BigDecimal> values) {
+            addCriterion("mg_bet_amount in", values, "mgBetAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgBetAmountNotIn(List<BigDecimal> values) {
+            addCriterion("mg_bet_amount not in", values, "mgBetAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgBetAmountBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("mg_bet_amount between", value1, value2, "mgBetAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgBetAmountNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("mg_bet_amount not between", value1, value2, "mgBetAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgPayoutAmountIsNull() {
+            addCriterion("mg_payout_amount is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgPayoutAmountIsNotNull() {
+            addCriterion("mg_payout_amount is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgPayoutAmountEqualTo(BigDecimal value) {
+            addCriterion("mg_payout_amount =", value, "mgPayoutAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgPayoutAmountNotEqualTo(BigDecimal value) {
+            addCriterion("mg_payout_amount <>", value, "mgPayoutAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgPayoutAmountGreaterThan(BigDecimal value) {
+            addCriterion("mg_payout_amount >", value, "mgPayoutAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgPayoutAmountGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("mg_payout_amount >=", value, "mgPayoutAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgPayoutAmountLessThan(BigDecimal value) {
+            addCriterion("mg_payout_amount <", value, "mgPayoutAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgPayoutAmountLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("mg_payout_amount <=", value, "mgPayoutAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgPayoutAmountIn(List<BigDecimal> values) {
+            addCriterion("mg_payout_amount in", values, "mgPayoutAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgPayoutAmountNotIn(List<BigDecimal> values) {
+            addCriterion("mg_payout_amount not in", values, "mgPayoutAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgPayoutAmountBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("mg_payout_amount between", value1, value2, "mgPayoutAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgPayoutAmountNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("mg_payout_amount not between", value1, value2, "mgPayoutAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgReturnAmountIsNull() {
+            addCriterion("mg_return_amount is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgReturnAmountIsNotNull() {
+            addCriterion("mg_return_amount is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgReturnAmountEqualTo(BigDecimal value) {
+            addCriterion("mg_return_amount =", value, "mgReturnAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgReturnAmountNotEqualTo(BigDecimal value) {
+            addCriterion("mg_return_amount <>", value, "mgReturnAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgReturnAmountGreaterThan(BigDecimal value) {
+            addCriterion("mg_return_amount >", value, "mgReturnAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgReturnAmountGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("mg_return_amount >=", value, "mgReturnAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgReturnAmountLessThan(BigDecimal value) {
+            addCriterion("mg_return_amount <", value, "mgReturnAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgReturnAmountLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("mg_return_amount <=", value, "mgReturnAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgReturnAmountIn(List<BigDecimal> values) {
+            addCriterion("mg_return_amount in", values, "mgReturnAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgReturnAmountNotIn(List<BigDecimal> values) {
+            addCriterion("mg_return_amount not in", values, "mgReturnAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgReturnAmountBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("mg_return_amount between", value1, value2, "mgReturnAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMgReturnAmountNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("mg_return_amount not between", value1, value2, "mgReturnAmount");
             return (Criteria) this;
         }
 

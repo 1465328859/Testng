@@ -3,6 +3,7 @@
 <mapper namespace="com.Test.model.DBmodel.SysNoticeMapper">
   <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.SysNotice">
     <id column="id" jdbcType="TINYINT" property="id" />
+    <result column="platform" jdbcType="VARCHAR" property="platform" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="created_at" jdbcType="CHAR" property="createdAt" />
     <result column="creater" jdbcType="VARCHAR" property="creater" />
@@ -74,7 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, title, created_at, creater, show, sort, suggest_web, suggest_mobile, is_roll
+    id, platform, title, created_at, creater, show, sort, suggest_web, suggest_mobile, 
+    is_roll
   </sql>
   <sql id="Blob_Column_List">
     text
@@ -128,20 +130,23 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.Test.model.DBmodel.SysNotice">
-    insert into sys_notice (id, title, created_at, 
-      creater, show, sort, suggest_web, 
-      suggest_mobile, is_roll, text
-      )
-    values (#{id,jdbcType=TINYINT}, #{title,jdbcType=VARCHAR}, #{createdAt,jdbcType=CHAR}, 
-      #{creater,jdbcType=VARCHAR}, #{show,jdbcType=BIT}, #{sort,jdbcType=TINYINT}, #{suggestWeb,jdbcType=BIT}, 
-      #{suggestMobile,jdbcType=BIT}, #{isRoll,jdbcType=BIT}, #{text,jdbcType=LONGVARCHAR}
-      )
+    insert into sys_notice (id, platform, title, 
+      created_at, creater, show, 
+      sort, suggest_web, suggest_mobile, 
+      is_roll, text)
+    values (#{id,jdbcType=TINYINT}, #{platform,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{createdAt,jdbcType=CHAR}, #{creater,jdbcType=VARCHAR}, #{show,jdbcType=BIT}, 
+      #{sort,jdbcType=TINYINT}, #{suggestWeb,jdbcType=BIT}, #{suggestMobile,jdbcType=BIT}, 
+      #{isRoll,jdbcType=BIT}, #{text,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.Test.model.DBmodel.SysNotice">
     insert into sys_notice
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="platform != null">
+        platform,
       </if>
       <if test="title != null">
         title,
@@ -174,6 +179,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=TINYINT},
+      </if>
+      <if test="platform != null">
+        #{platform,jdbcType=VARCHAR},
       </if>
       <if test="title != null">
         #{title,jdbcType=VARCHAR},
@@ -216,6 +224,9 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=TINYINT},
       </if>
+      <if test="record.platform != null">
+        platform = #{record.platform,jdbcType=VARCHAR},
+      </if>
       <if test="record.title != null">
         title = #{record.title,jdbcType=VARCHAR},
       </if>
@@ -251,6 +262,7 @@
   <update id="updateByExampleWithBLOBs" parameterType="map">
     update sys_notice
     set id = #{record.id,jdbcType=TINYINT},
+      platform = #{record.platform,jdbcType=VARCHAR},
       title = #{record.title,jdbcType=VARCHAR},
       created_at = #{record.createdAt,jdbcType=CHAR},
       creater = #{record.creater,jdbcType=VARCHAR},
@@ -267,6 +279,7 @@
   <update id="updateByExample" parameterType="map">
     update sys_notice
     set id = #{record.id,jdbcType=TINYINT},
+      platform = #{record.platform,jdbcType=VARCHAR},
       title = #{record.title,jdbcType=VARCHAR},
       created_at = #{record.createdAt,jdbcType=CHAR},
       creater = #{record.creater,jdbcType=VARCHAR},
@@ -282,6 +295,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.SysNotice">
     update sys_notice
     <set>
+      <if test="platform != null">
+        platform = #{platform,jdbcType=VARCHAR},
+      </if>
       <if test="title != null">
         title = #{title,jdbcType=VARCHAR},
       </if>
@@ -314,7 +330,8 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.Test.model.DBmodel.SysNotice">
     update sys_notice
-    set title = #{title,jdbcType=VARCHAR},
+    set platform = #{platform,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
       created_at = #{createdAt,jdbcType=CHAR},
       creater = #{creater,jdbcType=VARCHAR},
       show = #{show,jdbcType=BIT},
@@ -327,7 +344,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.SysNotice">
     update sys_notice
-    set title = #{title,jdbcType=VARCHAR},
+    set platform = #{platform,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
       created_at = #{createdAt,jdbcType=CHAR},
       creater = #{creater,jdbcType=VARCHAR},
       show = #{show,jdbcType=BIT},

@@ -24,6 +24,10 @@ public class RptAgentIndex {
 
     private BigDecimal topAgentCommission;
 
+    private BigDecimal mgAgentCommission;
+
+    private BigDecimal mgTopAgentCommission;
+
     private BigDecimal lotteryTotalMoney;
 
     private BigDecimal lotteryBetAmount;
@@ -31,6 +35,12 @@ public class RptAgentIndex {
     private BigDecimal payoutAmount;
 
     private BigDecimal returnAmount;
+
+    private BigDecimal mgBetAmount;
+
+    private BigDecimal mgPayoutAmount;
+
+    private BigDecimal mgReturnAmount;
 
     private Integer companyDepositsNum;
 
@@ -152,6 +162,22 @@ public class RptAgentIndex {
         this.topAgentCommission = topAgentCommission;
     }
 
+    public BigDecimal getMgAgentCommission() {
+        return mgAgentCommission;
+    }
+
+    public void setMgAgentCommission(BigDecimal mgAgentCommission) {
+        this.mgAgentCommission = mgAgentCommission;
+    }
+
+    public BigDecimal getMgTopAgentCommission() {
+        return mgTopAgentCommission;
+    }
+
+    public void setMgTopAgentCommission(BigDecimal mgTopAgentCommission) {
+        this.mgTopAgentCommission = mgTopAgentCommission;
+    }
+
     public BigDecimal getLotteryTotalMoney() {
         return lotteryTotalMoney;
     }
@@ -182,6 +208,30 @@ public class RptAgentIndex {
 
     public void setReturnAmount(BigDecimal returnAmount) {
         this.returnAmount = returnAmount;
+    }
+
+    public BigDecimal getMgBetAmount() {
+        return mgBetAmount;
+    }
+
+    public void setMgBetAmount(BigDecimal mgBetAmount) {
+        this.mgBetAmount = mgBetAmount;
+    }
+
+    public BigDecimal getMgPayoutAmount() {
+        return mgPayoutAmount;
+    }
+
+    public void setMgPayoutAmount(BigDecimal mgPayoutAmount) {
+        this.mgPayoutAmount = mgPayoutAmount;
+    }
+
+    public BigDecimal getMgReturnAmount() {
+        return mgReturnAmount;
+    }
+
+    public void setMgReturnAmount(BigDecimal mgReturnAmount) {
+        this.mgReturnAmount = mgReturnAmount;
     }
 
     public Integer getCompanyDepositsNum() {

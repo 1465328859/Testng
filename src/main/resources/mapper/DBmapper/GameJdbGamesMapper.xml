@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.GameJdbGamesMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.GameJdbGames">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="g_type" jdbcType="INTEGER" property="gType" />
+    <result column="m_type" jdbcType="INTEGER" property="mType" />
+    <result column="game_cn_name" jdbcType="VARCHAR" property="gameCnName" />
+    <result column="game_en_name" jdbcType="VARCHAR" property="gameEnName" />
+    <result column="image_cn" jdbcType="VARCHAR" property="imageCn" />
+    <result column="image_en" jdbcType="VARCHAR" property="imageEn" />
+    <result column="state" jdbcType="TINYINT" property="state" />
+    <result column="is_new" jdbcType="TINYINT" property="isNew" />
+    <result column="is_hot" jdbcType="TINYINT" property="isHot" />
+    <result column="sort_no" jdbcType="TINYINT" property="sortNo" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, g_type, m_type, game_cn_name, game_en_name, image_cn, image_en, state, is_new, 
+    is_hot, sort_no
+  </sql>
+  <select id="selectByExample" parameterType="com.Test.model.DBmodel.GameJdbGamesExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from game_jdb_games
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from game_jdb_games
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from game_jdb_games
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.Test.model.DBmodel.GameJdbGamesExample">
+    delete from game_jdb_games
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.GameJdbGames">
+    insert into game_jdb_games (id, g_type, m_type, 
+      game_cn_name, game_en_name, image_cn, 
+      image_en, state, is_new, 
+      is_hot, sort_no)
+    values (#{id,jdbcType=INTEGER}, #{gType,jdbcType=INTEGER}, #{mType,jdbcType=INTEGER}, 
+      #{gameCnName,jdbcType=VARCHAR}, #{gameEnName,jdbcType=VARCHAR}, #{imageCn,jdbcType=VARCHAR}, 
+      #{imageEn,jdbcType=VARCHAR}, #{state,jdbcType=TINYINT}, #{isNew,jdbcType=TINYINT}, 
+      #{isHot,jdbcType=TINYINT}, #{sortNo,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.GameJdbGames">
+    insert into game_jdb_games
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gType != null">
+        g_type,
+      </if>
+      <if test="mType != null">
+        m_type,
+      </if>
+      <if test="gameCnName != null">
+        game_cn_name,
+      </if>
+      <if test="gameEnName != null">
+        game_en_name,
+      </if>
+      <if test="imageCn != null">
+        image_cn,
+      </if>
+      <if test="imageEn != null">
+        image_en,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="isNew != null">
+        is_new,
+      </if>
+      <if test="isHot != null">
+        is_hot,
+      </if>
+      <if test="sortNo != null">
+        sort_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="gType != null">
+        #{gType,jdbcType=INTEGER},
+      </if>
+      <if test="mType != null">
+        #{mType,jdbcType=INTEGER},
+      </if>
+      <if test="gameCnName != null">
+        #{gameCnName,jdbcType=VARCHAR},
+      </if>
+      <if test="gameEnName != null">
+        #{gameEnName,jdbcType=VARCHAR},
+      </if>
+      <if test="imageCn != null">
+        #{imageCn,jdbcType=VARCHAR},
+      </if>
+      <if test="imageEn != null">
+        #{imageEn,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="isNew != null">
+        #{isNew,jdbcType=TINYINT},
+      </if>
+      <if test="isHot != null">
+        #{isHot,jdbcType=TINYINT},
+      </if>
+      <if test="sortNo != null">
+        #{sortNo,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.Test.model.DBmodel.GameJdbGamesExample" resultType="java.lang.Long">
+    select count(*) from game_jdb_games
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update game_jdb_games
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.gType != null">
+        g_type = #{record.gType,jdbcType=INTEGER},
+      </if>
+      <if test="record.mType != null">
+        m_type = #{record.mType,jdbcType=INTEGER},
+      </if>
+      <if test="record.gameCnName != null">
+        game_cn_name = #{record.gameCnName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gameEnName != null">
+        game_en_name = #{record.gameEnName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imageCn != null">
+        image_cn = #{record.imageCn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imageEn != null">
+        image_en = #{record.imageEn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null">
+        state = #{record.state,jdbcType=TINYINT},
+      </if>
+      <if test="record.isNew != null">
+        is_new = #{record.isNew,jdbcType=TINYINT},
+      </if>
+      <if test="record.isHot != null">
+        is_hot = #{record.isHot,jdbcType=TINYINT},
+      </if>
+      <if test="record.sortNo != null">
+        sort_no = #{record.sortNo,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update game_jdb_games
+    set id = #{record.id,jdbcType=INTEGER},
+      g_type = #{record.gType,jdbcType=INTEGER},
+      m_type = #{record.mType,jdbcType=INTEGER},
+      game_cn_name = #{record.gameCnName,jdbcType=VARCHAR},
+      game_en_name = #{record.gameEnName,jdbcType=VARCHAR},
+      image_cn = #{record.imageCn,jdbcType=VARCHAR},
+      image_en = #{record.imageEn,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=TINYINT},
+      is_new = #{record.isNew,jdbcType=TINYINT},
+      is_hot = #{record.isHot,jdbcType=TINYINT},
+      sort_no = #{record.sortNo,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.GameJdbGames">
+    update game_jdb_games
+    <set>
+      <if test="gType != null">
+        g_type = #{gType,jdbcType=INTEGER},
+      </if>
+      <if test="mType != null">
+        m_type = #{mType,jdbcType=INTEGER},
+      </if>
+      <if test="gameCnName != null">
+        game_cn_name = #{gameCnName,jdbcType=VARCHAR},
+      </if>
+      <if test="gameEnName != null">
+        game_en_name = #{gameEnName,jdbcType=VARCHAR},
+      </if>
+      <if test="imageCn != null">
+        image_cn = #{imageCn,jdbcType=VARCHAR},
+      </if>
+      <if test="imageEn != null">
+        image_en = #{imageEn,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=TINYINT},
+      </if>
+      <if test="isNew != null">
+        is_new = #{isNew,jdbcType=TINYINT},
+      </if>
+      <if test="isHot != null">
+        is_hot = #{isHot,jdbcType=TINYINT},
+      </if>
+      <if test="sortNo != null">
+        sort_no = #{sortNo,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.GameJdbGames">
+    update game_jdb_games
+    set g_type = #{gType,jdbcType=INTEGER},
+      m_type = #{mType,jdbcType=INTEGER},
+      game_cn_name = #{gameCnName,jdbcType=VARCHAR},
+      game_en_name = #{gameEnName,jdbcType=VARCHAR},
+      image_cn = #{imageCn,jdbcType=VARCHAR},
+      image_en = #{imageEn,jdbcType=VARCHAR},
+      state = #{state,jdbcType=TINYINT},
+      is_new = #{isNew,jdbcType=TINYINT},
+      is_hot = #{isHot,jdbcType=TINYINT},
+      sort_no = #{sortNo,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

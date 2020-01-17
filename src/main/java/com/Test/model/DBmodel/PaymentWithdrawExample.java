@@ -2,6 +2,7 @@ package com.Test.model.DBmodel;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class PaymentWithdrawExample {
@@ -485,6 +486,366 @@ public class PaymentWithdrawExample {
             return (Criteria) this;
         }
 
+        public Criteria andGameBetStatusIsNull() {
+            addCriterion("game_bet_status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameBetStatusIsNotNull() {
+            addCriterion("game_bet_status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameBetStatusEqualTo(Byte value) {
+            addCriterion("game_bet_status =", value, "gameBetStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameBetStatusNotEqualTo(Byte value) {
+            addCriterion("game_bet_status <>", value, "gameBetStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameBetStatusGreaterThan(Byte value) {
+            addCriterion("game_bet_status >", value, "gameBetStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameBetStatusGreaterThanOrEqualTo(Byte value) {
+            addCriterion("game_bet_status >=", value, "gameBetStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameBetStatusLessThan(Byte value) {
+            addCriterion("game_bet_status <", value, "gameBetStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameBetStatusLessThanOrEqualTo(Byte value) {
+            addCriterion("game_bet_status <=", value, "gameBetStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameBetStatusIn(List<Byte> values) {
+            addCriterion("game_bet_status in", values, "gameBetStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameBetStatusNotIn(List<Byte> values) {
+            addCriterion("game_bet_status not in", values, "gameBetStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameBetStatusBetween(Byte value1, Byte value2) {
+            addCriterion("game_bet_status between", value1, value2, "gameBetStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameBetStatusNotBetween(Byte value1, Byte value2) {
+            addCriterion("game_bet_status not between", value1, value2, "gameBetStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalInMoneyIsNull() {
+            addCriterion("game_total_in_money is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalInMoneyIsNotNull() {
+            addCriterion("game_total_in_money is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalInMoneyEqualTo(BigDecimal value) {
+            addCriterion("game_total_in_money =", value, "gameTotalInMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalInMoneyNotEqualTo(BigDecimal value) {
+            addCriterion("game_total_in_money <>", value, "gameTotalInMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalInMoneyGreaterThan(BigDecimal value) {
+            addCriterion("game_total_in_money >", value, "gameTotalInMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalInMoneyGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("game_total_in_money >=", value, "gameTotalInMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalInMoneyLessThan(BigDecimal value) {
+            addCriterion("game_total_in_money <", value, "gameTotalInMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalInMoneyLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("game_total_in_money <=", value, "gameTotalInMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalInMoneyIn(List<BigDecimal> values) {
+            addCriterion("game_total_in_money in", values, "gameTotalInMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalInMoneyNotIn(List<BigDecimal> values) {
+            addCriterion("game_total_in_money not in", values, "gameTotalInMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalInMoneyBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("game_total_in_money between", value1, value2, "gameTotalInMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalInMoneyNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("game_total_in_money not between", value1, value2, "gameTotalInMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalOutMoneyIsNull() {
+            addCriterion("game_total_out_money is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalOutMoneyIsNotNull() {
+            addCriterion("game_total_out_money is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalOutMoneyEqualTo(BigDecimal value) {
+            addCriterion("game_total_out_money =", value, "gameTotalOutMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalOutMoneyNotEqualTo(BigDecimal value) {
+            addCriterion("game_total_out_money <>", value, "gameTotalOutMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalOutMoneyGreaterThan(BigDecimal value) {
+            addCriterion("game_total_out_money >", value, "gameTotalOutMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalOutMoneyGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("game_total_out_money >=", value, "gameTotalOutMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalOutMoneyLessThan(BigDecimal value) {
+            addCriterion("game_total_out_money <", value, "gameTotalOutMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalOutMoneyLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("game_total_out_money <=", value, "gameTotalOutMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalOutMoneyIn(List<BigDecimal> values) {
+            addCriterion("game_total_out_money in", values, "gameTotalOutMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalOutMoneyNotIn(List<BigDecimal> values) {
+            addCriterion("game_total_out_money not in", values, "gameTotalOutMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalOutMoneyBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("game_total_out_money between", value1, value2, "gameTotalOutMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalOutMoneyNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("game_total_out_money not between", value1, value2, "gameTotalOutMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalBetMoneyIsNull() {
+            addCriterion("game_total_bet_money is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalBetMoneyIsNotNull() {
+            addCriterion("game_total_bet_money is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalBetMoneyEqualTo(BigDecimal value) {
+            addCriterion("game_total_bet_money =", value, "gameTotalBetMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalBetMoneyNotEqualTo(BigDecimal value) {
+            addCriterion("game_total_bet_money <>", value, "gameTotalBetMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalBetMoneyGreaterThan(BigDecimal value) {
+            addCriterion("game_total_bet_money >", value, "gameTotalBetMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalBetMoneyGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("game_total_bet_money >=", value, "gameTotalBetMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalBetMoneyLessThan(BigDecimal value) {
+            addCriterion("game_total_bet_money <", value, "gameTotalBetMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalBetMoneyLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("game_total_bet_money <=", value, "gameTotalBetMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalBetMoneyIn(List<BigDecimal> values) {
+            addCriterion("game_total_bet_money in", values, "gameTotalBetMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalBetMoneyNotIn(List<BigDecimal> values) {
+            addCriterion("game_total_bet_money not in", values, "gameTotalBetMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalBetMoneyBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("game_total_bet_money between", value1, value2, "gameTotalBetMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameTotalBetMoneyNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("game_total_bet_money not between", value1, value2, "gameTotalBetMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastRechargeIdIsNull() {
+            addCriterion("last_recharge_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastRechargeIdIsNotNull() {
+            addCriterion("last_recharge_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastRechargeIdEqualTo(Integer value) {
+            addCriterion("last_recharge_id =", value, "lastRechargeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastRechargeIdNotEqualTo(Integer value) {
+            addCriterion("last_recharge_id <>", value, "lastRechargeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastRechargeIdGreaterThan(Integer value) {
+            addCriterion("last_recharge_id >", value, "lastRechargeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastRechargeIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("last_recharge_id >=", value, "lastRechargeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastRechargeIdLessThan(Integer value) {
+            addCriterion("last_recharge_id <", value, "lastRechargeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastRechargeIdLessThanOrEqualTo(Integer value) {
+            addCriterion("last_recharge_id <=", value, "lastRechargeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastRechargeIdIn(List<Integer> values) {
+            addCriterion("last_recharge_id in", values, "lastRechargeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastRechargeIdNotIn(List<Integer> values) {
+            addCriterion("last_recharge_id not in", values, "lastRechargeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastRechargeIdBetween(Integer value1, Integer value2) {
+            addCriterion("last_recharge_id between", value1, value2, "lastRechargeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastRechargeIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("last_recharge_id not between", value1, value2, "lastRechargeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastRechargeTimeIsNull() {
+            addCriterion("last_recharge_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastRechargeTimeIsNotNull() {
+            addCriterion("last_recharge_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastRechargeTimeEqualTo(Date value) {
+            addCriterion("last_recharge_time =", value, "lastRechargeTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastRechargeTimeNotEqualTo(Date value) {
+            addCriterion("last_recharge_time <>", value, "lastRechargeTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastRechargeTimeGreaterThan(Date value) {
+            addCriterion("last_recharge_time >", value, "lastRechargeTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastRechargeTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("last_recharge_time >=", value, "lastRechargeTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastRechargeTimeLessThan(Date value) {
+            addCriterion("last_recharge_time <", value, "lastRechargeTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastRechargeTimeLessThanOrEqualTo(Date value) {
+            addCriterion("last_recharge_time <=", value, "lastRechargeTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastRechargeTimeIn(List<Date> values) {
+            addCriterion("last_recharge_time in", values, "lastRechargeTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastRechargeTimeNotIn(List<Date> values) {
+            addCriterion("last_recharge_time not in", values, "lastRechargeTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastRechargeTimeBetween(Date value1, Date value2) {
+            addCriterion("last_recharge_time between", value1, value2, "lastRechargeTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastRechargeTimeNotBetween(Date value1, Date value2) {
+            addCriterion("last_recharge_time not between", value1, value2, "lastRechargeTime");
+            return (Criteria) this;
+        }
+
         public Criteria andStatusIsNull() {
             addCriterion("status is null");
             return (Criteria) this;
@@ -542,6 +903,66 @@ public class PaymentWithdrawExample {
 
         public Criteria andStatusNotBetween(Boolean value1, Boolean value2) {
             addCriterion("status not between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFirstIsNull() {
+            addCriterion("is_first is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFirstIsNotNull() {
+            addCriterion("is_first is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFirstEqualTo(Boolean value) {
+            addCriterion("is_first =", value, "isFirst");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFirstNotEqualTo(Boolean value) {
+            addCriterion("is_first <>", value, "isFirst");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFirstGreaterThan(Boolean value) {
+            addCriterion("is_first >", value, "isFirst");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFirstGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("is_first >=", value, "isFirst");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFirstLessThan(Boolean value) {
+            addCriterion("is_first <", value, "isFirst");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFirstLessThanOrEqualTo(Boolean value) {
+            addCriterion("is_first <=", value, "isFirst");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFirstIn(List<Boolean> values) {
+            addCriterion("is_first in", values, "isFirst");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFirstNotIn(List<Boolean> values) {
+            addCriterion("is_first not in", values, "isFirst");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFirstBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_first between", value1, value2, "isFirst");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFirstNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_first not between", value1, value2, "isFirst");
             return (Criteria) this;
         }
 

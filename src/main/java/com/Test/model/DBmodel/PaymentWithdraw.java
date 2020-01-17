@@ -1,6 +1,7 @@
 package com.Test.model.DBmodel;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 public class PaymentWithdraw {
     private Integer id;
@@ -15,7 +16,21 @@ public class PaymentWithdraw {
 
     private BigDecimal takeAmount;
 
+    private Byte gameBetStatus;
+
+    private BigDecimal gameTotalInMoney;
+
+    private BigDecimal gameTotalOutMoney;
+
+    private BigDecimal gameTotalBetMoney;
+
+    private Integer lastRechargeId;
+
+    private Date lastRechargeTime;
+
     private Boolean status;
+
+    private Boolean isFirst;
 
     private Byte isTake;
 
@@ -91,12 +106,68 @@ public class PaymentWithdraw {
         this.takeAmount = takeAmount;
     }
 
+    public Byte getGameBetStatus() {
+        return gameBetStatus;
+    }
+
+    public void setGameBetStatus(Byte gameBetStatus) {
+        this.gameBetStatus = gameBetStatus;
+    }
+
+    public BigDecimal getGameTotalInMoney() {
+        return gameTotalInMoney;
+    }
+
+    public void setGameTotalInMoney(BigDecimal gameTotalInMoney) {
+        this.gameTotalInMoney = gameTotalInMoney;
+    }
+
+    public BigDecimal getGameTotalOutMoney() {
+        return gameTotalOutMoney;
+    }
+
+    public void setGameTotalOutMoney(BigDecimal gameTotalOutMoney) {
+        this.gameTotalOutMoney = gameTotalOutMoney;
+    }
+
+    public BigDecimal getGameTotalBetMoney() {
+        return gameTotalBetMoney;
+    }
+
+    public void setGameTotalBetMoney(BigDecimal gameTotalBetMoney) {
+        this.gameTotalBetMoney = gameTotalBetMoney;
+    }
+
+    public Integer getLastRechargeId() {
+        return lastRechargeId;
+    }
+
+    public void setLastRechargeId(Integer lastRechargeId) {
+        this.lastRechargeId = lastRechargeId;
+    }
+
+    public Date getLastRechargeTime() {
+        return lastRechargeTime;
+    }
+
+    public void setLastRechargeTime(Date lastRechargeTime) {
+        this.lastRechargeTime = lastRechargeTime;
+    }
+
     public Boolean getStatus() {
         return status;
     }
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    public Boolean getIsFirst() {
+        return isFirst;
+    }
+
+    public void setIsFirst(Boolean isFirst) {
+        this.isFirst = isFirst;
     }
 
     public Byte getIsTake() {

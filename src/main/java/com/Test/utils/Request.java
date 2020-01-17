@@ -73,6 +73,27 @@ public class Request {
 
         return result;
     }
+    public String postNOurl(String url, String json){
+        HttpPost httpPost=new HttpPost();
+        httpPost.addHeader("Content-Type","application/json;charset=utf-8");
+        httpPost.setURI(URI.create(url));
+        String result = new String();
+        try {
+            StringEntity entity = new StringEntity(json,"UTF-8");
+            httpPost.setEntity(entity);
+            HttpResponse httpResponse = TestConfig.defaultHttpClient.execute(httpPost);
+            result = EntityUtils.toString(httpResponse.getEntity());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
 
     /**
      * 参数适配器，将系统定义的请求参数转换成HttpClient能够接受的参数类型

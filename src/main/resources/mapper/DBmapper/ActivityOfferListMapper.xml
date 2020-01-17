@@ -3,6 +3,8 @@
 <mapper namespace="com.Test.model.DBmodel.ActivityOfferListMapper">
   <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.ActivityOfferList">
     <id column="id" jdbcType="TINYINT" property="id" />
+    <result column="platform" jdbcType="VARCHAR" property="platform" />
+    <result column="activity_type" jdbcType="TINYINT" property="activityType" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="activity_picture" jdbcType="VARCHAR" property="activityPicture" />
     <result column="desc" jdbcType="VARCHAR" property="desc" />
@@ -10,8 +12,9 @@
     <result column="issuer" jdbcType="VARCHAR" property="issuer" />
     <result column="status" jdbcType="BIT" property="status" />
     <result column="sort" jdbcType="TINYINT" property="sort" />
-    <result column="start_time" jdbcType="CHAR" property="startTime" />
-    <result column="end_time" jdbcType="CHAR" property="endTime" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.Test.model.DBmodel.ActivityOfferList">
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
@@ -75,7 +78,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, title, activity_picture, desc, pic, issuer, status, sort, start_time, end_time
+    id, platform, activity_type, title, activity_picture, desc, pic, issuer, status, 
+    sort, start_time, end_time, updated_at
   </sql>
   <sql id="Blob_Column_List">
     content
@@ -129,13 +133,15 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.Test.model.DBmodel.ActivityOfferList">
-    insert into activity_offer_list (id, title, activity_picture, 
-      desc, pic, issuer, 
-      status, sort, start_time, end_time, 
+    insert into activity_offer_list (id, platform, activity_type, 
+      title, activity_picture, desc, 
+      pic, issuer, status, sort, 
+      start_time, end_time, updated_at, 
       content)
-    values (#{id,jdbcType=TINYINT}, #{title,jdbcType=VARCHAR}, #{activityPicture,jdbcType=VARCHAR}, 
-      #{desc,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, #{issuer,jdbcType=VARCHAR}, 
-      #{status,jdbcType=BIT}, #{sort,jdbcType=TINYINT}, #{startTime,jdbcType=CHAR}, #{endTime,jdbcType=CHAR}, 
+    values (#{id,jdbcType=TINYINT}, #{platform,jdbcType=VARCHAR}, #{activityType,jdbcType=TINYINT}, 
+      #{title,jdbcType=VARCHAR}, #{activityPicture,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, 
+      #{pic,jdbcType=VARCHAR}, #{issuer,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{sort,jdbcType=TINYINT}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, 
       #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.Test.model.DBmodel.ActivityOfferList">
@@ -143,6 +149,12 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="platform != null">
+        platform,
+      </if>
+      <if test="activityType != null">
+        activity_type,
       </if>
       <if test="title != null">
         title,
@@ -171,6 +183,9 @@
       <if test="endTime != null">
         end_time,
       </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
       <if test="content != null">
         content,
       </if>
@@ -178,6 +193,12 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=TINYINT},
+      </if>
+      <if test="platform != null">
+        #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="activityType != null">
+        #{activityType,jdbcType=TINYINT},
       </if>
       <if test="title != null">
         #{title,jdbcType=VARCHAR},
@@ -201,10 +222,13 @@
         #{sort,jdbcType=TINYINT},
       </if>
       <if test="startTime != null">
-        #{startTime,jdbcType=CHAR},
+        #{startTime,jdbcType=TIMESTAMP},
       </if>
       <if test="endTime != null">
-        #{endTime,jdbcType=CHAR},
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
       </if>
       <if test="content != null">
         #{content,jdbcType=LONGVARCHAR},
@@ -222,6 +246,12 @@
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=TINYINT},
+      </if>
+      <if test="record.platform != null">
+        platform = #{record.platform,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityType != null">
+        activity_type = #{record.activityType,jdbcType=TINYINT},
       </if>
       <if test="record.title != null">
         title = #{record.title,jdbcType=VARCHAR},
@@ -245,10 +275,13 @@
         sort = #{record.sort,jdbcType=TINYINT},
       </if>
       <if test="record.startTime != null">
-        start_time = #{record.startTime,jdbcType=CHAR},
+        start_time = #{record.startTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.endTime != null">
-        end_time = #{record.endTime,jdbcType=CHAR},
+        end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedAt != null">
+        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
       </if>
       <if test="record.content != null">
         content = #{record.content,jdbcType=LONGVARCHAR},
@@ -261,6 +294,8 @@
   <update id="updateByExampleWithBLOBs" parameterType="map">
     update activity_offer_list
     set id = #{record.id,jdbcType=TINYINT},
+      platform = #{record.platform,jdbcType=VARCHAR},
+      activity_type = #{record.activityType,jdbcType=TINYINT},
       title = #{record.title,jdbcType=VARCHAR},
       activity_picture = #{record.activityPicture,jdbcType=VARCHAR},
       desc = #{record.desc,jdbcType=VARCHAR},
@@ -268,8 +303,9 @@
       issuer = #{record.issuer,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=BIT},
       sort = #{record.sort,jdbcType=TINYINT},
-      start_time = #{record.startTime,jdbcType=CHAR},
-      end_time = #{record.endTime,jdbcType=CHAR},
+      start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
       content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -278,6 +314,8 @@
   <update id="updateByExample" parameterType="map">
     update activity_offer_list
     set id = #{record.id,jdbcType=TINYINT},
+      platform = #{record.platform,jdbcType=VARCHAR},
+      activity_type = #{record.activityType,jdbcType=TINYINT},
       title = #{record.title,jdbcType=VARCHAR},
       activity_picture = #{record.activityPicture,jdbcType=VARCHAR},
       desc = #{record.desc,jdbcType=VARCHAR},
@@ -285,8 +323,9 @@
       issuer = #{record.issuer,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=BIT},
       sort = #{record.sort,jdbcType=TINYINT},
-      start_time = #{record.startTime,jdbcType=CHAR},
-      end_time = #{record.endTime,jdbcType=CHAR}
+      start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -294,6 +333,12 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.ActivityOfferList">
     update activity_offer_list
     <set>
+      <if test="platform != null">
+        platform = #{platform,jdbcType=VARCHAR},
+      </if>
+      <if test="activityType != null">
+        activity_type = #{activityType,jdbcType=TINYINT},
+      </if>
       <if test="title != null">
         title = #{title,jdbcType=VARCHAR},
       </if>
@@ -316,10 +361,13 @@
         sort = #{sort,jdbcType=TINYINT},
       </if>
       <if test="startTime != null">
-        start_time = #{startTime,jdbcType=CHAR},
+        start_time = #{startTime,jdbcType=TIMESTAMP},
       </if>
       <if test="endTime != null">
-        end_time = #{endTime,jdbcType=CHAR},
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
       </if>
       <if test="content != null">
         content = #{content,jdbcType=LONGVARCHAR},
@@ -329,29 +377,35 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.Test.model.DBmodel.ActivityOfferList">
     update activity_offer_list
-    set title = #{title,jdbcType=VARCHAR},
+    set platform = #{platform,jdbcType=VARCHAR},
+      activity_type = #{activityType,jdbcType=TINYINT},
+      title = #{title,jdbcType=VARCHAR},
       activity_picture = #{activityPicture,jdbcType=VARCHAR},
       desc = #{desc,jdbcType=VARCHAR},
       pic = #{pic,jdbcType=VARCHAR},
       issuer = #{issuer,jdbcType=VARCHAR},
       status = #{status,jdbcType=BIT},
       sort = #{sort,jdbcType=TINYINT},
-      start_time = #{startTime,jdbcType=CHAR},
-      end_time = #{endTime,jdbcType=CHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=TINYINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.ActivityOfferList">
     update activity_offer_list
-    set title = #{title,jdbcType=VARCHAR},
+    set platform = #{platform,jdbcType=VARCHAR},
+      activity_type = #{activityType,jdbcType=TINYINT},
+      title = #{title,jdbcType=VARCHAR},
       activity_picture = #{activityPicture,jdbcType=VARCHAR},
       desc = #{desc,jdbcType=VARCHAR},
       pic = #{pic,jdbcType=VARCHAR},
       issuer = #{issuer,jdbcType=VARCHAR},
       status = #{status,jdbcType=BIT},
       sort = #{sort,jdbcType=TINYINT},
-      start_time = #{startTime,jdbcType=CHAR},
-      end_time = #{endTime,jdbcType=CHAR}
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=TINYINT}
   </update>
 </mapper>

@@ -32,6 +32,10 @@ public class Users {
 
     private String upThreeGrade;
 
+    private Byte lastGame;
+
+    private BigDecimal gameAmount;
+
     private Byte status;
 
     private Byte regFrom;
@@ -158,6 +162,22 @@ public class Users {
 
     public void setUpThreeGrade(String upThreeGrade) {
         this.upThreeGrade = upThreeGrade == null ? null : upThreeGrade.trim();
+    }
+
+    public Byte getLastGame() {
+        return lastGame;
+    }
+
+    public void setLastGame(Byte lastGame) {
+        this.lastGame = lastGame;
+    }
+
+    public BigDecimal getGameAmount() {
+        return gameAmount;
+    }
+
+    public void setGameAmount(BigDecimal gameAmount) {
+        this.gameAmount = gameAmount;
     }
 
     public Byte getStatus() {

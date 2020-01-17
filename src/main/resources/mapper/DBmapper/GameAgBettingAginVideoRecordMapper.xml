@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.GameAgBettingAginVideoRecordMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.GameAgBettingAginVideoRecord">
+    <id column="billno" jdbcType="VARCHAR" property="billno" />
+    <result column="playname" jdbcType="VARCHAR" property="playname" />
+    <result column="game_code" jdbcType="VARCHAR" property="gameCode" />
+    <result column="net_amount" jdbcType="DECIMAL" property="netAmount" />
+    <result column="bet_time" jdbcType="TIMESTAMP" property="betTime" />
+    <result column="game_type" jdbcType="VARCHAR" property="gameType" />
+    <result column="bet_amount" jdbcType="DECIMAL" property="betAmount" />
+    <result column="valid_bet_amount" jdbcType="DECIMAL" property="validBetAmount" />
+    <result column="flag" jdbcType="TINYINT" property="flag" />
+    <result column="play_type" jdbcType="VARCHAR" property="playType" />
+    <result column="currency" jdbcType="VARCHAR" property="currency" />
+    <result column="tablecode" jdbcType="VARCHAR" property="tablecode" />
+    <result column="recalcu_time" jdbcType="TIMESTAMP" property="recalcuTime" />
+    <result column="before_credit" jdbcType="DECIMAL" property="beforeCredit" />
+    <result column="bet_ip" jdbcType="VARCHAR" property="betIp" />
+    <result column="platfrom_type" jdbcType="VARCHAR" property="platfromType" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="devicetype" jdbcType="TINYINT" property="devicetype" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    billno, playname, game_code, net_amount, bet_time, game_type, bet_amount, valid_bet_amount, 
+    flag, play_type, currency, tablecode, recalcu_time, before_credit, bet_ip, platfrom_type, 
+    remark, devicetype, created_at, updated_at
+  </sql>
+  <select id="selectByExample" parameterType="com.Test.model.DBmodel.GameAgBettingAginVideoRecordExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from game_ag_betting_agin_video_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from game_ag_betting_agin_video_record
+    where billno = #{billno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from game_ag_betting_agin_video_record
+    where billno = #{billno,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.Test.model.DBmodel.GameAgBettingAginVideoRecordExample">
+    delete from game_ag_betting_agin_video_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.GameAgBettingAginVideoRecord">
+    insert into game_ag_betting_agin_video_record (billno, playname, game_code, 
+      net_amount, bet_time, game_type, 
+      bet_amount, valid_bet_amount, flag, 
+      play_type, currency, tablecode, 
+      recalcu_time, before_credit, bet_ip, 
+      platfrom_type, remark, devicetype, 
+      created_at, updated_at)
+    values (#{billno,jdbcType=VARCHAR}, #{playname,jdbcType=VARCHAR}, #{gameCode,jdbcType=VARCHAR}, 
+      #{netAmount,jdbcType=DECIMAL}, #{betTime,jdbcType=TIMESTAMP}, #{gameType,jdbcType=VARCHAR}, 
+      #{betAmount,jdbcType=DECIMAL}, #{validBetAmount,jdbcType=DECIMAL}, #{flag,jdbcType=TINYINT}, 
+      #{playType,jdbcType=VARCHAR}, #{currency,jdbcType=VARCHAR}, #{tablecode,jdbcType=VARCHAR}, 
+      #{recalcuTime,jdbcType=TIMESTAMP}, #{beforeCredit,jdbcType=DECIMAL}, #{betIp,jdbcType=VARCHAR}, 
+      #{platfromType,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{devicetype,jdbcType=TINYINT}, 
+      #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.GameAgBettingAginVideoRecord">
+    insert into game_ag_betting_agin_video_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="billno != null">
+        billno,
+      </if>
+      <if test="playname != null">
+        playname,
+      </if>
+      <if test="gameCode != null">
+        game_code,
+      </if>
+      <if test="netAmount != null">
+        net_amount,
+      </if>
+      <if test="betTime != null">
+        bet_time,
+      </if>
+      <if test="gameType != null">
+        game_type,
+      </if>
+      <if test="betAmount != null">
+        bet_amount,
+      </if>
+      <if test="validBetAmount != null">
+        valid_bet_amount,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="playType != null">
+        play_type,
+      </if>
+      <if test="currency != null">
+        currency,
+      </if>
+      <if test="tablecode != null">
+        tablecode,
+      </if>
+      <if test="recalcuTime != null">
+        recalcu_time,
+      </if>
+      <if test="beforeCredit != null">
+        before_credit,
+      </if>
+      <if test="betIp != null">
+        bet_ip,
+      </if>
+      <if test="platfromType != null">
+        platfrom_type,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="devicetype != null">
+        devicetype,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="billno != null">
+        #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="playname != null">
+        #{playname,jdbcType=VARCHAR},
+      </if>
+      <if test="gameCode != null">
+        #{gameCode,jdbcType=VARCHAR},
+      </if>
+      <if test="netAmount != null">
+        #{netAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="betTime != null">
+        #{betTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameType != null">
+        #{gameType,jdbcType=VARCHAR},
+      </if>
+      <if test="betAmount != null">
+        #{betAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="validBetAmount != null">
+        #{validBetAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=TINYINT},
+      </if>
+      <if test="playType != null">
+        #{playType,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null">
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="tablecode != null">
+        #{tablecode,jdbcType=VARCHAR},
+      </if>
+      <if test="recalcuTime != null">
+        #{recalcuTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="beforeCredit != null">
+        #{beforeCredit,jdbcType=DECIMAL},
+      </if>
+      <if test="betIp != null">
+        #{betIp,jdbcType=VARCHAR},
+      </if>
+      <if test="platfromType != null">
+        #{platfromType,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="devicetype != null">
+        #{devicetype,jdbcType=TINYINT},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.Test.model.DBmodel.GameAgBettingAginVideoRecordExample" resultType="java.lang.Long">
+    select count(*) from game_ag_betting_agin_video_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update game_ag_betting_agin_video_record
+    <set>
+      <if test="record.billno != null">
+        billno = #{record.billno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.playname != null">
+        playname = #{record.playname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gameCode != null">
+        game_code = #{record.gameCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.netAmount != null">
+        net_amount = #{record.netAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.betTime != null">
+        bet_time = #{record.betTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gameType != null">
+        game_type = #{record.gameType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.betAmount != null">
+        bet_amount = #{record.betAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.validBetAmount != null">
+        valid_bet_amount = #{record.validBetAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.flag != null">
+        flag = #{record.flag,jdbcType=TINYINT},
+      </if>
+      <if test="record.playType != null">
+        play_type = #{record.playType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currency != null">
+        currency = #{record.currency,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tablecode != null">
+        tablecode = #{record.tablecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recalcuTime != null">
+        recalcu_time = #{record.recalcuTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.beforeCredit != null">
+        before_credit = #{record.beforeCredit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.betIp != null">
+        bet_ip = #{record.betIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platfromType != null">
+        platfrom_type = #{record.platfromType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.devicetype != null">
+        devicetype = #{record.devicetype,jdbcType=TINYINT},
+      </if>
+      <if test="record.createdAt != null">
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedAt != null">
+        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update game_ag_betting_agin_video_record
+    set billno = #{record.billno,jdbcType=VARCHAR},
+      playname = #{record.playname,jdbcType=VARCHAR},
+      game_code = #{record.gameCode,jdbcType=VARCHAR},
+      net_amount = #{record.netAmount,jdbcType=DECIMAL},
+      bet_time = #{record.betTime,jdbcType=TIMESTAMP},
+      game_type = #{record.gameType,jdbcType=VARCHAR},
+      bet_amount = #{record.betAmount,jdbcType=DECIMAL},
+      valid_bet_amount = #{record.validBetAmount,jdbcType=DECIMAL},
+      flag = #{record.flag,jdbcType=TINYINT},
+      play_type = #{record.playType,jdbcType=VARCHAR},
+      currency = #{record.currency,jdbcType=VARCHAR},
+      tablecode = #{record.tablecode,jdbcType=VARCHAR},
+      recalcu_time = #{record.recalcuTime,jdbcType=TIMESTAMP},
+      before_credit = #{record.beforeCredit,jdbcType=DECIMAL},
+      bet_ip = #{record.betIp,jdbcType=VARCHAR},
+      platfrom_type = #{record.platfromType,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      devicetype = #{record.devicetype,jdbcType=TINYINT},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.GameAgBettingAginVideoRecord">
+    update game_ag_betting_agin_video_record
+    <set>
+      <if test="playname != null">
+        playname = #{playname,jdbcType=VARCHAR},
+      </if>
+      <if test="gameCode != null">
+        game_code = #{gameCode,jdbcType=VARCHAR},
+      </if>
+      <if test="netAmount != null">
+        net_amount = #{netAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="betTime != null">
+        bet_time = #{betTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameType != null">
+        game_type = #{gameType,jdbcType=VARCHAR},
+      </if>
+      <if test="betAmount != null">
+        bet_amount = #{betAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="validBetAmount != null">
+        valid_bet_amount = #{validBetAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=TINYINT},
+      </if>
+      <if test="playType != null">
+        play_type = #{playType,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null">
+        currency = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="tablecode != null">
+        tablecode = #{tablecode,jdbcType=VARCHAR},
+      </if>
+      <if test="recalcuTime != null">
+        recalcu_time = #{recalcuTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="beforeCredit != null">
+        before_credit = #{beforeCredit,jdbcType=DECIMAL},
+      </if>
+      <if test="betIp != null">
+        bet_ip = #{betIp,jdbcType=VARCHAR},
+      </if>
+      <if test="platfromType != null">
+        platfrom_type = #{platfromType,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="devicetype != null">
+        devicetype = #{devicetype,jdbcType=TINYINT},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where billno = #{billno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.GameAgBettingAginVideoRecord">
+    update game_ag_betting_agin_video_record
+    set playname = #{playname,jdbcType=VARCHAR},
+      game_code = #{gameCode,jdbcType=VARCHAR},
+      net_amount = #{netAmount,jdbcType=DECIMAL},
+      bet_time = #{betTime,jdbcType=TIMESTAMP},
+      game_type = #{gameType,jdbcType=VARCHAR},
+      bet_amount = #{betAmount,jdbcType=DECIMAL},
+      valid_bet_amount = #{validBetAmount,jdbcType=DECIMAL},
+      flag = #{flag,jdbcType=TINYINT},
+      play_type = #{playType,jdbcType=VARCHAR},
+      currency = #{currency,jdbcType=VARCHAR},
+      tablecode = #{tablecode,jdbcType=VARCHAR},
+      recalcu_time = #{recalcuTime,jdbcType=TIMESTAMP},
+      before_credit = #{beforeCredit,jdbcType=DECIMAL},
+      bet_ip = #{betIp,jdbcType=VARCHAR},
+      platfrom_type = #{platfromType,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      devicetype = #{devicetype,jdbcType=TINYINT},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+    where billno = #{billno,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -3,6 +3,8 @@ package com.Test.model.DBmodel;
 public class UsersMsg {
     private Integer id;
 
+    private String platform;
+
     private Integer userId;
 
     private String title;
@@ -21,6 +23,14 @@ public class UsersMsg {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(String platform) {
+        this.platform = platform == null ? null : platform.trim();
     }
 
     public Integer getUserId() {

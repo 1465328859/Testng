@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.GameAgBettingHunterSceneRecordMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.GameAgBettingHunterSceneRecord">
+    <id column="billno" jdbcType="VARCHAR" property="billno" />
+    <result column="productid" jdbcType="VARCHAR" property="productid" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="roomid" jdbcType="INTEGER" property="roomid" />
+    <result column="betx" jdbcType="INTEGER" property="betx" />
+    <result column="sceneid" jdbcType="VARCHAR" property="sceneid" />
+    <result column="starttime" jdbcType="TIMESTAMP" property="starttime" />
+    <result column="endtime" jdbcType="TIMESTAMP" property="endtime" />
+    <result column="billtime" jdbcType="TIMESTAMP" property="billtime" />
+    <result column="gametype" jdbcType="VARCHAR" property="gametype" />
+    <result column="currency" jdbcType="VARCHAR" property="currency" />
+    <result column="totalbulletcost" jdbcType="DECIMAL" property="totalbulletcost" />
+    <result column="totalfishcost" jdbcType="DECIMAL" property="totalfishcost" />
+    <result column="profit" jdbcType="DECIMAL" property="profit" />
+    <result column="totaljpcontribute" jdbcType="DECIMAL" property="totaljpcontribute" />
+    <result column="totaljackpot" jdbcType="DECIMAL" property="totaljackpot" />
+    <result column="totalfirstprize" jdbcType="DECIMAL" property="totalfirstprize" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="devicetype" jdbcType="TINYINT" property="devicetype" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    billno, productid, username, roomid, betx, sceneid, starttime, endtime, billtime, 
+    gametype, currency, totalbulletcost, totalfishcost, profit, totaljpcontribute, totaljackpot, 
+    totalfirstprize, remark, devicetype, created_at, updated_at
+  </sql>
+  <select id="selectByExample" parameterType="com.Test.model.DBmodel.GameAgBettingHunterSceneRecordExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from game_ag_betting_hunter_scene_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from game_ag_betting_hunter_scene_record
+    where billno = #{billno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from game_ag_betting_hunter_scene_record
+    where billno = #{billno,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.Test.model.DBmodel.GameAgBettingHunterSceneRecordExample">
+    delete from game_ag_betting_hunter_scene_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.GameAgBettingHunterSceneRecord">
+    insert into game_ag_betting_hunter_scene_record (billno, productid, username, 
+      roomid, betx, sceneid, 
+      starttime, endtime, billtime, 
+      gametype, currency, totalbulletcost, 
+      totalfishcost, profit, totaljpcontribute, 
+      totaljackpot, totalfirstprize, remark, 
+      devicetype, created_at, updated_at
+      )
+    values (#{billno,jdbcType=VARCHAR}, #{productid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{roomid,jdbcType=INTEGER}, #{betx,jdbcType=INTEGER}, #{sceneid,jdbcType=VARCHAR}, 
+      #{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{billtime,jdbcType=TIMESTAMP}, 
+      #{gametype,jdbcType=VARCHAR}, #{currency,jdbcType=VARCHAR}, #{totalbulletcost,jdbcType=DECIMAL}, 
+      #{totalfishcost,jdbcType=DECIMAL}, #{profit,jdbcType=DECIMAL}, #{totaljpcontribute,jdbcType=DECIMAL}, 
+      #{totaljackpot,jdbcType=DECIMAL}, #{totalfirstprize,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR}, 
+      #{devicetype,jdbcType=TINYINT}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.GameAgBettingHunterSceneRecord">
+    insert into game_ag_betting_hunter_scene_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="billno != null">
+        billno,
+      </if>
+      <if test="productid != null">
+        productid,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="roomid != null">
+        roomid,
+      </if>
+      <if test="betx != null">
+        betx,
+      </if>
+      <if test="sceneid != null">
+        sceneid,
+      </if>
+      <if test="starttime != null">
+        starttime,
+      </if>
+      <if test="endtime != null">
+        endtime,
+      </if>
+      <if test="billtime != null">
+        billtime,
+      </if>
+      <if test="gametype != null">
+        gametype,
+      </if>
+      <if test="currency != null">
+        currency,
+      </if>
+      <if test="totalbulletcost != null">
+        totalbulletcost,
+      </if>
+      <if test="totalfishcost != null">
+        totalfishcost,
+      </if>
+      <if test="profit != null">
+        profit,
+      </if>
+      <if test="totaljpcontribute != null">
+        totaljpcontribute,
+      </if>
+      <if test="totaljackpot != null">
+        totaljackpot,
+      </if>
+      <if test="totalfirstprize != null">
+        totalfirstprize,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="devicetype != null">
+        devicetype,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="billno != null">
+        #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="productid != null">
+        #{productid,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="roomid != null">
+        #{roomid,jdbcType=INTEGER},
+      </if>
+      <if test="betx != null">
+        #{betx,jdbcType=INTEGER},
+      </if>
+      <if test="sceneid != null">
+        #{sceneid,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="billtime != null">
+        #{billtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gametype != null">
+        #{gametype,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null">
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="totalbulletcost != null">
+        #{totalbulletcost,jdbcType=DECIMAL},
+      </if>
+      <if test="totalfishcost != null">
+        #{totalfishcost,jdbcType=DECIMAL},
+      </if>
+      <if test="profit != null">
+        #{profit,jdbcType=DECIMAL},
+      </if>
+      <if test="totaljpcontribute != null">
+        #{totaljpcontribute,jdbcType=DECIMAL},
+      </if>
+      <if test="totaljackpot != null">
+        #{totaljackpot,jdbcType=DECIMAL},
+      </if>
+      <if test="totalfirstprize != null">
+        #{totalfirstprize,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="devicetype != null">
+        #{devicetype,jdbcType=TINYINT},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.Test.model.DBmodel.GameAgBettingHunterSceneRecordExample" resultType="java.lang.Long">
+    select count(*) from game_ag_betting_hunter_scene_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update game_ag_betting_hunter_scene_record
+    <set>
+      <if test="record.billno != null">
+        billno = #{record.billno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productid != null">
+        productid = #{record.productid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roomid != null">
+        roomid = #{record.roomid,jdbcType=INTEGER},
+      </if>
+      <if test="record.betx != null">
+        betx = #{record.betx,jdbcType=INTEGER},
+      </if>
+      <if test="record.sceneid != null">
+        sceneid = #{record.sceneid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starttime != null">
+        starttime = #{record.starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endtime != null">
+        endtime = #{record.endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.billtime != null">
+        billtime = #{record.billtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gametype != null">
+        gametype = #{record.gametype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currency != null">
+        currency = #{record.currency,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalbulletcost != null">
+        totalbulletcost = #{record.totalbulletcost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalfishcost != null">
+        totalfishcost = #{record.totalfishcost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.profit != null">
+        profit = #{record.profit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totaljpcontribute != null">
+        totaljpcontribute = #{record.totaljpcontribute,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totaljackpot != null">
+        totaljackpot = #{record.totaljackpot,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalfirstprize != null">
+        totalfirstprize = #{record.totalfirstprize,jdbcType=DECIMAL},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.devicetype != null">
+        devicetype = #{record.devicetype,jdbcType=TINYINT},
+      </if>
+      <if test="record.createdAt != null">
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedAt != null">
+        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update game_ag_betting_hunter_scene_record
+    set billno = #{record.billno,jdbcType=VARCHAR},
+      productid = #{record.productid,jdbcType=VARCHAR},
+      username = #{record.username,jdbcType=VARCHAR},
+      roomid = #{record.roomid,jdbcType=INTEGER},
+      betx = #{record.betx,jdbcType=INTEGER},
+      sceneid = #{record.sceneid,jdbcType=VARCHAR},
+      starttime = #{record.starttime,jdbcType=TIMESTAMP},
+      endtime = #{record.endtime,jdbcType=TIMESTAMP},
+      billtime = #{record.billtime,jdbcType=TIMESTAMP},
+      gametype = #{record.gametype,jdbcType=VARCHAR},
+      currency = #{record.currency,jdbcType=VARCHAR},
+      totalbulletcost = #{record.totalbulletcost,jdbcType=DECIMAL},
+      totalfishcost = #{record.totalfishcost,jdbcType=DECIMAL},
+      profit = #{record.profit,jdbcType=DECIMAL},
+      totaljpcontribute = #{record.totaljpcontribute,jdbcType=DECIMAL},
+      totaljackpot = #{record.totaljackpot,jdbcType=DECIMAL},
+      totalfirstprize = #{record.totalfirstprize,jdbcType=DECIMAL},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      devicetype = #{record.devicetype,jdbcType=TINYINT},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.GameAgBettingHunterSceneRecord">
+    update game_ag_betting_hunter_scene_record
+    <set>
+      <if test="productid != null">
+        productid = #{productid,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="roomid != null">
+        roomid = #{roomid,jdbcType=INTEGER},
+      </if>
+      <if test="betx != null">
+        betx = #{betx,jdbcType=INTEGER},
+      </if>
+      <if test="sceneid != null">
+        sceneid = #{sceneid,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        starttime = #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        endtime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="billtime != null">
+        billtime = #{billtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gametype != null">
+        gametype = #{gametype,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null">
+        currency = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="totalbulletcost != null">
+        totalbulletcost = #{totalbulletcost,jdbcType=DECIMAL},
+      </if>
+      <if test="totalfishcost != null">
+        totalfishcost = #{totalfishcost,jdbcType=DECIMAL},
+      </if>
+      <if test="profit != null">
+        profit = #{profit,jdbcType=DECIMAL},
+      </if>
+      <if test="totaljpcontribute != null">
+        totaljpcontribute = #{totaljpcontribute,jdbcType=DECIMAL},
+      </if>
+      <if test="totaljackpot != null">
+        totaljackpot = #{totaljackpot,jdbcType=DECIMAL},
+      </if>
+      <if test="totalfirstprize != null">
+        totalfirstprize = #{totalfirstprize,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="devicetype != null">
+        devicetype = #{devicetype,jdbcType=TINYINT},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where billno = #{billno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.GameAgBettingHunterSceneRecord">
+    update game_ag_betting_hunter_scene_record
+    set productid = #{productid,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      roomid = #{roomid,jdbcType=INTEGER},
+      betx = #{betx,jdbcType=INTEGER},
+      sceneid = #{sceneid,jdbcType=VARCHAR},
+      starttime = #{starttime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
+      billtime = #{billtime,jdbcType=TIMESTAMP},
+      gametype = #{gametype,jdbcType=VARCHAR},
+      currency = #{currency,jdbcType=VARCHAR},
+      totalbulletcost = #{totalbulletcost,jdbcType=DECIMAL},
+      totalfishcost = #{totalfishcost,jdbcType=DECIMAL},
+      profit = #{profit,jdbcType=DECIMAL},
+      totaljpcontribute = #{totaljpcontribute,jdbcType=DECIMAL},
+      totaljackpot = #{totaljackpot,jdbcType=DECIMAL},
+      totalfirstprize = #{totalfirstprize,jdbcType=DECIMAL},
+      remark = #{remark,jdbcType=VARCHAR},
+      devicetype = #{devicetype,jdbcType=TINYINT},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+    where billno = #{billno,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -21,5 +21,6 @@
     <!-- 注册映射文件：java对象与数据库之间的xml文件路径！ -->
     <mappers>
         <mapper resource="mapper\DBmapper\UsersMapper.xml"/>
+        <mapper resource="mapper\DBmapper\LotteryMapper.xml"/>
     </mappers>
 </configuration>

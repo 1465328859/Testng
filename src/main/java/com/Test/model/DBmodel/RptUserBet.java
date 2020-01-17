@@ -26,6 +26,18 @@ public class RptUserBet {
 
     private BigDecimal prizeAmount;
 
+    private Integer mgNumber;
+
+    private Integer mgTzzs;
+
+    private Integer mgZjzs;
+
+    private BigDecimal mgBetAmount;
+
+    private BigDecimal mgRebateAmount;
+
+    private BigDecimal mgPrizeAmount;
+
     private BigDecimal onlineAmount;
 
     private BigDecimal manualIn;
@@ -33,6 +45,8 @@ public class RptUserBet {
     private BigDecimal offlineAmount;
 
     private BigDecimal agentRebate;
+
+    private BigDecimal mgAgentRebate;
 
     private BigDecimal memberTake;
 
@@ -160,6 +174,54 @@ public class RptUserBet {
         this.prizeAmount = prizeAmount;
     }
 
+    public Integer getMgNumber() {
+        return mgNumber;
+    }
+
+    public void setMgNumber(Integer mgNumber) {
+        this.mgNumber = mgNumber;
+    }
+
+    public Integer getMgTzzs() {
+        return mgTzzs;
+    }
+
+    public void setMgTzzs(Integer mgTzzs) {
+        this.mgTzzs = mgTzzs;
+    }
+
+    public Integer getMgZjzs() {
+        return mgZjzs;
+    }
+
+    public void setMgZjzs(Integer mgZjzs) {
+        this.mgZjzs = mgZjzs;
+    }
+
+    public BigDecimal getMgBetAmount() {
+        return mgBetAmount;
+    }
+
+    public void setMgBetAmount(BigDecimal mgBetAmount) {
+        this.mgBetAmount = mgBetAmount;
+    }
+
+    public BigDecimal getMgRebateAmount() {
+        return mgRebateAmount;
+    }
+
+    public void setMgRebateAmount(BigDecimal mgRebateAmount) {
+        this.mgRebateAmount = mgRebateAmount;
+    }
+
+    public BigDecimal getMgPrizeAmount() {
+        return mgPrizeAmount;
+    }
+
+    public void setMgPrizeAmount(BigDecimal mgPrizeAmount) {
+        this.mgPrizeAmount = mgPrizeAmount;
+    }
+
     public BigDecimal getOnlineAmount() {
         return onlineAmount;
     }
@@ -190,6 +252,14 @@ public class RptUserBet {
 
     public void setAgentRebate(BigDecimal agentRebate) {
         this.agentRebate = agentRebate;
+    }
+
+    public BigDecimal getMgAgentRebate() {
+        return mgAgentRebate;
+    }
+
+    public void setMgAgentRebate(BigDecimal mgAgentRebate) {
+        this.mgAgentRebate = mgAgentRebate;
     }
 
     public BigDecimal getMemberTake() {

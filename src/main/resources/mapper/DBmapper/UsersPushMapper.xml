@@ -3,6 +3,7 @@
 <mapper namespace="com.Test.model.DBmodel.UsersPushMapper">
   <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.UsersPush">
     <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="platform" jdbcType="VARCHAR" property="platform" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="num" jdbcType="INTEGER" property="num" />
     <result column="fstime" jdbcType="INTEGER" property="fstime" />
@@ -72,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, title, num, fstime, type, operator
+    id, platform, title, num, fstime, type, operator
   </sql>
   <sql id="Blob_Column_List">
     content, memberid
@@ -126,18 +127,23 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.Test.model.DBmodel.UsersPushWithBLOBs">
-    insert into users_push (id, title, num, 
-      fstime, type, operator, 
-      content, memberid)
-    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{num,jdbcType=INTEGER}, 
-      #{fstime,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, #{operator,jdbcType=VARCHAR}, 
-      #{content,jdbcType=LONGVARCHAR}, #{memberid,jdbcType=LONGVARCHAR})
+    insert into users_push (id, platform, title, 
+      num, fstime, type, 
+      operator, content, memberid
+      )
+    values (#{id,jdbcType=INTEGER}, #{platform,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{num,jdbcType=INTEGER}, #{fstime,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, 
+      #{operator,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}, #{memberid,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.Test.model.DBmodel.UsersPushWithBLOBs">
     insert into users_push
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="platform != null">
+        platform,
       </if>
       <if test="title != null">
         title,
@@ -164,6 +170,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
+      </if>
+      <if test="platform != null">
+        #{platform,jdbcType=VARCHAR},
       </if>
       <if test="title != null">
         #{title,jdbcType=VARCHAR},
@@ -200,6 +209,9 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
+      <if test="record.platform != null">
+        platform = #{record.platform,jdbcType=VARCHAR},
+      </if>
       <if test="record.title != null">
         title = #{record.title,jdbcType=VARCHAR},
       </if>
@@ -229,6 +241,7 @@
   <update id="updateByExampleWithBLOBs" parameterType="map">
     update users_push
     set id = #{record.id,jdbcType=INTEGER},
+      platform = #{record.platform,jdbcType=VARCHAR},
       title = #{record.title,jdbcType=VARCHAR},
       num = #{record.num,jdbcType=INTEGER},
       fstime = #{record.fstime,jdbcType=INTEGER},
@@ -243,6 +256,7 @@
   <update id="updateByExample" parameterType="map">
     update users_push
     set id = #{record.id,jdbcType=INTEGER},
+      platform = #{record.platform,jdbcType=VARCHAR},
       title = #{record.title,jdbcType=VARCHAR},
       num = #{record.num,jdbcType=INTEGER},
       fstime = #{record.fstime,jdbcType=INTEGER},
@@ -255,6 +269,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.UsersPushWithBLOBs">
     update users_push
     <set>
+      <if test="platform != null">
+        platform = #{platform,jdbcType=VARCHAR},
+      </if>
       <if test="title != null">
         title = #{title,jdbcType=VARCHAR},
       </if>
@@ -281,7 +298,8 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.Test.model.DBmodel.UsersPushWithBLOBs">
     update users_push
-    set title = #{title,jdbcType=VARCHAR},
+    set platform = #{platform,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
       num = #{num,jdbcType=INTEGER},
       fstime = #{fstime,jdbcType=INTEGER},
       type = #{type,jdbcType=TINYINT},
@@ -292,7 +310,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.UsersPush">
     update users_push
-    set title = #{title,jdbcType=VARCHAR},
+    set platform = #{platform,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
       num = #{num,jdbcType=INTEGER},
       fstime = #{fstime,jdbcType=INTEGER},
       type = #{type,jdbcType=TINYINT},

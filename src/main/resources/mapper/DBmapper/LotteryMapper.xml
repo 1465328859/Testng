@@ -80,8 +80,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    lottery_id, lottery_name, remark, desc, num_day, close_time, judge_expired_time, 
-    sort, hall_recommend, is_enabled, lottery_type, initial_class_id, logo, kill, across_day_time, 
+    lottery_id, lottery_name, remark, a.desc, num_day, close_time, judge_expired_time,
+    sort, hall_recommend, is_enabled, lottery_type, initial_class_id, logo, a.kill, across_day_time,
     lottery_classify_id, is_self_open, kill_off
   </sql>
   <select id="selectByExample" parameterType="com.Test.model.DBmodel.LotteryExample" resultMap="BaseResultMap">
@@ -90,7 +90,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from lottery
+    from lottery a
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>

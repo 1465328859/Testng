@@ -9,6 +9,8 @@ public class AgentHost {
 
     private String proxyDomain;
 
+    private String gameSwitch;
+
     public Integer getHostId() {
         return hostId;
     }
@@ -39,5 +41,13 @@ public class AgentHost {
 
     public void setProxyDomain(String proxyDomain) {
         this.proxyDomain = proxyDomain == null ? null : proxyDomain.trim();
+    }
+
+    public String getGameSwitch() {
+        return gameSwitch;
+    }
+
+    public void setGameSwitch(String gameSwitch) {
+        this.gameSwitch = gameSwitch == null ? null : gameSwitch.trim();
     }
 }

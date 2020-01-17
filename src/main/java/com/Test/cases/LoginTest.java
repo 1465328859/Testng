@@ -54,7 +54,4 @@ public class LoginTest {
             throw new RuntimeException(jsonObject.toString());
         }
     }
-    public String GetToken(){
-        return token;
-    }
 }

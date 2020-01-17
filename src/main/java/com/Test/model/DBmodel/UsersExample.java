@@ -996,6 +996,126 @@ public class UsersExample {
             return (Criteria) this;
         }
 
+        public Criteria andLastGameIsNull() {
+            addCriterion("last_game is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastGameIsNotNull() {
+            addCriterion("last_game is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastGameEqualTo(Byte value) {
+            addCriterion("last_game =", value, "lastGame");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastGameNotEqualTo(Byte value) {
+            addCriterion("last_game <>", value, "lastGame");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastGameGreaterThan(Byte value) {
+            addCriterion("last_game >", value, "lastGame");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastGameGreaterThanOrEqualTo(Byte value) {
+            addCriterion("last_game >=", value, "lastGame");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastGameLessThan(Byte value) {
+            addCriterion("last_game <", value, "lastGame");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastGameLessThanOrEqualTo(Byte value) {
+            addCriterion("last_game <=", value, "lastGame");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastGameIn(List<Byte> values) {
+            addCriterion("last_game in", values, "lastGame");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastGameNotIn(List<Byte> values) {
+            addCriterion("last_game not in", values, "lastGame");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastGameBetween(Byte value1, Byte value2) {
+            addCriterion("last_game between", value1, value2, "lastGame");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastGameNotBetween(Byte value1, Byte value2) {
+            addCriterion("last_game not between", value1, value2, "lastGame");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameAmountIsNull() {
+            addCriterion("game_amount is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameAmountIsNotNull() {
+            addCriterion("game_amount is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameAmountEqualTo(BigDecimal value) {
+            addCriterion("game_amount =", value, "gameAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameAmountNotEqualTo(BigDecimal value) {
+            addCriterion("game_amount <>", value, "gameAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameAmountGreaterThan(BigDecimal value) {
+            addCriterion("game_amount >", value, "gameAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameAmountGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("game_amount >=", value, "gameAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameAmountLessThan(BigDecimal value) {
+            addCriterion("game_amount <", value, "gameAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameAmountLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("game_amount <=", value, "gameAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameAmountIn(List<BigDecimal> values) {
+            addCriterion("game_amount in", values, "gameAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameAmountNotIn(List<BigDecimal> values) {
+            addCriterion("game_amount not in", values, "gameAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameAmountBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("game_amount between", value1, value2, "gameAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameAmountNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("game_amount not between", value1, value2, "gameAmount");
+            return (Criteria) this;
+        }
+
         public Criteria andStatusIsNull() {
             addCriterion("status is null");
             return (Criteria) this;

@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.GameReportUserMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.GameReportUser">
+    <result column="belong_date" jdbcType="DATE" property="belongDate" />
+    <result column="platform" jdbcType="TINYINT" property="platform" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="top_id" jdbcType="INTEGER" property="topId" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="today_bet_money" jdbcType="DECIMAL" property="todayBetMoney" />
+    <result column="today_profit" jdbcType="DECIMAL" property="todayProfit" />
+    <result column="today_rebate_amount" jdbcType="DECIMAL" property="todayRebateAmount" />
+    <result column="today_top_rebate_amount" jdbcType="DECIMAL" property="todayTopRebateAmount" />
+    <result column="today_primary_rebate_amount" jdbcType="DECIMAL" property="todayPrimaryRebateAmount" />
+    <result column="primary_user_id" jdbcType="INTEGER" property="primaryUserId" />
+    <result column="today_secondary_rebate_amount" jdbcType="DECIMAL" property="todaySecondaryRebateAmount" />
+    <result column="secondary_user_id" jdbcType="INTEGER" property="secondaryUserId" />
+    <result column="today_tertiary_rebate_amount" jdbcType="DECIMAL" property="todayTertiaryRebateAmount" />
+    <result column="tertiary_user_id" jdbcType="INTEGER" property="tertiaryUserId" />
+    <result column="order_num" jdbcType="INTEGER" property="orderNum" />
+    <result column="win_num" jdbcType="INTEGER" property="winNum" />
+    <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    belong_date, platform, user_id, top_id, type, username, today_bet_money, today_profit, 
+    today_rebate_amount, today_top_rebate_amount, today_primary_rebate_amount, primary_user_id, 
+    today_secondary_rebate_amount, secondary_user_id, today_tertiary_rebate_amount, tertiary_user_id, 
+    order_num, win_num, update_at
+  </sql>
+  <select id="selectByExample" parameterType="com.Test.model.DBmodel.GameReportUserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from game_report_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.Test.model.DBmodel.GameReportUserExample">
+    delete from game_report_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.GameReportUser">
+    insert into game_report_user (belong_date, platform, user_id, 
+      top_id, type, username, 
+      today_bet_money, today_profit, today_rebate_amount, 
+      today_top_rebate_amount, today_primary_rebate_amount, 
+      primary_user_id, today_secondary_rebate_amount, 
+      secondary_user_id, today_tertiary_rebate_amount, 
+      tertiary_user_id, order_num, win_num, 
+      update_at)
+    values (#{belongDate,jdbcType=DATE}, #{platform,jdbcType=TINYINT}, #{userId,jdbcType=INTEGER}, 
+      #{topId,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, #{username,jdbcType=VARCHAR}, 
+      #{todayBetMoney,jdbcType=DECIMAL}, #{todayProfit,jdbcType=DECIMAL}, #{todayRebateAmount,jdbcType=DECIMAL}, 
+      #{todayTopRebateAmount,jdbcType=DECIMAL}, #{todayPrimaryRebateAmount,jdbcType=DECIMAL}, 
+      #{primaryUserId,jdbcType=INTEGER}, #{todaySecondaryRebateAmount,jdbcType=DECIMAL}, 
+      #{secondaryUserId,jdbcType=INTEGER}, #{todayTertiaryRebateAmount,jdbcType=DECIMAL}, 
+      #{tertiaryUserId,jdbcType=INTEGER}, #{orderNum,jdbcType=INTEGER}, #{winNum,jdbcType=INTEGER}, 
+      #{updateAt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.GameReportUser">
+    insert into game_report_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="belongDate != null">
+        belong_date,
+      </if>
+      <if test="platform != null">
+        platform,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="topId != null">
+        top_id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="todayBetMoney != null">
+        today_bet_money,
+      </if>
+      <if test="todayProfit != null">
+        today_profit,
+      </if>
+      <if test="todayRebateAmount != null">
+        today_rebate_amount,
+      </if>
+      <if test="todayTopRebateAmount != null">
+        today_top_rebate_amount,
+      </if>
+      <if test="todayPrimaryRebateAmount != null">
+        today_primary_rebate_amount,
+      </if>
+      <if test="primaryUserId != null">
+        primary_user_id,
+      </if>
+      <if test="todaySecondaryRebateAmount != null">
+        today_secondary_rebate_amount,
+      </if>
+      <if test="secondaryUserId != null">
+        secondary_user_id,
+      </if>
+      <if test="todayTertiaryRebateAmount != null">
+        today_tertiary_rebate_amount,
+      </if>
+      <if test="tertiaryUserId != null">
+        tertiary_user_id,
+      </if>
+      <if test="orderNum != null">
+        order_num,
+      </if>
+      <if test="winNum != null">
+        win_num,
+      </if>
+      <if test="updateAt != null">
+        update_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="belongDate != null">
+        #{belongDate,jdbcType=DATE},
+      </if>
+      <if test="platform != null">
+        #{platform,jdbcType=TINYINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="topId != null">
+        #{topId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="todayBetMoney != null">
+        #{todayBetMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="todayProfit != null">
+        #{todayProfit,jdbcType=DECIMAL},
+      </if>
+      <if test="todayRebateAmount != null">
+        #{todayRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="todayTopRebateAmount != null">
+        #{todayTopRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="todayPrimaryRebateAmount != null">
+        #{todayPrimaryRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="primaryUserId != null">
+        #{primaryUserId,jdbcType=INTEGER},
+      </if>
+      <if test="todaySecondaryRebateAmount != null">
+        #{todaySecondaryRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="secondaryUserId != null">
+        #{secondaryUserId,jdbcType=INTEGER},
+      </if>
+      <if test="todayTertiaryRebateAmount != null">
+        #{todayTertiaryRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="tertiaryUserId != null">
+        #{tertiaryUserId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNum != null">
+        #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="winNum != null">
+        #{winNum,jdbcType=INTEGER},
+      </if>
+      <if test="updateAt != null">
+        #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.Test.model.DBmodel.GameReportUserExample" resultType="java.lang.Long">
+    select count(*) from game_report_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update game_report_user
+    <set>
+      <if test="record.belongDate != null">
+        belong_date = #{record.belongDate,jdbcType=DATE},
+      </if>
+      <if test="record.platform != null">
+        platform = #{record.platform,jdbcType=TINYINT},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.topId != null">
+        top_id = #{record.topId,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=TINYINT},
+      </if>
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.todayBetMoney != null">
+        today_bet_money = #{record.todayBetMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.todayProfit != null">
+        today_profit = #{record.todayProfit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.todayRebateAmount != null">
+        today_rebate_amount = #{record.todayRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.todayTopRebateAmount != null">
+        today_top_rebate_amount = #{record.todayTopRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.todayPrimaryRebateAmount != null">
+        today_primary_rebate_amount = #{record.todayPrimaryRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.primaryUserId != null">
+        primary_user_id = #{record.primaryUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.todaySecondaryRebateAmount != null">
+        today_secondary_rebate_amount = #{record.todaySecondaryRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.secondaryUserId != null">
+        secondary_user_id = #{record.secondaryUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.todayTertiaryRebateAmount != null">
+        today_tertiary_rebate_amount = #{record.todayTertiaryRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tertiaryUserId != null">
+        tertiary_user_id = #{record.tertiaryUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderNum != null">
+        order_num = #{record.orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.winNum != null">
+        win_num = #{record.winNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateAt != null">
+        update_at = #{record.updateAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update game_report_user
+    set belong_date = #{record.belongDate,jdbcType=DATE},
+      platform = #{record.platform,jdbcType=TINYINT},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      top_id = #{record.topId,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=TINYINT},
+      username = #{record.username,jdbcType=VARCHAR},
+      today_bet_money = #{record.todayBetMoney,jdbcType=DECIMAL},
+      today_profit = #{record.todayProfit,jdbcType=DECIMAL},
+      today_rebate_amount = #{record.todayRebateAmount,jdbcType=DECIMAL},
+      today_top_rebate_amount = #{record.todayTopRebateAmount,jdbcType=DECIMAL},
+      today_primary_rebate_amount = #{record.todayPrimaryRebateAmount,jdbcType=DECIMAL},
+      primary_user_id = #{record.primaryUserId,jdbcType=INTEGER},
+      today_secondary_rebate_amount = #{record.todaySecondaryRebateAmount,jdbcType=DECIMAL},
+      secondary_user_id = #{record.secondaryUserId,jdbcType=INTEGER},
+      today_tertiary_rebate_amount = #{record.todayTertiaryRebateAmount,jdbcType=DECIMAL},
+      tertiary_user_id = #{record.tertiaryUserId,jdbcType=INTEGER},
+      order_num = #{record.orderNum,jdbcType=INTEGER},
+      win_num = #{record.winNum,jdbcType=INTEGER},
+      update_at = #{record.updateAt,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

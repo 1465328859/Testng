@@ -695,7 +695,7 @@ public class LotteryExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsEnabledEqualTo(Boolean value) {
+        public Criteria andIsEnabledEqualTo(int value) {
             addCriterion("is_enabled =", value, "isEnabled");
             return (Criteria) this;
         }

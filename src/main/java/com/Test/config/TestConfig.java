@@ -6,8 +6,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 public class TestConfig {
     public static String loginuri;
     public static String Bettingurl;
-    public static String HistoryRecording;
-    public static String getUserInfouri;
+    public static String HistoryRecordingurl;
+    public static String LotteryListuri;
     public static String addUseruri;
 
     public static DefaultHttpClient defaultHttpClient;

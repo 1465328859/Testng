@@ -12,10 +12,15 @@
     <result column="new_bet_number_num" jdbcType="INTEGER" property="newBetNumberNum" />
     <result column="agent_commission" jdbcType="DECIMAL" property="agentCommission" />
     <result column="top_agent_commission" jdbcType="DECIMAL" property="topAgentCommission" />
+    <result column="mg_agent_commission" jdbcType="DECIMAL" property="mgAgentCommission" />
+    <result column="mg_top_agent_commission" jdbcType="DECIMAL" property="mgTopAgentCommission" />
     <result column="lottery_total_money" jdbcType="DECIMAL" property="lotteryTotalMoney" />
     <result column="lottery_bet_amount" jdbcType="DECIMAL" property="lotteryBetAmount" />
     <result column="payout_amount" jdbcType="DECIMAL" property="payoutAmount" />
     <result column="return_amount" jdbcType="DECIMAL" property="returnAmount" />
+    <result column="mg_bet_amount" jdbcType="DECIMAL" property="mgBetAmount" />
+    <result column="mg_payout_amount" jdbcType="DECIMAL" property="mgPayoutAmount" />
+    <result column="mg_return_amount" jdbcType="DECIMAL" property="mgReturnAmount" />
     <result column="company_deposits_num" jdbcType="INTEGER" property="companyDepositsNum" />
     <result column="online_deposits_num" jdbcType="INTEGER" property="onlineDepositsNum" />
     <result column="manual_deposits_num" jdbcType="INTEGER" property="manualDepositsNum" />
@@ -106,13 +111,14 @@
   </sql>
   <sql id="Base_Column_List">
     id, statistics_day, top_id, register_num, first_recharge_num, first_recharge_amount, 
-    bet_num, new_bet_number_num, agent_commission, top_agent_commission, lottery_total_money, 
-    lottery_bet_amount, payout_amount, return_amount, company_deposits_num, online_deposits_num, 
-    manual_deposits_num, manual_out_num, company_deposits_user, online_deposits_user, 
-    manual_deposits_user, manual_out_user, company_deposits_amount, online_deposits_amount, 
-    manual_deposits_amount, member_withdrawal_count, backstage_payment_count, member_withdrawal_user, 
-    backstage_payment_user, member_withdrawal_money, backstage_payment_money, manual_out_money, 
-    vaild_user, backwater_user
+    bet_num, new_bet_number_num, agent_commission, top_agent_commission, mg_agent_commission, 
+    mg_top_agent_commission, lottery_total_money, lottery_bet_amount, payout_amount, 
+    return_amount, mg_bet_amount, mg_payout_amount, mg_return_amount, company_deposits_num, 
+    online_deposits_num, manual_deposits_num, manual_out_num, company_deposits_user, 
+    online_deposits_user, manual_deposits_user, manual_out_user, company_deposits_amount, 
+    online_deposits_amount, manual_deposits_amount, member_withdrawal_count, backstage_payment_count, 
+    member_withdrawal_user, backstage_payment_user, member_withdrawal_money, backstage_payment_money, 
+    manual_out_money, vaild_user, backwater_user
   </sql>
   <sql id="Blob_Column_List">
     bet_users, company_deposits_users, online_deposits_users, manual_deposits_users, 
@@ -170,8 +176,10 @@
     insert into rpt_agent_index (id, statistics_day, top_id, 
       register_num, first_recharge_num, first_recharge_amount, 
       bet_num, new_bet_number_num, agent_commission, 
-      top_agent_commission, lottery_total_money, 
+      top_agent_commission, mg_agent_commission, 
+      mg_top_agent_commission, lottery_total_money, 
       lottery_bet_amount, payout_amount, return_amount, 
+      mg_bet_amount, mg_payout_amount, mg_return_amount, 
       company_deposits_num, online_deposits_num, 
       manual_deposits_num, manual_out_num, company_deposits_user, 
       online_deposits_user, manual_deposits_user, 
@@ -188,8 +196,10 @@
     values (#{id,jdbcType=INTEGER}, #{statisticsDay,jdbcType=DATE}, #{topId,jdbcType=INTEGER}, 
       #{registerNum,jdbcType=INTEGER}, #{firstRechargeNum,jdbcType=INTEGER}, #{firstRechargeAmount,jdbcType=DECIMAL}, 
       #{betNum,jdbcType=INTEGER}, #{newBetNumberNum,jdbcType=INTEGER}, #{agentCommission,jdbcType=DECIMAL}, 
-      #{topAgentCommission,jdbcType=DECIMAL}, #{lotteryTotalMoney,jdbcType=DECIMAL}, 
+      #{topAgentCommission,jdbcType=DECIMAL}, #{mgAgentCommission,jdbcType=DECIMAL}, 
+      #{mgTopAgentCommission,jdbcType=DECIMAL}, #{lotteryTotalMoney,jdbcType=DECIMAL}, 
       #{lotteryBetAmount,jdbcType=DECIMAL}, #{payoutAmount,jdbcType=DECIMAL}, #{returnAmount,jdbcType=DECIMAL}, 
+      #{mgBetAmount,jdbcType=DECIMAL}, #{mgPayoutAmount,jdbcType=DECIMAL}, #{mgReturnAmount,jdbcType=DECIMAL}, 
       #{companyDepositsNum,jdbcType=INTEGER}, #{onlineDepositsNum,jdbcType=INTEGER}, 
       #{manualDepositsNum,jdbcType=INTEGER}, #{manualOutNum,jdbcType=INTEGER}, #{companyDepositsUser,jdbcType=INTEGER}, 
       #{onlineDepositsUser,jdbcType=INTEGER}, #{manualDepositsUser,jdbcType=INTEGER}, 
@@ -237,6 +247,12 @@
       <if test="topAgentCommission != null">
         top_agent_commission,
       </if>
+      <if test="mgAgentCommission != null">
+        mg_agent_commission,
+      </if>
+      <if test="mgTopAgentCommission != null">
+        mg_top_agent_commission,
+      </if>
       <if test="lotteryTotalMoney != null">
         lottery_total_money,
       </if>
@@ -248,6 +264,15 @@
       </if>
       <if test="returnAmount != null">
         return_amount,
+      </if>
+      <if test="mgBetAmount != null">
+        mg_bet_amount,
+      </if>
+      <if test="mgPayoutAmount != null">
+        mg_payout_amount,
+      </if>
+      <if test="mgReturnAmount != null">
+        mg_return_amount,
       </if>
       <if test="companyDepositsNum != null">
         company_deposits_num,
@@ -362,6 +387,12 @@
       <if test="topAgentCommission != null">
         #{topAgentCommission,jdbcType=DECIMAL},
       </if>
+      <if test="mgAgentCommission != null">
+        #{mgAgentCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="mgTopAgentCommission != null">
+        #{mgTopAgentCommission,jdbcType=DECIMAL},
+      </if>
       <if test="lotteryTotalMoney != null">
         #{lotteryTotalMoney,jdbcType=DECIMAL},
       </if>
@@ -373,6 +404,15 @@
       </if>
       <if test="returnAmount != null">
         #{returnAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="mgBetAmount != null">
+        #{mgBetAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="mgPayoutAmount != null">
+        #{mgPayoutAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="mgReturnAmount != null">
+        #{mgReturnAmount,jdbcType=DECIMAL},
       </if>
       <if test="companyDepositsNum != null">
         #{companyDepositsNum,jdbcType=INTEGER},
@@ -496,6 +536,12 @@
       <if test="record.topAgentCommission != null">
         top_agent_commission = #{record.topAgentCommission,jdbcType=DECIMAL},
       </if>
+      <if test="record.mgAgentCommission != null">
+        mg_agent_commission = #{record.mgAgentCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mgTopAgentCommission != null">
+        mg_top_agent_commission = #{record.mgTopAgentCommission,jdbcType=DECIMAL},
+      </if>
       <if test="record.lotteryTotalMoney != null">
         lottery_total_money = #{record.lotteryTotalMoney,jdbcType=DECIMAL},
       </if>
@@ -507,6 +553,15 @@
       </if>
       <if test="record.returnAmount != null">
         return_amount = #{record.returnAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mgBetAmount != null">
+        mg_bet_amount = #{record.mgBetAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mgPayoutAmount != null">
+        mg_payout_amount = #{record.mgPayoutAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.mgReturnAmount != null">
+        mg_return_amount = #{record.mgReturnAmount,jdbcType=DECIMAL},
       </if>
       <if test="record.companyDepositsNum != null">
         company_deposits_num = #{record.companyDepositsNum,jdbcType=INTEGER},
@@ -606,10 +661,15 @@
       new_bet_number_num = #{record.newBetNumberNum,jdbcType=INTEGER},
       agent_commission = #{record.agentCommission,jdbcType=DECIMAL},
       top_agent_commission = #{record.topAgentCommission,jdbcType=DECIMAL},
+      mg_agent_commission = #{record.mgAgentCommission,jdbcType=DECIMAL},
+      mg_top_agent_commission = #{record.mgTopAgentCommission,jdbcType=DECIMAL},
       lottery_total_money = #{record.lotteryTotalMoney,jdbcType=DECIMAL},
       lottery_bet_amount = #{record.lotteryBetAmount,jdbcType=DECIMAL},
       payout_amount = #{record.payoutAmount,jdbcType=DECIMAL},
       return_amount = #{record.returnAmount,jdbcType=DECIMAL},
+      mg_bet_amount = #{record.mgBetAmount,jdbcType=DECIMAL},
+      mg_payout_amount = #{record.mgPayoutAmount,jdbcType=DECIMAL},
+      mg_return_amount = #{record.mgReturnAmount,jdbcType=DECIMAL},
       company_deposits_num = #{record.companyDepositsNum,jdbcType=INTEGER},
       online_deposits_num = #{record.onlineDepositsNum,jdbcType=INTEGER},
       manual_deposits_num = #{record.manualDepositsNum,jdbcType=INTEGER},
@@ -653,10 +713,15 @@
       new_bet_number_num = #{record.newBetNumberNum,jdbcType=INTEGER},
       agent_commission = #{record.agentCommission,jdbcType=DECIMAL},
       top_agent_commission = #{record.topAgentCommission,jdbcType=DECIMAL},
+      mg_agent_commission = #{record.mgAgentCommission,jdbcType=DECIMAL},
+      mg_top_agent_commission = #{record.mgTopAgentCommission,jdbcType=DECIMAL},
       lottery_total_money = #{record.lotteryTotalMoney,jdbcType=DECIMAL},
       lottery_bet_amount = #{record.lotteryBetAmount,jdbcType=DECIMAL},
       payout_amount = #{record.payoutAmount,jdbcType=DECIMAL},
       return_amount = #{record.returnAmount,jdbcType=DECIMAL},
+      mg_bet_amount = #{record.mgBetAmount,jdbcType=DECIMAL},
+      mg_payout_amount = #{record.mgPayoutAmount,jdbcType=DECIMAL},
+      mg_return_amount = #{record.mgReturnAmount,jdbcType=DECIMAL},
       company_deposits_num = #{record.companyDepositsNum,jdbcType=INTEGER},
       online_deposits_num = #{record.onlineDepositsNum,jdbcType=INTEGER},
       manual_deposits_num = #{record.manualDepositsNum,jdbcType=INTEGER},
@@ -711,6 +776,12 @@
       <if test="topAgentCommission != null">
         top_agent_commission = #{topAgentCommission,jdbcType=DECIMAL},
       </if>
+      <if test="mgAgentCommission != null">
+        mg_agent_commission = #{mgAgentCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="mgTopAgentCommission != null">
+        mg_top_agent_commission = #{mgTopAgentCommission,jdbcType=DECIMAL},
+      </if>
       <if test="lotteryTotalMoney != null">
         lottery_total_money = #{lotteryTotalMoney,jdbcType=DECIMAL},
       </if>
@@ -722,6 +793,15 @@
       </if>
       <if test="returnAmount != null">
         return_amount = #{returnAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="mgBetAmount != null">
+        mg_bet_amount = #{mgBetAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="mgPayoutAmount != null">
+        mg_payout_amount = #{mgPayoutAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="mgReturnAmount != null">
+        mg_return_amount = #{mgReturnAmount,jdbcType=DECIMAL},
       </if>
       <if test="companyDepositsNum != null">
         company_deposits_num = #{companyDepositsNum,jdbcType=INTEGER},
@@ -818,10 +898,15 @@
       new_bet_number_num = #{newBetNumberNum,jdbcType=INTEGER},
       agent_commission = #{agentCommission,jdbcType=DECIMAL},
       top_agent_commission = #{topAgentCommission,jdbcType=DECIMAL},
+      mg_agent_commission = #{mgAgentCommission,jdbcType=DECIMAL},
+      mg_top_agent_commission = #{mgTopAgentCommission,jdbcType=DECIMAL},
       lottery_total_money = #{lotteryTotalMoney,jdbcType=DECIMAL},
       lottery_bet_amount = #{lotteryBetAmount,jdbcType=DECIMAL},
       payout_amount = #{payoutAmount,jdbcType=DECIMAL},
       return_amount = #{returnAmount,jdbcType=DECIMAL},
+      mg_bet_amount = #{mgBetAmount,jdbcType=DECIMAL},
+      mg_payout_amount = #{mgPayoutAmount,jdbcType=DECIMAL},
+      mg_return_amount = #{mgReturnAmount,jdbcType=DECIMAL},
       company_deposits_num = #{companyDepositsNum,jdbcType=INTEGER},
       online_deposits_num = #{onlineDepositsNum,jdbcType=INTEGER},
       manual_deposits_num = #{manualDepositsNum,jdbcType=INTEGER},
@@ -862,10 +947,15 @@
       new_bet_number_num = #{newBetNumberNum,jdbcType=INTEGER},
       agent_commission = #{agentCommission,jdbcType=DECIMAL},
       top_agent_commission = #{topAgentCommission,jdbcType=DECIMAL},
+      mg_agent_commission = #{mgAgentCommission,jdbcType=DECIMAL},
+      mg_top_agent_commission = #{mgTopAgentCommission,jdbcType=DECIMAL},
       lottery_total_money = #{lotteryTotalMoney,jdbcType=DECIMAL},
       lottery_bet_amount = #{lotteryBetAmount,jdbcType=DECIMAL},
       payout_amount = #{payoutAmount,jdbcType=DECIMAL},
       return_amount = #{returnAmount,jdbcType=DECIMAL},
+      mg_bet_amount = #{mgBetAmount,jdbcType=DECIMAL},
+      mg_payout_amount = #{mgPayoutAmount,jdbcType=DECIMAL},
+      mg_return_amount = #{mgReturnAmount,jdbcType=DECIMAL},
       company_deposits_num = #{companyDepositsNum,jdbcType=INTEGER},
       online_deposits_num = #{onlineDepositsNum,jdbcType=INTEGER},
       manual_deposits_num = #{manualDepositsNum,jdbcType=INTEGER},

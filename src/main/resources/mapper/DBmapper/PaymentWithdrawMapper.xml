@@ -8,7 +8,14 @@
     <result column="top_id" jdbcType="INTEGER" property="topId" />
     <result column="up_three_grade" jdbcType="VARCHAR" property="upThreeGrade" />
     <result column="take_amount" jdbcType="DECIMAL" property="takeAmount" />
+    <result column="game_bet_status" jdbcType="TINYINT" property="gameBetStatus" />
+    <result column="game_total_in_money" jdbcType="DECIMAL" property="gameTotalInMoney" />
+    <result column="game_total_out_money" jdbcType="DECIMAL" property="gameTotalOutMoney" />
+    <result column="game_total_bet_money" jdbcType="DECIMAL" property="gameTotalBetMoney" />
+    <result column="last_recharge_id" jdbcType="INTEGER" property="lastRechargeId" />
+    <result column="last_recharge_time" jdbcType="TIMESTAMP" property="lastRechargeTime" />
     <result column="status" jdbcType="BIT" property="status" />
+    <result column="is_first" jdbcType="BIT" property="isFirst" />
     <result column="is_take" jdbcType="TINYINT" property="isTake" />
     <result column="take_time" jdbcType="CHAR" property="takeTime" />
     <result column="take_ip" jdbcType="VARCHAR" property="takeIp" />
@@ -82,9 +89,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_id, username, top_id, up_three_grade, take_amount, status, is_take, take_time, 
-    take_ip, action_admin, check_admin, account_type, check_time, after_amount, before_amount, 
-    remark, is_read, ordernotes, type
+    id, user_id, username, top_id, up_three_grade, take_amount, game_bet_status, game_total_in_money, 
+    game_total_out_money, game_total_bet_money, last_recharge_id, last_recharge_time, 
+    status, is_first, is_take, take_time, take_ip, action_admin, check_admin, account_type, 
+    check_time, after_amount, before_amount, remark, is_read, ordernotes, type
   </sql>
   <select id="selectByExample" parameterType="com.Test.model.DBmodel.PaymentWithdrawExample" resultMap="BaseResultMap">
     select
@@ -119,14 +127,18 @@
   <insert id="insert" parameterType="com.Test.model.DBmodel.PaymentWithdraw">
     insert into payment_withdraw (id, user_id, username, 
       top_id, up_three_grade, take_amount, 
-      status, is_take, take_time, 
+      game_bet_status, game_total_in_money, game_total_out_money, 
+      game_total_bet_money, last_recharge_id, last_recharge_time, 
+      status, is_first, is_take, take_time, 
       take_ip, action_admin, check_admin, 
       account_type, check_time, after_amount, 
       before_amount, remark, is_read, 
       ordernotes, type)
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{username,jdbcType=CHAR}, 
       #{topId,jdbcType=INTEGER}, #{upThreeGrade,jdbcType=VARCHAR}, #{takeAmount,jdbcType=DECIMAL}, 
-      #{status,jdbcType=BIT}, #{isTake,jdbcType=TINYINT}, #{takeTime,jdbcType=CHAR}, 
+      #{gameBetStatus,jdbcType=TINYINT}, #{gameTotalInMoney,jdbcType=DECIMAL}, #{gameTotalOutMoney,jdbcType=DECIMAL}, 
+      #{gameTotalBetMoney,jdbcType=DECIMAL}, #{lastRechargeId,jdbcType=INTEGER}, #{lastRechargeTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=BIT}, #{isFirst,jdbcType=BIT}, #{isTake,jdbcType=TINYINT}, #{takeTime,jdbcType=CHAR}, 
       #{takeIp,jdbcType=VARCHAR}, #{actionAdmin,jdbcType=CHAR}, #{checkAdmin,jdbcType=CHAR}, 
       #{accountType,jdbcType=BIT}, #{checkTime,jdbcType=INTEGER}, #{afterAmount,jdbcType=DECIMAL}, 
       #{beforeAmount,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR}, #{isRead,jdbcType=BIT}, 
@@ -153,8 +165,29 @@
       <if test="takeAmount != null">
         take_amount,
       </if>
+      <if test="gameBetStatus != null">
+        game_bet_status,
+      </if>
+      <if test="gameTotalInMoney != null">
+        game_total_in_money,
+      </if>
+      <if test="gameTotalOutMoney != null">
+        game_total_out_money,
+      </if>
+      <if test="gameTotalBetMoney != null">
+        game_total_bet_money,
+      </if>
+      <if test="lastRechargeId != null">
+        last_recharge_id,
+      </if>
+      <if test="lastRechargeTime != null">
+        last_recharge_time,
+      </if>
       <if test="status != null">
         status,
+      </if>
+      <if test="isFirst != null">
+        is_first,
       </if>
       <if test="isTake != null">
         is_take,
@@ -215,8 +248,29 @@
       <if test="takeAmount != null">
         #{takeAmount,jdbcType=DECIMAL},
       </if>
+      <if test="gameBetStatus != null">
+        #{gameBetStatus,jdbcType=TINYINT},
+      </if>
+      <if test="gameTotalInMoney != null">
+        #{gameTotalInMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="gameTotalOutMoney != null">
+        #{gameTotalOutMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="gameTotalBetMoney != null">
+        #{gameTotalBetMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="lastRechargeId != null">
+        #{lastRechargeId,jdbcType=INTEGER},
+      </if>
+      <if test="lastRechargeTime != null">
+        #{lastRechargeTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="status != null">
         #{status,jdbcType=BIT},
+      </if>
+      <if test="isFirst != null">
+        #{isFirst,jdbcType=BIT},
       </if>
       <if test="isTake != null">
         #{isTake,jdbcType=TINYINT},
@@ -286,8 +340,29 @@
       <if test="record.takeAmount != null">
         take_amount = #{record.takeAmount,jdbcType=DECIMAL},
       </if>
+      <if test="record.gameBetStatus != null">
+        game_bet_status = #{record.gameBetStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.gameTotalInMoney != null">
+        game_total_in_money = #{record.gameTotalInMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.gameTotalOutMoney != null">
+        game_total_out_money = #{record.gameTotalOutMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.gameTotalBetMoney != null">
+        game_total_bet_money = #{record.gameTotalBetMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lastRechargeId != null">
+        last_recharge_id = #{record.lastRechargeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastRechargeTime != null">
+        last_recharge_time = #{record.lastRechargeTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=BIT},
+      </if>
+      <if test="record.isFirst != null">
+        is_first = #{record.isFirst,jdbcType=BIT},
       </if>
       <if test="record.isTake != null">
         is_take = #{record.isTake,jdbcType=TINYINT},
@@ -341,7 +416,14 @@
       top_id = #{record.topId,jdbcType=INTEGER},
       up_three_grade = #{record.upThreeGrade,jdbcType=VARCHAR},
       take_amount = #{record.takeAmount,jdbcType=DECIMAL},
+      game_bet_status = #{record.gameBetStatus,jdbcType=TINYINT},
+      game_total_in_money = #{record.gameTotalInMoney,jdbcType=DECIMAL},
+      game_total_out_money = #{record.gameTotalOutMoney,jdbcType=DECIMAL},
+      game_total_bet_money = #{record.gameTotalBetMoney,jdbcType=DECIMAL},
+      last_recharge_id = #{record.lastRechargeId,jdbcType=INTEGER},
+      last_recharge_time = #{record.lastRechargeTime,jdbcType=TIMESTAMP},
       status = #{record.status,jdbcType=BIT},
+      is_first = #{record.isFirst,jdbcType=BIT},
       is_take = #{record.isTake,jdbcType=TINYINT},
       take_time = #{record.takeTime,jdbcType=CHAR},
       take_ip = #{record.takeIp,jdbcType=VARCHAR},
@@ -377,8 +459,29 @@
       <if test="takeAmount != null">
         take_amount = #{takeAmount,jdbcType=DECIMAL},
       </if>
+      <if test="gameBetStatus != null">
+        game_bet_status = #{gameBetStatus,jdbcType=TINYINT},
+      </if>
+      <if test="gameTotalInMoney != null">
+        game_total_in_money = #{gameTotalInMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="gameTotalOutMoney != null">
+        game_total_out_money = #{gameTotalOutMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="gameTotalBetMoney != null">
+        game_total_bet_money = #{gameTotalBetMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="lastRechargeId != null">
+        last_recharge_id = #{lastRechargeId,jdbcType=INTEGER},
+      </if>
+      <if test="lastRechargeTime != null">
+        last_recharge_time = #{lastRechargeTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="status != null">
         status = #{status,jdbcType=BIT},
+      </if>
+      <if test="isFirst != null">
+        is_first = #{isFirst,jdbcType=BIT},
       </if>
       <if test="isTake != null">
         is_take = #{isTake,jdbcType=TINYINT},
@@ -429,7 +532,14 @@
       top_id = #{topId,jdbcType=INTEGER},
       up_three_grade = #{upThreeGrade,jdbcType=VARCHAR},
       take_amount = #{takeAmount,jdbcType=DECIMAL},
+      game_bet_status = #{gameBetStatus,jdbcType=TINYINT},
+      game_total_in_money = #{gameTotalInMoney,jdbcType=DECIMAL},
+      game_total_out_money = #{gameTotalOutMoney,jdbcType=DECIMAL},
+      game_total_bet_money = #{gameTotalBetMoney,jdbcType=DECIMAL},
+      last_recharge_id = #{lastRechargeId,jdbcType=INTEGER},
+      last_recharge_time = #{lastRechargeTime,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=BIT},
+      is_first = #{isFirst,jdbcType=BIT},
       is_take = #{isTake,jdbcType=TINYINT},
       take_time = #{takeTime,jdbcType=CHAR},
       take_ip = #{takeIp,jdbcType=VARCHAR},

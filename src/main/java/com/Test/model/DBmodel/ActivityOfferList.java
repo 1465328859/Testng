@@ -1,7 +1,13 @@
 package com.Test.model.DBmodel;
 
+import java.util.Date;
+
 public class ActivityOfferList {
     private Byte id;
+
+    private String platform;
+
+    private Byte activityType;
 
     private String title;
 
@@ -17,9 +23,11 @@ public class ActivityOfferList {
 
     private Byte sort;
 
-    private String startTime;
+    private Date startTime;
 
-    private String endTime;
+    private Date endTime;
+
+    private Date updatedAt;
 
     private String content;
 
@@ -29,6 +37,22 @@ public class ActivityOfferList {
 
     public void setId(Byte id) {
         this.id = id;
+    }
+
+    public String getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(String platform) {
+        this.platform = platform == null ? null : platform.trim();
+    }
+
+    public Byte getActivityType() {
+        return activityType;
+    }
+
+    public void setActivityType(Byte activityType) {
+        this.activityType = activityType;
     }
 
     public String getTitle() {
@@ -87,20 +111,28 @@ public class ActivityOfferList {
         this.sort = sort;
     }
 
-    public String getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime == null ? null : startTime.trim();
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
     }
 
-    public String getEndTime() {
+    public Date getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(String endTime) {
-        this.endTime = endTime == null ? null : endTime.trim();
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public String getContent() {

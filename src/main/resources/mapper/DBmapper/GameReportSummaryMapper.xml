@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Test.model.DBmodel.GameReportSummaryMapper">
+  <resultMap id="BaseResultMap" type="com.Test.model.DBmodel.GameReportSummary">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="platform" jdbcType="TINYINT" property="platform" />
+    <result column="belong_date" jdbcType="DATE" property="belongDate" />
+    <result column="bet_amount" jdbcType="DECIMAL" property="betAmount" />
+    <result column="profit" jdbcType="DECIMAL" property="profit" />
+    <result column="total_rebate_amount" jdbcType="DECIMAL" property="totalRebateAmount" />
+    <result column="total_top_rebate_amount" jdbcType="DECIMAL" property="totalTopRebateAmount" />
+    <result column="total_primary_rebate_amount" jdbcType="DECIMAL" property="totalPrimaryRebateAmount" />
+    <result column="total_secondary_rebate_amount" jdbcType="DECIMAL" property="totalSecondaryRebateAmount" />
+    <result column="total_tertiary_rebate_amount" jdbcType="DECIMAL" property="totalTertiaryRebateAmount" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, type, platform, belong_date, bet_amount, profit, total_rebate_amount, total_top_rebate_amount, 
+    total_primary_rebate_amount, total_secondary_rebate_amount, total_tertiary_rebate_amount, 
+    created_at
+  </sql>
+  <select id="selectByExample" parameterType="com.Test.model.DBmodel.GameReportSummaryExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from game_report_summary
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from game_report_summary
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from game_report_summary
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.Test.model.DBmodel.GameReportSummaryExample">
+    delete from game_report_summary
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.Test.model.DBmodel.GameReportSummary">
+    insert into game_report_summary (id, type, platform, 
+      belong_date, bet_amount, profit, 
+      total_rebate_amount, total_top_rebate_amount, 
+      total_primary_rebate_amount, total_secondary_rebate_amount, 
+      total_tertiary_rebate_amount, created_at)
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, #{platform,jdbcType=TINYINT}, 
+      #{belongDate,jdbcType=DATE}, #{betAmount,jdbcType=DECIMAL}, #{profit,jdbcType=DECIMAL}, 
+      #{totalRebateAmount,jdbcType=DECIMAL}, #{totalTopRebateAmount,jdbcType=DECIMAL}, 
+      #{totalPrimaryRebateAmount,jdbcType=DECIMAL}, #{totalSecondaryRebateAmount,jdbcType=DECIMAL}, 
+      #{totalTertiaryRebateAmount,jdbcType=DECIMAL}, #{createdAt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Test.model.DBmodel.GameReportSummary">
+    insert into game_report_summary
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="platform != null">
+        platform,
+      </if>
+      <if test="belongDate != null">
+        belong_date,
+      </if>
+      <if test="betAmount != null">
+        bet_amount,
+      </if>
+      <if test="profit != null">
+        profit,
+      </if>
+      <if test="totalRebateAmount != null">
+        total_rebate_amount,
+      </if>
+      <if test="totalTopRebateAmount != null">
+        total_top_rebate_amount,
+      </if>
+      <if test="totalPrimaryRebateAmount != null">
+        total_primary_rebate_amount,
+      </if>
+      <if test="totalSecondaryRebateAmount != null">
+        total_secondary_rebate_amount,
+      </if>
+      <if test="totalTertiaryRebateAmount != null">
+        total_tertiary_rebate_amount,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="platform != null">
+        #{platform,jdbcType=TINYINT},
+      </if>
+      <if test="belongDate != null">
+        #{belongDate,jdbcType=DATE},
+      </if>
+      <if test="betAmount != null">
+        #{betAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="profit != null">
+        #{profit,jdbcType=DECIMAL},
+      </if>
+      <if test="totalRebateAmount != null">
+        #{totalRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalTopRebateAmount != null">
+        #{totalTopRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPrimaryRebateAmount != null">
+        #{totalPrimaryRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalSecondaryRebateAmount != null">
+        #{totalSecondaryRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalTertiaryRebateAmount != null">
+        #{totalTertiaryRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.Test.model.DBmodel.GameReportSummaryExample" resultType="java.lang.Long">
+    select count(*) from game_report_summary
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update game_report_summary
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=TINYINT},
+      </if>
+      <if test="record.platform != null">
+        platform = #{record.platform,jdbcType=TINYINT},
+      </if>
+      <if test="record.belongDate != null">
+        belong_date = #{record.belongDate,jdbcType=DATE},
+      </if>
+      <if test="record.betAmount != null">
+        bet_amount = #{record.betAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.profit != null">
+        profit = #{record.profit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalRebateAmount != null">
+        total_rebate_amount = #{record.totalRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalTopRebateAmount != null">
+        total_top_rebate_amount = #{record.totalTopRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalPrimaryRebateAmount != null">
+        total_primary_rebate_amount = #{record.totalPrimaryRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalSecondaryRebateAmount != null">
+        total_secondary_rebate_amount = #{record.totalSecondaryRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalTertiaryRebateAmount != null">
+        total_tertiary_rebate_amount = #{record.totalTertiaryRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createdAt != null">
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update game_report_summary
+    set id = #{record.id,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=TINYINT},
+      platform = #{record.platform,jdbcType=TINYINT},
+      belong_date = #{record.belongDate,jdbcType=DATE},
+      bet_amount = #{record.betAmount,jdbcType=DECIMAL},
+      profit = #{record.profit,jdbcType=DECIMAL},
+      total_rebate_amount = #{record.totalRebateAmount,jdbcType=DECIMAL},
+      total_top_rebate_amount = #{record.totalTopRebateAmount,jdbcType=DECIMAL},
+      total_primary_rebate_amount = #{record.totalPrimaryRebateAmount,jdbcType=DECIMAL},
+      total_secondary_rebate_amount = #{record.totalSecondaryRebateAmount,jdbcType=DECIMAL},
+      total_tertiary_rebate_amount = #{record.totalTertiaryRebateAmount,jdbcType=DECIMAL},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Test.model.DBmodel.GameReportSummary">
+    update game_report_summary
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="platform != null">
+        platform = #{platform,jdbcType=TINYINT},
+      </if>
+      <if test="belongDate != null">
+        belong_date = #{belongDate,jdbcType=DATE},
+      </if>
+      <if test="betAmount != null">
+        bet_amount = #{betAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="profit != null">
+        profit = #{profit,jdbcType=DECIMAL},
+      </if>
+      <if test="totalRebateAmount != null">
+        total_rebate_amount = #{totalRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalTopRebateAmount != null">
+        total_top_rebate_amount = #{totalTopRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPrimaryRebateAmount != null">
+        total_primary_rebate_amount = #{totalPrimaryRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalSecondaryRebateAmount != null">
+        total_secondary_rebate_amount = #{totalSecondaryRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalTertiaryRebateAmount != null">
+        total_tertiary_rebate_amount = #{totalTertiaryRebateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Test.model.DBmodel.GameReportSummary">
+    update game_report_summary
+    set type = #{type,jdbcType=TINYINT},
+      platform = #{platform,jdbcType=TINYINT},
+      belong_date = #{belongDate,jdbcType=DATE},
+      bet_amount = #{betAmount,jdbcType=DECIMAL},
+      profit = #{profit,jdbcType=DECIMAL},
+      total_rebate_amount = #{totalRebateAmount,jdbcType=DECIMAL},
+      total_top_rebate_amount = #{totalTopRebateAmount,jdbcType=DECIMAL},
+      total_primary_rebate_amount = #{totalPrimaryRebateAmount,jdbcType=DECIMAL},
+      total_secondary_rebate_amount = #{totalSecondaryRebateAmount,jdbcType=DECIMAL},
+      total_tertiary_rebate_amount = #{totalTertiaryRebateAmount,jdbcType=DECIMAL},
+      created_at = #{createdAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

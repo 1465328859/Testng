@@ -10,7 +10,7 @@
       <class name="com.Test.cases.AddUserTest"/>
       <class name="com.Test.cases.Betting"/>
       <class name="com.Test.cases.HistoryRecording"/>
-      <class name="com.Test.cases.updateUserInfo"/>
+      <class name="com.Test.cases.LotteryList"/>
     </classes>
   </test> <!-- 用户管理系统测试用例 -->
   <test name="用户管理系统测试用例(failed)">

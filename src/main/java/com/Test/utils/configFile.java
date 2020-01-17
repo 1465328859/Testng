@@ -27,8 +27,8 @@ public class configFile {
         if(name == InterfaceName.HistoryRecording){
             uri = resourceBundle.getString("HistoryRecording.uri");
         }
-        if (name == InterfaceName.GETUSERINFO){
-            uri = resourceBundle.getString("getUserInfo.uri");
+        if (name == InterfaceName.LotteryList){
+            uri = resourceBundle.getString("LotteryList.uri");
         }
         if(name == InterfaceName.ADDUSER){
             uri = resourceBundle.getString("addUser.uri");

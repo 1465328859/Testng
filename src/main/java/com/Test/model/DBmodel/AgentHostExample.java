@@ -363,6 +363,76 @@ public class AgentHostExample {
             addCriterion("proxy_domain not between", value1, value2, "proxyDomain");
             return (Criteria) this;
         }
+
+        public Criteria andGameSwitchIsNull() {
+            addCriterion("game_switch is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameSwitchIsNotNull() {
+            addCriterion("game_switch is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameSwitchEqualTo(String value) {
+            addCriterion("game_switch =", value, "gameSwitch");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameSwitchNotEqualTo(String value) {
+            addCriterion("game_switch <>", value, "gameSwitch");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameSwitchGreaterThan(String value) {
+            addCriterion("game_switch >", value, "gameSwitch");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameSwitchGreaterThanOrEqualTo(String value) {
+            addCriterion("game_switch >=", value, "gameSwitch");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameSwitchLessThan(String value) {
+            addCriterion("game_switch <", value, "gameSwitch");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameSwitchLessThanOrEqualTo(String value) {
+            addCriterion("game_switch <=", value, "gameSwitch");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameSwitchLike(String value) {
+            addCriterion("game_switch like", value, "gameSwitch");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameSwitchNotLike(String value) {
+            addCriterion("game_switch not like", value, "gameSwitch");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameSwitchIn(List<String> values) {
+            addCriterion("game_switch in", values, "gameSwitch");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameSwitchNotIn(List<String> values) {
+            addCriterion("game_switch not in", values, "gameSwitch");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameSwitchBetween(String value1, String value2) {
+            addCriterion("game_switch between", value1, value2, "gameSwitch");
+            return (Criteria) this;
+        }
+
+        public Criteria andGameSwitchNotBetween(String value1, String value2) {
+            addCriterion("game_switch not between", value1, value2, "gameSwitch");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
