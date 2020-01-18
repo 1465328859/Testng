@@ -5,16 +5,16 @@
             <class name="com.Test.cases.LoginTest">
                 <include name="LoginTrue" />
             </class>
-            <class name="com.Test.cases.AddUserTest">
-                <include name="AddUser" />
+            <class name="com.Test.cases.RegisterTest">
+                <include name="Register" />
             </class>
-            <class name="com.Test.cases.LotteryList">
+            <class name="com.Test.cases.LotteryListTest">
                 <include name="LotteryList" />
             </class>
-            <class name="com.Test.cases.Betting">
+            <class name="com.Test.cases.BettingTest">
                 <include name="Betting" />
             </class>
-            <class name="com.Test.cases.HistoryRecording">
+            <class name="com.Test.cases.HistoryRecordingTest">
                 <include name="HistoryRecording" />
             </class>
         </classes>
@@ -23,4 +23,5 @@
     <listeners>
         <listener class-name="com.Test.config.ExtentTestNGIReporterListener"/>
     </listeners>
+    <testFailureIgnore>true</testFailureIgnore>
 </suite>

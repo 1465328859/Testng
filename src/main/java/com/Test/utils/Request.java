@@ -23,7 +23,7 @@ import java.util.Map;
 public class Request {
     public String get(String url) throws IOException {
         HttpGet httpGet = new HttpGet();
-        httpGet.addHeader("Content-Type","application/json;charset=utf-8");
+        //httpGet.addHeader("Content-Type","application/json;charset=utf-8");
         httpGet.setURI(URI.create(url));
         HttpResponse httpResponse = TestConfig.defaultHttpClient.execute(httpGet);
         String result = EntityUtils.toString(httpResponse.getEntity());

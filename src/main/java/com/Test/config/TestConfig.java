@@ -8,7 +8,7 @@ public class TestConfig {
     public static String Bettingurl;
     public static String HistoryRecordingurl;
     public static String LotteryListuri;
-    public static String addUseruri;
+    public static String Registeruri;
 
     public static DefaultHttpClient defaultHttpClient;
     public static CookieStore cookieStore;

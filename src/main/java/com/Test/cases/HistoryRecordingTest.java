@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HistoryRecording {
+public class HistoryRecordingTest {
     //加@BeforeTest注解，在用例执行前先获取接口的url
     @BeforeTest(groups = "HistoryRecording",description = "历史开奖接口")
     public void beforeTest(){

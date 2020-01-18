@@ -30,8 +30,8 @@ public class configFile {
         if (name == InterfaceName.LotteryList){
             uri = resourceBundle.getString("LotteryList.uri");
         }
-        if(name == InterfaceName.ADDUSER){
-            uri = resourceBundle.getString("addUser.uri");
+        if(name == InterfaceName.Register){
+            uri = resourceBundle.getString("Register.uri");
         }
 
         //拼接url

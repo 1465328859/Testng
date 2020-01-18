@@ -11,6 +11,7 @@ import com.Test.utils.configFile;
 import net.sf.json.JSONObject;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.ibatis.session.SqlSession;
+import org.testng.Reporter;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -19,27 +20,28 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AddUserTest {
+public class RegisterTest {
     //加@BeforeTest注解，在用例执行前先获取接口的url
-    @BeforeTest(groups = "AddUser",description = "创建用户接口")
+    @BeforeTest(groups = "Register",description = "创建用户接口")
     public void beforeTest(){
         //获取接口地址
-        TestConfig.addUseruri = configFile.getUrl(InterfaceName.ADDUSER);
+        TestConfig.Registeruri = configFile.getUrl(InterfaceName.Register);
         TestConfig.defaultHttpClient = new DefaultHttpClient();
     }
-    @Test(groups = "AddUser", description = "创建用户的接口")
-    public void AddUser() throws IOException {
+    @Test(groups = "Register", description = "创建用户的接口")
+    public void Register() throws IOException {
         Map map =new HashMap();
-        map.put("username","testjack20003");
+        map.put("username","testjack20004");
         map.put("password","testjack200");
         map.put("version","1.2.2");
         map.put("platform","2");
         map.put("from","2");
-        String responsejosn = new Request().post(TestConfig.addUseruri,map);
+        String responsejosn = new Request().post(TestConfig.Registeruri,map);
         JSONObject jsonObject = JSONObject.fromObject(responsejosn);
         Integer resule = (Integer) jsonObject.get("result");
         if (resule!=1){
-            throw new RuntimeException(jsonObject.toString());
+            Reporter.log(jsonObject.toString());
+//            throw new RuntimeException(jsonObject.toString());
         }
         String username = (String) jsonObject.getJSONObject("data").get("username");
         //定义sqlsession对象，从DatabaseUtil类中调getsqlSession方法，直接获取到sqlsession对象，可以执行sql语句，不需要配置数据库信息

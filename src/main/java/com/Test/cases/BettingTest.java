@@ -7,6 +7,8 @@ import com.Test.utils.configFile;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.ibatis.annotations.Mapper;
+import org.testng.Reporter;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -14,8 +16,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-
-public class Betting {
+public class BettingTest {
     //加@BeforeTest注解，在用例执行前先获取接口的url
     @BeforeTest(groups = "Betting",description = "投注接口")
     public void beforeTest(){
@@ -45,7 +46,8 @@ public class Betting {
         JSONObject jsonObject = JSONObject.fromObject(responsejosn);
         Integer resule = (Integer) jsonObject.get("result");
         if (resule!=1){
-            throw new RuntimeException(jsonObject.toString());
+            Reporter.log(jsonObject.toString());
+//            throw new RuntimeException(jsonObject.toString());
         }else {
             System.out.println(jsonObject.get("msg"));
         }

@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
-public class LotteryList {
+public class LotteryListTest {
     static JSONArray array;
     @BeforeTest(groups = "LotteryList",description = "奖期接口")
     public void beforetest(){
